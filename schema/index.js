@@ -63,7 +63,7 @@ const schema = gql `
     sponsors: [String]
     stats(
       # options: recent (default), year, all, custom
-      timeframe: String
+      timeframe: TimeFrame
       # required for 'custom' timeframe
       startDate: String
       # defaults to today
