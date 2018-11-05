@@ -17,6 +17,13 @@ module.exports = {
         startDate,
         endDate
       });
+    },
+    episodesTitleContains(podcast, { query }) {
+      return client.episodes
+        .getEpisodes(podcast.id)
+        .then(episodes =>
+          episodes.filter(episode => episode.title.indexOf(query) > -1)
+        );
     }
   },
   Episode: {

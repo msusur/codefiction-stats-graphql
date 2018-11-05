@@ -29,6 +29,10 @@ const schema = gql`
       # defaults to today
       endDate: String
     ): PodcastStats
+    episodesTitleContains(
+      # Title query
+      query: String
+    ): [Episode]
   }
 
   type Episode {
@@ -71,12 +75,12 @@ const schema = gql`
   }
 
   type EpisodeStats {
-    data: [EpisodeStatsItem],
+    data: [EpisodeStatsItem]
     total_listens: Int
   }
 
   type EpisodeStatsItem {
-    date: String,
+    date: String
     listens: Int
   }
 
