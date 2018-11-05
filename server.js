@@ -16,7 +16,7 @@ const resolvers = {
   }
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs, resolvers, introspection: true });
 
 const app = express();
 app.set('port', process.env.PORT || 4000);
