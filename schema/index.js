@@ -1,8 +1,15 @@
 const { gql } = require('apollo-server-express');
 
-const schema = gql`
+const schema = gql `
   type RootQuery {
     podcasts: [Podcast]
+  }
+
+  enum TimeFrame {
+    recent
+    year
+    all
+    custom
   }
 
   type Podcast {
@@ -20,10 +27,10 @@ const schema = gql`
     twitter: String
     explicit: Boolean
     images: Image
-    episodes: [Episode]
+    episodes(title: String): [Episode]
     overallStats(
       # options: recent (default), year, all, custom
-      timeframe: String
+      timeframe: TimeFrame
       # required for 'custom' timeframe
       startDate: String
       # defaults to today

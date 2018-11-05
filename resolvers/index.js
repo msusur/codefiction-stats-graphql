@@ -8,8 +8,13 @@ module.exports = {
     }
   },
   Podcast: {
-    episodes(podcast) {
-      return client.episodes.getEpisodes(podcast.id);
+    episodes(podcast, { title }) {
+      return client.episodes.getEpisodes(podcast.id)
+        .then(episodes =>
+          !title ?
+          episodes :
+          episodes.filter(episode => episode.title.toLowerCase().indexOf(title.toLowerCase()) > -1)
+        );
     },
     overallStats(podcast, { timeframe, startDate, endDate }) {
       return client.statistics.getOverallStats(podcast.id, {
@@ -17,14 +22,14 @@ module.exports = {
         startDate,
         endDate
       });
-    },
-    episodesTitleContains(podcast, { query }) {
-      return client.episodes
-        .getEpisodes(podcast.id)
-        .then(episodes =>
-          episodes.filter(episode => episode.title.indexOf(query) > -1)
-        );
     }
+    // episodesTitleContains(podcast, { query }) {
+    //   return client.episodes
+    //     .getEpisodes(podcast.id)
+    //     .then(episodes =>
+    //       episodes.filter(episode => episode.title.indexOf(query) > -1)
+    //     );
+    // }
   },
   Episode: {
     stats(episode, { timeframe, startDate, endDate }) {
