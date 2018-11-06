@@ -1,8 +1,10 @@
 const SimpleCastClient = require('simplecast-api-client');
 const YoutubeClient = require('./clients/youtube');
+const TwitterClient = require('./clients/twitter');
 
 const client = new SimpleCastClient({ apikey: process.env.SECRET });
 const youtube = new YoutubeClient();
+const twitter = new TwitterClient();
 
 module.exports = {
   RootQuery: {
@@ -11,19 +13,30 @@ module.exports = {
     },
     youtube() {
       return youtube.getChannel();
+    },
+    twitter() {
+      return twitter.getFollowers();
     }
   },
   Podcast: {
     episodes(podcast, { title }) {
-      return client.episodes.getEpisodes(podcast.id)
-        .then(episodes =>
-          !title ?
-          episodes :
-          episodes.filter(episode => episode.title.toLowerCase().indexOf(title.toLowerCase()) > -1)
+      return client.episodes
+        .getEpisodes(podcast.id)
+        .then(
+          episodes =>
+            !title
+              ? episodes
+              : episodes.filter(
+                  episode =>
+                    episode.title.toLowerCase().indexOf(title.toLowerCase()) >
+                    -1
+                )
         );
     },
     numberOfEpisodes(podcast) {
-      return client.episodes.getEpisodes(podcast.id).then(episodes => episodes.length);
+      return client.episodes
+        .getEpisodes(podcast.id)
+        .then(episodes => episodes.length);
     },
     overallStats(podcast, { timeframe, startDate, endDate }) {
       return client.statistics.getOverallStats(podcast.id, {

@@ -4,6 +4,7 @@ const schema = gql `
   type RootQuery {
     podcasts: [Podcast]
     youtube: YoutubeChannel
+    twitter: TwitterProfile
   }
 
   enum TimeFrame {
@@ -13,7 +14,9 @@ const schema = gql `
     custom
   }
 
+  #######################
   ## Video Schema
+  #######################
   type YoutubeChannel {
     etag: String
     id: String
@@ -76,8 +79,9 @@ const schema = gql `
     viewCount: String
   }
 
+  #######################
   ## Podcast Schema
-
+  #######################
   type Podcast {
     id: Int!
     title: String
@@ -160,6 +164,13 @@ const schema = gql `
 
   schema {
     query: RootQuery
+  }
+
+  #######################
+  ## Twitter Schema
+  #######################
+  type TwitterProfile {
+    followersCount: Int
   }
 `;
 
