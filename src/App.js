@@ -38,6 +38,14 @@ const QUERY_EPISODES = (title) => gql`
 			statistics {
 				subscriberCount
 			}
+      videos {
+        snippet {
+          title
+        }
+        statistics {
+          viewCount
+        }
+      }
 		}
 		twitter {
 			followersCount
@@ -93,7 +101,7 @@ export class App extends Component {
 								</Row>
 								<Row>
 									<Col md={8}>
-										<TopEpisodesChart episode={this.state.selectedItem} />
+										<TopEpisodesChart episode={this.state.selectedItem} videos={result.data.youtube.videos}/>
 									</Col>
 									<Col md={4}>
 										<EpisodesChart podcast={result.data.podcasts[0]} />

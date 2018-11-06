@@ -21,7 +21,7 @@ export class EpisodesNeedsAttention extends Component {
 							.slice(0, 10)
 							.map((episode) => {
 								return (
-									<tr>
+									<tr key={episode.id}>
 										<td>
 											<a href={episode.audio_url}>{episode.title}</a>
 										</td>
