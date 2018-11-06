@@ -1,0 +1,27 @@
+.loading {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+
+.loading:after {
+  content: " ";
+  align-content: center;
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #000;
+  border-color: #000 transparent;
+  animation: loading 1.2s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

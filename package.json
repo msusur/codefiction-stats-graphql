@@ -6,6 +6,7 @@
   "scripts": {
     "prestart": "react-scripts build",
     "start": "node server.js",
+    "start:server": "node server.js",
     "start:react": "react-scripts start",
     "build": "react-scripts build"
   },
@@ -13,12 +14,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-boost": "^0.1.20",
     "apollo-server-express": "^2.1.0",
     "body-parser": "^1.18.3",
+    "chart.js": "^2.7.3",
     "express": "^4.16.4",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.3",
+    "node-sass": "^4.10.0",
     "react": "^16.6.0",
+    "react-apollo": "^2.2.4",
+    "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.6.0",
     "react-scripts": "^2.1.1",
     "simplecast-api-client": "^1.0.2",
