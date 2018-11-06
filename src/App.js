@@ -24,13 +24,13 @@ const QUERY_EPISODES = (title) => gql`
 			episodes {
 				title
 				id
-        audio_url
+				audio_url
 				stats(timeframe: all) {
 					data {
 						date
 						listens
 					}
-          total_listens
+					total_listens
 				}
 			}
 		}
@@ -96,12 +96,12 @@ export class App extends Component {
 										<TopEpisodesChart episode={this.state.selectedItem} />
 									</Col>
 									<Col md={4}>
-										<EpisodesNeedsAttention episodes={result.data.podcasts[0].episodes} />
+										<EpisodesChart podcast={result.data.podcasts[0]} />
 									</Col>
 								</Row>
 								<Row>
-									<Col md={4}>
-										<EpisodesChart podcast={result.data.podcasts[0]} />
+									<Col md={12}>
+										<EpisodesNeedsAttention episodes={result.data.podcasts[0].episodes} />
 									</Col>
 								</Row>
 							</Grid>
