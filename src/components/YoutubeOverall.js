@@ -5,7 +5,7 @@ export class YoutubeOverall extends Component {
   render() {
     return (
       <div>
-        Youtube Subscribers
+        Toplam Youtube Takipcisi
         <span className="dashboard--value">
           {this.props.value.subscriberCount}
         </span>

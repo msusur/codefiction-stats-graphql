@@ -5,7 +5,7 @@ export class PodcastOverall extends Component {
   render() {
     return (
       <div>
-        Total Listeners
+        Podcast Toplam Dinleme
         <span className="dashboard--value">
           {this.props.value[0].overallStats.total_listens}
         </span>

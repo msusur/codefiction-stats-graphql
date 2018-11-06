@@ -71,15 +71,15 @@ export class TopEpisodesChart extends Component {
 					return (
 						<div className="dashboard--items-container">
 							<div className="dashboard--items">
-								Total Youtube View:{' '}
+								Youtube Izlenme Sayisi:{' '}
 								<span className="dashboard--value">
-									{youtubeVideos.length ? youtubeVideos[0].statistics.viewCount : 'NOT FOUND'}
-								</span>{' '}
+									{youtubeVideos.length ? youtubeVideos[0].statistics.viewCount : 'BULAMADI :('}
+								</span>
 							</div>
 							<div>
-								Total Podcast Listen:<span className="dashboard--value">
+								Podcast Izlenme Sayisi:<span className="dashboard--value">
 									{this.props.episode[0].stats.total_listens}
-								</span>{' '}
+								</span>
 							</div>
 							<Line data={data} />
 						</div>

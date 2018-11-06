@@ -11,7 +11,7 @@ export class EpisodesNeedsAttention extends Component {
 		return (
 			<div>
 				<div>
-					<label>En az dinlenen 10 Podcast bolumu</label>
+					<label>Top/Bottom 10 Podcast bolumu</label>
 				</div>
 				<div className="dashboard--button-container">
 					<Button bsSize="small" onClick={(event) => this.setState({ up: !this.state.up })}>
@@ -22,8 +22,8 @@ export class EpisodesNeedsAttention extends Component {
 				<Table striped bordered condensed hover>
 					<thead>
 						<tr>
-							<th>Title</th>
-							<th>Total Listens</th>
+							<th>Bolum Adi</th>
+							<th>Toplam Dinleme</th>
 						</tr>
 					</thead>
 					<tbody>
