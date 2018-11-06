@@ -27,6 +27,7 @@
     "react": "^16.6.0",
     "react-apollo": "^2.2.4",
     "react-bootstrap": "^0.32.4",
+    "react-bootstrap-typeahead": "^3.2.4",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.6.0",
     "react-scripts": "^2.1.1",

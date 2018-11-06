@@ -7,7 +7,7 @@ export class Header extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Codefiction</a>
+            <span>Codefiction</span>
           </Navbar.Brand>
         </Navbar.Header>
       </Navbar>
