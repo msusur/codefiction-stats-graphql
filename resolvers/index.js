@@ -1,10 +1,16 @@
 const SimpleCastClient = require('simplecast-api-client');
+const YoutubeClient = require('./clients/youtube');
 
 const client = new SimpleCastClient({ apikey: process.env.SECRET });
+const youtube = new YoutubeClient();
+
 module.exports = {
   RootQuery: {
     podcasts() {
       return client.podcasts.getPodcasts();
+    },
+    youtube() {
+      return youtube.getChannel();
     }
   },
   Podcast: {
@@ -26,13 +32,6 @@ module.exports = {
         endDate
       });
     }
-    // episodesTitleContains(podcast, { query }) {
-    //   return client.episodes
-    //     .getEpisodes(podcast.id)
-    //     .then(episodes =>
-    //       episodes.filter(episode => episode.title.indexOf(query) > -1)
-    //     );
-    // }
   },
   Episode: {
     stats(episode, { timeframe, startDate, endDate }) {
@@ -41,6 +40,16 @@ module.exports = {
         startDate,
         endDate
       });
+    }
+  },
+  YoutubeChannel: {
+    videos(channel, { maxCount }) {
+      return youtube.getVideos(channel.id, maxCount ? maxCount : 50);
+    }
+  },
+  Video: {
+    statistics(video) {
+      return youtube.getVideoStats(video.snippet.resourceId.videoId);
     }
   }
 };

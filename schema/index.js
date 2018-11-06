@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 const schema = gql `
   type RootQuery {
     podcasts: [Podcast]
+    youtube: YoutubeChannel
   }
 
   enum TimeFrame {
@@ -11,6 +12,71 @@ const schema = gql `
     all
     custom
   }
+
+  ## Video Schema
+  type YoutubeChannel {
+    etag: String
+    id: String
+    kind: String
+    statistics: ChannelStats
+    videos(maxCount: Int): [Video]
+  }
+
+  type ChannelStats {
+    commentCount: String
+    subscriberCount: String
+    hiddenSubscriberCount: Boolean
+    videoCount: String
+    viewCount: String
+  }
+
+  type Video {
+    id: String
+    kind: String
+    etag: String
+    snippet: VideoSnippet
+    statistics: VideoStats
+  }
+
+  type VideoSnippet {
+    publishedAt: String
+    channelId: String
+    title: String
+    description: String
+    thumbnails: VideoThumb
+    channelTitle: String
+    playlistId: String
+    resourceId: VideoResource
+  }
+
+  type VideoResource {
+    kind: String
+    videoId: String
+  }
+
+  type VideoThumb {
+    default: VideoImage
+    medium: VideoImage
+    high: VideoImage
+    standard: VideoImage
+    maxres: VideoImage
+  }
+
+  type VideoImage {
+    url: String
+    width: Int
+    height: Int
+  }
+
+  type VideoStats {
+    commentCount: String
+    dislikeCount: String
+    favoriteCount: String
+    likeCount: String
+    viewCount: String
+  }
+
+  ## Podcast Schema
 
   type Podcast {
     id: Int!
