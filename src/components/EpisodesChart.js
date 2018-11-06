@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
-import { Loading } from './Loading';
+import { EpisodeStatsService } from '../api/episode-stats-service';
 
 const dataset = () => {
   return {
@@ -20,21 +20,12 @@ export class EpisodesChart extends Component {
       labels: [],
       datasets: []
     };
-    const podcast = this.props.podcast;
-
-    const months = {};
-
     const set = dataset();
-    podcast.episodes.map(episode => {
-      return episode.stats.data.map(item => {
-        months[item.date] =
-          (months[item.date] ? months[item.date] : 0) + item.listens;
-      });
-    });
-    for (let key in months) {
-      dataValues.labels.push(key);
-      set.data.push(months[key]);
-    }
+
+    const stats = new EpisodeStatsService();
+    const statValues = stats.getTimeSeries(this.props.podcast.episodes);
+    dataValues.labels = statValues.labels;
+    set.data = statValues.values;
     dataValues.datasets.push(set);
 
     return <HorizontalBar data={dataValues} />;
