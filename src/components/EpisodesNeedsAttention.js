@@ -13,7 +13,6 @@ export class EpisodesNeedsAttention extends Component {
 						<tr>
 							<th>Title</th>
 							<th>Total Listens</th>
-							<th>Link</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -23,11 +22,10 @@ export class EpisodesNeedsAttention extends Component {
 							.map((episode) => {
 								return (
 									<tr>
-										<td>{episode.title.substring(0, 20)}...</td>
-										<td>{episode.stats.total_listens}</td>
 										<td>
 											<a href={episode.audio_url}>{episode.title}</a>
 										</td>
+										<td>{episode.stats.total_listens}</td>
 									</tr>
 								);
 							})}
