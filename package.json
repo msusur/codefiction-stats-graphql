@@ -30,6 +30,7 @@
     "react-dom": "^16.6.0",
     "react-scripts": "^2.1.1",
     "simplecast-api-client": "^1.0.2",
+    "twit": "^2.2.11",
     "unstated": "^2.1.1",
     "youtube-api": "^2.0.9"
   },
