@@ -28,6 +28,7 @@ const schema = gql `
     explicit: Boolean
     images: Image
     episodes(title: String): [Episode]
+    numberOfEpisodes: Int
     overallStats(
       # options: recent (default), year, all, custom
       timeframe: TimeFrame

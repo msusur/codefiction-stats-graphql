@@ -16,6 +16,9 @@ module.exports = {
           episodes.filter(episode => episode.title.toLowerCase().indexOf(title.toLowerCase()) > -1)
         );
     },
+    numberOfEpisodes(podcast) {
+      return client.episodes.getEpisodes(podcast.id).then(episodes => episodes.length);
+    },
     overallStats(podcast, { timeframe, startDate, endDate }) {
       return client.statistics.getOverallStats(podcast.id, {
         timeframe,
