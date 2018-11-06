@@ -63,6 +63,7 @@ export class TopEpisodesChart extends Component {
           );
           data.labels = series.labels;
           data.datasets[0].data = series.values;
+          data.datasets[0].label = this.props.episode[0].title;
           return <Line data={data} />;
         }}
       </Query>
