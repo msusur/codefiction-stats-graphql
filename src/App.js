@@ -8,11 +8,9 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 
 import Header from './components/Header';
 import Loading from './components/Loading';
-import YoutubeOverall from './components/YoutubeOverall';
-import { PodcastOverall } from './components/PodcastOverall';
-import TwitterOverall from './components/TwitterOverall';
 import TopEpisodesChart from './components/TopEpisodesChart';
 import TopBottom10Episodes from './components/TopBottom10Episodes';
+import OverallValue from './components/OverallValue';
 
 const QUERY_EPISODES = (title) => gql`
 	{
@@ -70,21 +68,30 @@ export class App extends Component {
 									<Col md={4}>
 										<Panel>
 											<Panel.Body>
-												<TwitterOverall value={result.data.twitter} />
+												<OverallValue
+													valueKey = {'twitter_overall'}
+													text = {'Twitter Takipci Sayisi'}
+												  value = {result.data.twitter ? result.data.twitter.followersCount : null} />
 											</Panel.Body>
 										</Panel>
 									</Col>
 									<Col md={4}>
 										<Panel>
 											<Panel.Body>
-												<YoutubeOverall value={result.data.youtube.statistics} />
+												<OverallValue
+													valueKey = {'youtube_overall'}
+													text = {'Toplam Youtube Takipcisi'}
+												  value = {result.data.youtube.statistics ? result.data.youtube.statistics.subscriberCount : null} />
 											</Panel.Body>
 										</Panel>
 									</Col>
 									<Col md={4}>
 										<Panel>
 											<Panel.Body>
-												<PodcastOverall value={result.data.podcasts} />
+													<OverallValue
+														valueKey = {'podcast_overall'}
+														text = {'Toplam Podcast Dinleme'}
+														value = {result.data.podcasts ? result.data.podcasts[0].overallStats.total_listens : null} />
 											</Panel.Body>
 										</Panel>
 									</Col>
