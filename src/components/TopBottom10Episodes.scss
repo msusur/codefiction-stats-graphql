@@ -1,7 +1,11 @@
-.dashboard--head-row {
-	padding: 10px;
-
-	&--button{
-		float: right;
-	}
+.dashboard {
+  &--head-row {
+    padding: 10px;
+    &--button {
+      float: right;
+    }
+  }
+  &--up-down-button {
+    cursor: pointer;
+  }
 }

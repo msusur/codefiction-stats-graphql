@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Glyphicon,Grid, Col, Row } from 'react-bootstrap';
+import { Table, Glyphicon,Grid, Col, Row } from 'react-bootstrap';
 import './TopBottom10Episodes.scss';
 
 export class TopBottom10Episodes extends Component {
@@ -14,14 +14,6 @@ export class TopBottom10Episodes extends Component {
 					<Col sm={8}>
 						<label>Top/Bottom 10 Podcast bolumu</label>
 					</Col>
-					<Col sm={4} >
-						<Button 
-								className="dashboard--head-row--button" 
-								bsSize="small" onClick={(event) => this.setState({ up: !this.state.up })}>
-						<Glyphicon glyph={this.state.up ? 'chevron-up' : 'chevron-down'} />{' '}
-						{this.state.up ? 'Cok' : 'Az'}
-					</Button>
-					</Col>
 				</Row>
 				<Row>
 					<Col md={12}>
@@ -29,7 +21,7 @@ export class TopBottom10Episodes extends Component {
 					<thead>
 						<tr>
 							<th>Bolum Adi</th>
-							<th>Toplam Dinleme</th>
+							<th>Toplam Dinleme <Glyphicon className="dashboard--up-down-button" onClick={(event) => this.setState({ up: !this.state.up })} glyph={this.state.up ? 'chevron-up' : 'chevron-down'} /></th>
 						</tr>
 					</thead>
 					<tbody>
