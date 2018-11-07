@@ -1,3 +1,29 @@
-.dashboard--value {
-  padding-left: 10px;
+.dashboard {
+  text-align: center;
+  &--value {
+    @extend .dashboard;
+    font-size: 1.2em;
+  }
+  &--label {
+    @extend .dashboard;
+    font-weight: 600;
+  }
+  &--ratio {
+    &--red {
+      @extend .dashboard;
+      width: 40px;
+      background-color: #ffebee;
+      color: #f44336;
+      border-radius: 10em;
+      margin: auto;
+    }
+    &--blue {
+      @extend .dashboard;
+      width: 40px;
+      background-color: #e3f2fd;
+      color: #2196f3;
+      border-radius: 10em;
+      margin: auto;
+    }
+  }
 }

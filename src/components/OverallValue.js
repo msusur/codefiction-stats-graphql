@@ -7,11 +7,12 @@ export class OverallValue extends Component {
     const compare = new OverallCompareService();
     const value = compare.setAndCompareValue(this.props.valueKey, this.props.value);
     return (
-      <div>
-        {this.props.text}
-        <span className="dashboard--value">
+      <div className="dashboard--container">
+        <div className="dashboard--label">{this.props.text}</div>
+        <div className="dashboard--value">
           {value.currentValue}
-        </span>
+        </div>
+        <div className={value.ratio < 0 ? 'dashboard--ratio--red' : 'dashboard--ratio--blue'}>{value.ratio > 0 ? '+' + value.ratio : value.ratio}%</div>
       </div>
     );
   }

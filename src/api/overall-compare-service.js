@@ -1,17 +1,19 @@
 export class OverallCompareService {
-  setAndCompareValue(key, value) {
+  setAndCompareValue(key, currentValue) {
     const existingValue = localStorage.getItem(key);
 
-    localStorage.setItem(key, value);
+    localStorage.setItem(key, currentValue);
     if (!existingValue) {
       return {
-        currentValue: value,
+        currentValue,
         existingValue: -1
       };
     }
-    return  {
-      currentValue: value,
-      existingValue
+    const ratio = Math.ceil(((currentValue - existingValue) / existingValue) * 100);
+    return {
+      currentValue,
+      existingValue,
+      ratio
     }
   }
 }

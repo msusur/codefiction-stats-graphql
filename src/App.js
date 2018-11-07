@@ -67,7 +67,7 @@ export class App extends Component {
 								<Row md={12}>
 									<Col md={4}>
 										<Panel>
-											<Panel.Body>
+											<Panel.Body className="bg-primary text-white">
 												<OverallValue
 													valueKey = {'twitter_overall'}
 													text = {'Twitter Takipci Sayisi'}
@@ -77,7 +77,7 @@ export class App extends Component {
 									</Col>
 									<Col md={4}>
 										<Panel>
-											<Panel.Body>
+											<Panel.Body className="bg-success text-white">
 												<OverallValue
 													valueKey = {'youtube_overall'}
 													text = {'Toplam Youtube Takipcisi'}
@@ -87,7 +87,7 @@ export class App extends Component {
 									</Col>
 									<Col md={4}>
 										<Panel>
-											<Panel.Body>
+											<Panel.Body className="bg-info text-white">
 													<OverallValue
 														valueKey = {'podcast_overall'}
 														text = {'Toplam Podcast Dinleme'}
