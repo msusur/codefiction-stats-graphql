@@ -7,7 +7,7 @@ export class OverallCompareService {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
 
-    let createdOn = `${yesterday.getDay()}.${yesterday.getMonth()}.${yesterday.getFullYear()}`;
+    let createdOn = `${yesterday.getDate()}.${yesterday.getMonth()}.${yesterday.getFullYear()}`;
     const lastDayStat = this.series.filter((item) => {
       if (item.createdOn === createdOn) {
         return item;

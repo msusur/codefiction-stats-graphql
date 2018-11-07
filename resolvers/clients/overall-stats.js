@@ -6,7 +6,7 @@ class OverallStatsClient {
     return new Promise((resolve, reject) => {
       // The whole idea is to allow creating the data only once for each day.
       const now = new Date();
-      let createdOn = `${now.getDay()}.${now.getMonth()}.${now.getFullYear()}`;
+      let createdOn = `${now.getDate()}.${now.getMonth()}.${now.getFullYear()}`;
       this.getTodaysOverall(createdOn).then(result => {
         if (result.length > 0) {
           return resolve(result[0]);
