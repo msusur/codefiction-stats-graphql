@@ -1,6 +1,7 @@
 const SimpleCastClient = require('simplecast-api-client');
 const YoutubeClient = require('./clients/youtube');
 const TwitterClient = require('./clients/twitter');
+const { soundCloudScrapedData } = require('./clients/soundcloud');
 
 const client = new SimpleCastClient({ apikey: process.env.SECRET });
 const youtube = new YoutubeClient();
@@ -24,13 +25,13 @@ module.exports = {
         .getEpisodes(podcast.id)
         .then(
           episodes =>
-            !title
-              ? episodes
-              : episodes.filter(
-                  episode =>
-                    episode.title.toLowerCase().indexOf(title.toLowerCase()) >
-                    -1
-                )
+          !title ?
+          episodes :
+          episodes.filter(
+            episode =>
+            episode.title.toLowerCase().indexOf(title.toLowerCase()) >
+            -1
+          )
         );
     },
     numberOfEpisodes(podcast) {
@@ -52,6 +53,14 @@ module.exports = {
         timeframe,
         startDate,
         endDate
+      }).then(stats => {
+        soundCloudScrapedData.filter(item => {
+          const hasItem = item.title.toLowerCase().indexOf(episode.title.toLowerCase().substring(0, 10)) > -1;
+          if (hasItem) {
+            stats.total_listens += item.listenCount;
+          }
+        });
+        return stats;
       });
     }
   },

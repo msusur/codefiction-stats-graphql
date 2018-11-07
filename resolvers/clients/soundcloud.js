@@ -1,5 +1,4 @@
-[
-  {
+const soundCloudScrapedData = [{
     "url": "/codefiction/sezon-3-kirksekizinci-bolum-legacy-nedir-ve-legacy-sistemler-nasil-degistirilir",
     "title": "Sezon 3 - Kırksekizinci Bölüm - Legacy Nedir ve Legacy Sistemler Nasıl Değiştirilir",
     "listenCount": 40
@@ -300,3 +299,5 @@
     "listenCount": 3859
   }
 ]
+
+module.exports = { soundCloudScrapedData };
