@@ -1,14 +1,26 @@
 export class OverallCompareService {
-  setAndCompareValue(key, currentValue) {
-    const existingValue = localStorage.getItem(key);
+  constructor(series) {
+    this.series = series;
+  }
 
-    localStorage.setItem(key, currentValue);
-    if (!existingValue) {
+  setAndCompareValue(key, currentValue) {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    let createdOn = `${yesterday.getDay()}.${yesterday.getMonth()}.${yesterday.getFullYear()}`;
+    const lastDayStat = this.series.filter((item) => {
+      if (item.createdOn === createdOn) {
+        return item;
+      }
+    });
+    
+    if (lastDayStat.length <= 0) {
       return {
         currentValue,
         existingValue: -1
       };
     }
+    const existingValue = lastDayStat[key];
     const ratio = Math.ceil(((currentValue - existingValue) / existingValue) * 100);
     return {
       currentValue,

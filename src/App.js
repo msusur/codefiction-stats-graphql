@@ -11,6 +11,7 @@ import Loading from './components/Loading';
 import TopEpisodesChart from './components/TopEpisodesChart';
 import TopBottom10Episodes from './components/TopBottom10Episodes';
 import OverallValue from './components/OverallValue';
+import OverallStatsTimeSeries from './components/OverallStatsTimeSeries';
 
 const QUERY_EPISODES = (title) => gql`
 	{
@@ -48,6 +49,12 @@ const QUERY_EPISODES = (title) => gql`
 		twitter {
 			followersCount
 		}
+		overallTimeSeries {
+			twitter
+			youtube
+			podcast
+			createdOn
+		}
 	}
 `;
 
@@ -69,8 +76,9 @@ export class App extends Component {
 										<Panel>
 											<Panel.Body className="bg-primary text-white">
 												<OverallValue
-													valueKey = {'twitter_overall'}
+													valueKey = {'twitter'}
 													text = {'Twitter Takipci Sayisi'}
+													series={result.data.overallTimeSeries}
 												  value = {result.data.twitter ? result.data.twitter.followersCount : null} />
 											</Panel.Body>
 										</Panel>
@@ -79,8 +87,9 @@ export class App extends Component {
 										<Panel>
 											<Panel.Body className="bg-success text-white">
 												<OverallValue
-													valueKey = {'youtube_overall'}
+													valueKey = {'youtube'}
 													text = {'Toplam Youtube Takipcisi'}
+													series={result.data.overallTimeSeries}
 												  value = {result.data.youtube.statistics ? result.data.youtube.statistics.subscriberCount : null} />
 											</Panel.Body>
 										</Panel>
@@ -89,12 +98,21 @@ export class App extends Component {
 										<Panel>
 											<Panel.Body className="bg-info text-white">
 													<OverallValue
-														valueKey = {'podcast_overall'}
+														valueKey = {'podcast'}
 														text = {'Toplam Podcast Dinleme'}
+														series={result.data.overallTimeSeries}
 														value = {result.data.podcasts ? result.data.podcasts[0].overallStats.total_listens : null} />
 											</Panel.Body>
 										</Panel>
 									</Col>
+								</Row>
+								<Row>
+									<Col md={3}></Col>
+									<Col md={6}>
+									<label>Gunlere gore genel veriler</label>
+										<OverallStatsTimeSeries data={result.data.overallTimeSeries}></OverallStatsTimeSeries>
+									</Col>
+									<Col md={3}></Col>
 								</Row>
 								<Row>
 									<Col md={8}>

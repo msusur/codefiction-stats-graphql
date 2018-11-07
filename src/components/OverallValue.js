@@ -4,7 +4,7 @@ import OverallCompareService from '../api/overall-compare-service';
 
 export class OverallValue extends Component {
   render() {
-    const compare = new OverallCompareService();
+    const compare = new OverallCompareService(this.props.series);
     const value = compare.setAndCompareValue(this.props.valueKey, this.props.value);
     return (
       <div className="dashboard--container">
