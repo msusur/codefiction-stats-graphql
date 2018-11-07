@@ -6,7 +6,6 @@ export class OverallCompareService {
   setAndCompareValue(key, currentValue) {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-
     let createdOn = `${yesterday.getDate()}.${yesterday.getMonth()}.${yesterday.getFullYear()}`;
     const lastDayStat = this.series.filter((item) => {
       if (item.createdOn === createdOn) {
@@ -20,7 +19,7 @@ export class OverallCompareService {
         existingValue: -1
       };
     }
-    const existingValue = lastDayStat[key];
+    const existingValue = lastDayStat[0][key];
     const ratio = Math.ceil(((currentValue - existingValue) / existingValue) * 100);
     return {
       currentValue,
