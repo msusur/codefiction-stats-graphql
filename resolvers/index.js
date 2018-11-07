@@ -3,10 +3,12 @@ const SimpleCastClient = require('simplecast-api-client');
 const YoutubeClient = require('./clients/youtube');
 const TwitterClient = require('./clients/twitter');
 const { soundCloudScrapedData, allTimeListeningCount } = require('./clients/soundcloud');
+const OverallStatsClient = require('./clients/overall-stats');
 
 const client = new SimpleCastClient({ apikey: process.env.SECRET });
 const youtube = new YoutubeClient();
 const twitter = new TwitterClient();
+const overallClient = new OverallStatsClient();
 
 module.exports = {
   RootQuery: {
@@ -18,6 +20,9 @@ module.exports = {
     },
     twitter() {
       return twitter.getFollowers();
+    },
+    overallTimeSeries() {
+      return overallClient.getOverallRecords();
     }
   },
   Podcast: {
@@ -78,6 +83,11 @@ module.exports = {
   Video: {
     statistics(video) {
       return youtube.getVideoStats(video.snippet.resourceId.videoId);
+    }
+  },
+  Mutation: {
+    createDailyOverallRecord(parent, { podcastOverall, twitterOverall, youtubeOverall }) {
+      return overallClient.createOverallRecord({ twitter: twitterOverall, youtube: youtubeOverall, podcast: podcastOverall });
     }
   }
 };

@@ -5,6 +5,7 @@ const schema = gql `
     podcasts: [Podcast]
     youtube: YoutubeChannel
     twitter: TwitterProfile
+    overallTimeSeries: [OverallStats]
   }
 
   enum TimeFrame {
@@ -162,15 +163,27 @@ const schema = gql `
     listens: Int
   }
 
-  schema {
-    query: RootQuery
-  }
-
   #######################
   ## Twitter Schema
   #######################
   type TwitterProfile {
     followersCount: Int
+  }
+
+  type Mutation {
+    createDailyOverallRecord(podcastOverall: Int!, twitterOverall: Int!, youtubeOverall: Int!): OverallStats!
+  }
+
+  type OverallStats {
+    twitter: Int
+    youtube: Int
+    podcast: Int
+    createdOn: String
+  }
+
+  schema {
+    query: RootQuery,
+    mutation: Mutation
   }
 `;
 
