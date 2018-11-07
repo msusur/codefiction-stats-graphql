@@ -298,6 +298,14 @@ const soundCloudScrapedData = [{
     "title": "Birinci Bolum - Dotnet Core",
     "listenCount": 3859
   }
-]
+];
 
-module.exports = { soundCloudScrapedData };
+const allTimeListeningCount = () => {
+  let total = 0;
+  soundCloudScrapedData.forEach((item, index) => {
+    total += item.listenCount;
+  });
+  return total;
+}
+
+module.exports = { soundCloudScrapedData, allTimeListeningCount };

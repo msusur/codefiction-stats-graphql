@@ -2,7 +2,7 @@ const stringSimilarity = require('string-similarity');
 const SimpleCastClient = require('simplecast-api-client');
 const YoutubeClient = require('./clients/youtube');
 const TwitterClient = require('./clients/twitter');
-const { soundCloudScrapedData } = require('./clients/soundcloud');
+const { soundCloudScrapedData, allTimeListeningCount } = require('./clients/soundcloud');
 
 const client = new SimpleCastClient({ apikey: process.env.SECRET });
 const youtube = new YoutubeClient();
@@ -45,6 +45,9 @@ module.exports = {
         timeframe,
         startDate,
         endDate
+      }).then(result => {
+        result.total_listens += allTimeListeningCount();
+        return result;
       });
     }
   },

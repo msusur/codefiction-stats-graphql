@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import {compareTwoStrings} from 'string-similarity';
 import EpisodeStatsService from '../api/episode-stats-service';
 import Loading from './Loading';
+import {Grid, Row, Col} from 'react-bootstrap';
 
 import './TopEpisodesChart.scss';
 
@@ -55,8 +57,8 @@ export class TopEpisodesChart extends Component {
 		}
 		const episodeStats = new EpisodeStatsService();
 		const youtubeVideos = this.props.videos.filter((video) => {
-			const episodeTitle = this.props.episode[0].title.toLowerCase();
-			return video.snippet.title.toLowerCase().indexOf(episodeTitle) > -1;
+			const episodeTitle = this.props.episode[0].title;
+			return compareTwoStrings(video.snippet.title, episodeTitle) * 100 > 80;
 		});
 		return (
 			<Query query={QUERY_EPISODES_STATS(this.props.episode[0].title)}>
@@ -69,20 +71,28 @@ export class TopEpisodesChart extends Component {
 					data.datasets[0].data = series.values;
 					data.datasets[0].label = this.props.episode[0].title;
 					return (
-						<div className="dashboard--items-container">
-							<div className="dashboard--items">
-								Youtube Izlenme Sayisi:{' '}
-								<span className="dashboard--value">
-									{youtubeVideos.length ? youtubeVideos[0].statistics.viewCount : 'BULAMADI :('}
-								</span>
-							</div>
-							<div>
-								Podcast Izlenme Sayisi:<span className="dashboard--value">
-									{this.props.episode[0].stats.total_listens}
-								</span>
-							</div>
-							<Line data={data} />
-						</div>
+						<Grid className="dashboard--items-container">
+							<Row>
+								<Col md={4}>
+									<div className="dashboard--items">
+										Youtube Izlenme Sayisi:{' '}
+										<span className="dashboard--value">
+											{youtubeVideos.length ? youtubeVideos[0].statistics.viewCount : 'BULAMADI :('}
+										</span>
+									</div>
+								</Col>
+								<Col md={4}>
+									Podcast Izlenme Sayisi:<span className="dashboard--value">
+										{this.props.episode[0].stats.total_listens}
+									</span>
+								</Col>
+							</Row>
+							<Row>
+								<Col md={8}>
+									<Line data={data} />
+								</Col>
+							</Row>
+						</Grid>
 					);
 				}}
 			</Query>
