@@ -1,3 +1,4 @@
+const stringSimilarity = require('string-similarity');
 const SimpleCastClient = require('simplecast-api-client');
 const YoutubeClient = require('./clients/youtube');
 const TwitterClient = require('./clients/twitter');
@@ -54,11 +55,13 @@ module.exports = {
         startDate,
         endDate
       }).then(stats => {
-        soundCloudScrapedData.filter(item => {
-          const hasItem = item.title.toLowerCase().indexOf(episode.title.toLowerCase().substring(0, 10)) > -1;
-          if (hasItem) {
+        soundCloudScrapedData.map(item => {
+          const similarity = stringSimilarity.compareTwoStrings(item.title, episode.title) * 100;
+          if (similarity > 80) {
             stats.total_listens += item.listenCount;
+            return false;
           }
+          return true;
         });
         return stats;
       });
