@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
-import { Table, Button, Glyphicon } from 'react-bootstrap';
-import './EpisodesNeedsAttention.scss';
+import { Table, Button, Glyphicon,Grid, Col, Row } from 'react-bootstrap';
+import './TopBottom10Episodes.scss';
 
-export class EpisodesNeedsAttention extends Component {
+export class TopBottom10Episodes extends Component {
 	state = { up: false };
 
 	render() {
 		const episodes = this.props.episodes;
 
 		return (
-			<div>
-				<div>
-					<label>Top/Bottom 10 Podcast bolumu</label>
-				</div>
-				<div className="dashboard--button-container">
-					<Button bsSize="small" onClick={(event) => this.setState({ up: !this.state.up })}>
+			<Grid>
+				<Row className="dashboard--head-row">
+					<Col sm={8}>
+						<label>Top/Bottom 10 Podcast bolumu</label>
+					</Col>
+					<Col sm={4} >
+						<Button 
+								className="dashboard--head-row--button" 
+								bsSize="small" onClick={(event) => this.setState({ up: !this.state.up })}>
 						<Glyphicon glyph={this.state.up ? 'chevron-up' : 'chevron-down'} />{' '}
 						{this.state.up ? 'Cok' : 'Az'}
 					</Button>
-				</div>
-				<Table striped bordered condensed hover>
+					</Col>
+				</Row>
+				<Row>
+					<Col md={12}>
+					<Table striped bordered condensed hover>
 					<thead>
 						<tr>
 							<th>Bolum Adi</th>
@@ -47,9 +53,11 @@ export class EpisodesNeedsAttention extends Component {
 							})}
 					</tbody>
 				</Table>
-			</div>
+				</Col>
+				</Row>
+			</Grid>
 		);
 	}
 }
 
-export default EpisodesNeedsAttention;
+export default TopBottom10Episodes;

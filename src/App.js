@@ -12,7 +12,7 @@ import YoutubeOverall from './components/YoutubeOverall';
 import { PodcastOverall } from './components/PodcastOverall';
 import TwitterOverall from './components/TwitterOverall';
 import TopEpisodesChart from './components/TopEpisodesChart';
-import EpisodesNeedsAttention from './components/EpisodesNeedsAttention';
+import TopBottom10Episodes from './components/TopBottom10Episodes';
 
 const QUERY_EPISODES = (title) => gql`
 	{
@@ -112,7 +112,7 @@ export class App extends Component {
 								</Row>
 								<Row>
 									<Col md={12}>
-										<EpisodesNeedsAttention episodes={result.data.podcasts[0].episodes} />
+										<TopBottom10Episodes episodes={result.data.podcasts[0].episodes} />
 									</Col>
 								</Row>
 							</Grid>
