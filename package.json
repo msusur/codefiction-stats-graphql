@@ -25,6 +25,7 @@
     "graphql-tools": "^4.0.3",
     "material-dashboard-react": "^1.5.0",
     "node-sass": "^4.10.0",
+    "numeral": "^2.0.6",
     "react": "^16.6.0",
     "react-apollo": "^2.2.4",
     "react-bootstrap": "^0.32.4",
