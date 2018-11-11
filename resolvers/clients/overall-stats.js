@@ -1,12 +1,18 @@
 const { dynamoClient } = require('../../config/aws');
 const OVERALL_STATS_TABLE_NAME = 'codefiction-stats-overall';
 
+const fixCharLengthToTwo = number => {
+  return number < 10 ? '0' + number : number;
+};
+
 class OverallStatsClient {
   createOverallRecord({ twitter, youtube, podcast }) {
     return new Promise((resolve, reject) => {
       // The whole idea is to allow creating the data only once for each day.
       const now = new Date();
-      let createdOn = `${now.getDate()}.${now.getMonth()}.${now.getFullYear()}`;
+      const day = fixCharLengthToTwo(now.getDate());
+      const month = fixCharLengthToTwo(now.getMonth());
+      let createdOn = `${day}.${month}.${now.getFullYear()}`;
       this.getTodaysOverall(createdOn).then(result => {
         if (result.length > 0) {
           return resolve(result[0]);
@@ -30,8 +36,8 @@ class OverallStatsClient {
             podcast,
             createdOn
           });
-        })
-      })
+        });
+      });
     });
   }
 
@@ -60,13 +66,13 @@ class OverallStatsClient {
     return new Promise((resolve, reject) => {
       const params = {
         TableName: OVERALL_STATS_TABLE_NAME
-      }
+      };
       return dynamoClient.scan(params, (error, result) => {
         if (error) {
           return reject(error);
         }
         return resolve(result.Items);
-      })
+      });
     });
   }
 }

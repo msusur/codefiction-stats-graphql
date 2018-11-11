@@ -48,13 +48,13 @@ export class OverallStatsTimeSeries extends Component {
     const twitterdataset = produceChartdataset('Twitter Overall');
     const podcastdataset = produceChartdataset('Podcast Overall');
     const youtubedataset = produceChartdataset('Youtube Overall');
-
     this.props.data.forEach(item => {
       chartData.labels.push(item.createdOn);
       twitterdataset.data.push(item.twitter);
       youtubedataset.data.push(item.youtube);
       podcastdataset.data.push(item.podcast);
     });
+    chartData.labels = chartData.labels.sort();
     chartData.datasets.push(twitterdataset);
     chartData.datasets.push(podcastdataset);
     chartData.datasets.push(youtubedataset);
