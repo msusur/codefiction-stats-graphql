@@ -72,68 +72,77 @@ export class DashboardView extends Component {
               </Panel>
             </Col>
           </Row>
-        </Grid>
-        <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-          <Tab eventKey={1} title="Dinlenme Detayları">
-            <Grid>
-              <Row md={12}>
-                <Col md={8}>
-                  <label>Bolum adi girin</label>
-                  <Typeahead
-                    labelKey="title"
-                    options={podcasts[0].episodes}
-                    onChange={selectedItem => this.setState({ selectedItem })}
+          <Row>
+            <Col md={12}>
+              <Tabs
+                activeKey={this.state.activeTab}
+                onSelect={this.handleSelect}
+              >
+                <Tab eventKey={1} title="Dinlenme Detayları">
+                  <Grid>
+                    <Row md={12}>
+                      <Col md={8}>
+                        <label>Bolum adi girin</label>
+                        <Typeahead
+                          labelKey="title"
+                          options={podcasts[0].episodes}
+                          onChange={selectedItem =>
+                            this.setState({ selectedItem })
+                          }
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={8}>
+                        <TopEpisodesChart
+                          episode={this.state.selectedItem}
+                          videos={youtube.videos}
+                        />
+                      </Col>
+                    </Row>
+                  </Grid>
+                </Tab>
+                <Tab eventKey={2} title="Toplam Dinlenme">
+                  <TopBottomNEpisodes
+                    maxItems={20}
+                    episodes={podcasts[0].episodes}
                   />
-                </Col>
-              </Row>
-              <Row>
-                <Col md={8}>
-                  <TopEpisodesChart
-                    episode={this.state.selectedItem}
-                    videos={youtube.videos}
-                  />
-                </Col>
-              </Row>
-            </Grid>
-          </Tab>
-          <Tab eventKey={2} title="Toplam Dinlenme">
-            <TopBottomNEpisodes
-              maxItems={20}
-              episodes={podcasts[0].episodes}
-            />
-          </Tab>
+                </Tab>
 
-          <Tab eventKey={3} title="Sosyal Medya">
-            <Grid>
-              <Row>
-                <Col md={4}>
-                  <OverallStatsTimeSeries
-                    data={overallTimeSeries}
-                    dataKey={'twitter'}
-                    title={'Twitter Trend'}
-                  />
-                </Col>
-                <Col md={4}>
-                  <OverallStatsTimeSeries
-                    data={overallTimeSeries}
-                    dataKey={'youtube'}
-                    title={'Youtube Followers Trend'}
-                  />
-                </Col>
-                <Col md={4}>
-                  <OverallStatsTimeSeries
-                    data={overallTimeSeries}
-                    dataKey={'podcast'}
-                    title={'Podcast Listeners Trend'}
-                  />
-                </Col>
-              </Row>
-            </Grid>
-          </Tab>
-          <Tab eventKey={4} title="Aylık Dinlenme">
-            <EpisodesChart podcast={podcasts[0]} />
-          </Tab>
-        </Tabs>
+                <Tab eventKey={3} title="Sosyal Medya">
+                  <Grid>
+                    <Row>
+                      <Col md={4}>
+                        <OverallStatsTimeSeries
+                          data={overallTimeSeries}
+                          dataKey={'twitter'}
+                          title={'Twitter Trend'}
+                        />
+                      </Col>
+                      <Col md={4}>
+                        <OverallStatsTimeSeries
+                          data={overallTimeSeries}
+                          dataKey={'youtube'}
+                          title={'Youtube Followers Trend'}
+                        />
+                      </Col>
+                      <Col md={4}>
+                        <OverallStatsTimeSeries
+                          data={overallTimeSeries}
+                          dataKey={'podcast'}
+                          title={'Podcast Listeners Trend'}
+                        />
+                      </Col>
+                    </Row>
+                  </Grid>
+                </Tab>
+                <Tab eventKey={4} title="Aylık Dinlenme">
+                  <EpisodesChart podcast={podcasts[0]} />
+                </Tab>
+              </Tabs>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
