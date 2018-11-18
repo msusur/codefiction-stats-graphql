@@ -14,9 +14,7 @@ export class TopBottomNEpisodes extends Component {
       <Grid>
         <Row className="dashboard--head-row">
           <Col sm={8}>
-					<label>
-						Kac tane gosterilecek
-					</label>
+            <label>Kac tane gosterilecek</label>
             <input
               type="text"
               placeholder="Max. episodes to show"
@@ -37,8 +35,10 @@ export class TopBottomNEpisodes extends Component {
               <thead>
                 <tr>
                   <th>Bolum Adi (Top {this.state.count})</th>
+                  <th>Dinlenme</th>
+                  <th>Youtube Izlenme</th>
                   <th>
-                    Toplam Dinleme
+                    Toplam{' '}
                     <Glyphicon
                       className="dashboard--up-down-button"
                       onClick={event => this.setState({ up: !this.state.up })}
@@ -51,8 +51,8 @@ export class TopBottomNEpisodes extends Component {
                 {episodes
                   .sort((ep1, ep2) =>
                     this.state.up
-                      ? ep1.stats.total_listens - ep2.stats.total_listens
-                      : ep2.stats.total_listens - ep1.stats.total_listens
+                      ? ep1.grandTotal - ep2.grandTotal
+                      : ep2.grandTotal - ep1.grandTotal
                   )
                   .slice(
                     0,
@@ -65,6 +65,12 @@ export class TopBottomNEpisodes extends Component {
                           <a href={episode.audio_url}>{episode.title}</a>
                         </td>
                         <td>{episode.stats.total_listens}</td>
+                        <td>
+                          {episode.videoRef
+                            ? episode.videoRef.statistics.viewCount
+                            : 'N/A'}
+                        </td>
+                        <td>{episode.grandTotal}</td>
                       </tr>
                     );
                   })}

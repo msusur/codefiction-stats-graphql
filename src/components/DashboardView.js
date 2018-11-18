@@ -47,7 +47,10 @@ export class DashboardView extends Component {
                   />
                 </Tab>
                 <Tab eventKey={2} title="Toplam Dinlenme">
-                  <EpisodesTabView episodes={podcasts[0].episodes} />
+                  <EpisodesTabView
+                    episodes={podcasts[0].episodes}
+                    videos={youtube.videos}
+                  />
                 </Tab>
                 <Tab eventKey={3} title="Aylık Dinlenme">
                   <EpisodesChart podcast={podcasts[0]} />

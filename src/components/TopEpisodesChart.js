@@ -58,7 +58,7 @@ export class TopEpisodesChart extends Component {
 		const episodeStats = new EpisodeStatsService();
 		const youtubeVideos = this.props.videos.filter((video) => {
 			const episodeTitle = this.props.episode[0].title;
-			return compareTwoStrings(video.snippet.title, episodeTitle) * 100 > 80;
+			return compareTwoStrings(video.snippet.title, episodeTitle) * 100 > 60;
 		});
 		return (
 			<Query query={QUERY_EPISODES_STATS(this.props.episode[0].title)}>
