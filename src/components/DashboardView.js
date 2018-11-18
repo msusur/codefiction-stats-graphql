@@ -5,7 +5,7 @@ import EpisodesChart from './EpisodesChart';
 import Header from './Header';
 import Loading from './Loading';
 import TopEpisodesChart from './TopEpisodesChart';
-import TopBottom10Episodes from './TopBottom10Episodes';
+import TopBottomNEpisodes from './TopBottomNEpisodes';
 import OverallValue from './OverallValue';
 import OverallStatsTimeSeries from './OverallStatsTimeSeries';
 
@@ -114,7 +114,10 @@ export class DashboardView extends Component {
           </Row>
           <Row>
             <Col md={12}>
-              <TopBottom10Episodes episodes={podcasts[0].episodes} />
+              <TopBottomNEpisodes
+                maxItems={20}
+                episodes={podcasts[0].episodes}
+              />
             </Col>
           </Row>
         </Grid>
