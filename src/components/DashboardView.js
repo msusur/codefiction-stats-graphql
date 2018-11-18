@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { Grid, Row, Panel, Col, Tab, Tabs } from 'react-bootstrap';
-import { Typeahead } from 'react-bootstrap-typeahead';
+import { Grid, Row, Col, Tab, Tabs } from 'react-bootstrap';
 import EpisodesChart from './EpisodesChart';
 import Header from './Header';
 import Loading from './Loading';
-import TopEpisodesChart from './TopEpisodesChart';
-import TopBottomNEpisodes from './TopBottomNEpisodes';
-import OverallValue from './OverallValue';
-import OverallStatsTimeSeries from './OverallStatsTimeSeries';
 import EpisodesTabView from './tabs/EpisodesTabView';
+import TotalListensTabView from './tabs/TotalListensTabView';
+import SocialMediaTabView from './tabs/SocialMediaTabView';
+import OverallValuesTabView from './tabs/OverallValuesTabView';
 
 export class DashboardView extends Component {
   state = {
-    selectedItem: {},
     activeTab: 1
   };
   handleSelect = this.handleSelect.bind(this);
@@ -28,112 +25,33 @@ export class DashboardView extends Component {
     return (
       <div>
         <Header />
+        <OverallValuesTabView
+          overallTimeSeries={overallTimeSeries}
+          youtube={youtube}
+          twitter={twitter}
+          podcasts={podcasts}
+        />
+        <SocialMediaTabView
+          overallTimeSeries={overallTimeSeries}
+        />
         <Grid>
-          <Row md={12}>
-            <Col md={4}>
-              <Panel>
-                <Panel.Body className="bg-primary text-white">
-                  <OverallValue
-                    valueKey={'twitter'}
-                    text={'Twitter Takipci Sayisi'}
-                    series={overallTimeSeries}
-                    value={twitter ? twitter.followersCount : null}
-                  />
-                </Panel.Body>
-              </Panel>
-            </Col>
-            <Col md={4}>
-              <Panel>
-                <Panel.Body className="bg-success text-white">
-                  <OverallValue
-                    valueKey={'youtube'}
-                    text={'Toplam Youtube Takipcisi'}
-                    series={overallTimeSeries}
-                    value={
-                      youtube.statistics
-                        ? youtube.statistics.subscriberCount
-                        : null
-                    }
-                  />
-                </Panel.Body>
-              </Panel>
-            </Col>
-            <Col md={4}>
-              <Panel>
-                <Panel.Body className="bg-info text-white">
-                  <OverallValue
-                    valueKey={'podcast'}
-                    text={'Toplam Podcast Dinleme'}
-                    series={overallTimeSeries}
-                    value={
-                      podcasts ? podcasts[0].overallStats.total_listens : null
-                    }
-                  />
-                </Panel.Body>
-              </Panel>
-            </Col>
-          </Row>
           <Row>
             <Col md={12}>
               <Tabs
                 activeKey={this.state.activeTab}
                 onSelect={this.handleSelect}
+                id="dashboard-tab"
               >
                 <Tab eventKey={1} title="Dinlenme Detayları">
-                  <Grid>
-                    <Row md={12}>
-                      <Col md={8}>
-                        <label>Bolum adi girin</label>
-                        <Typeahead
-                          labelKey="title"
-                          options={podcasts[0].episodes}
-                          onChange={selectedItem =>
-                            this.setState({ selectedItem })
-                          }
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md={8}>
-                        <TopEpisodesChart
-                          episode={this.state.selectedItem}
-                          videos={youtube.videos}
-                        />
-                      </Col>
-                    </Row>
-                  </Grid>
+                  <TotalListensTabView
+                    episodes={podcasts[0].episodes}
+                    youtubeVideos={youtube.videos}
+                  />
                 </Tab>
                 <Tab eventKey={2} title="Toplam Dinlenme">
                   <EpisodesTabView episodes={podcasts[0].episodes} />
                 </Tab>
-                <Tab eventKey={3} title="Sosyal Medya">
-                  <Grid>
-                    <Row>
-                      <Col md={4}>
-                        <OverallStatsTimeSeries
-                          data={overallTimeSeries}
-                          dataKey={'twitter'}
-                          title={'Twitter Trend'}
-                        />
-                      </Col>
-                      <Col md={4}>
-                        <OverallStatsTimeSeries
-                          data={overallTimeSeries}
-                          dataKey={'youtube'}
-                          title={'Youtube Followers Trend'}
-                        />
-                      </Col>
-                      <Col md={4}>
-                        <OverallStatsTimeSeries
-                          data={overallTimeSeries}
-                          dataKey={'podcast'}
-                          title={'Podcast Listeners Trend'}
-                        />
-                      </Col>
-                    </Row>
-                  </Grid>
-                </Tab>
-                <Tab eventKey={4} title="Aylık Dinlenme">
+                <Tab eventKey={3} title="Aylık Dinlenme">
                   <EpisodesChart podcast={podcasts[0]} />
                 </Tab>
               </Tabs>
