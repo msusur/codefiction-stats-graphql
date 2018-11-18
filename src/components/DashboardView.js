@@ -31,9 +31,7 @@ export class DashboardView extends Component {
           twitter={twitter}
           podcasts={podcasts}
         />
-        <SocialMediaTabView
-          overallTimeSeries={overallTimeSeries}
-        />
+        <SocialMediaTabView overallTimeSeries={overallTimeSeries} />
         <Grid>
           <Row>
             <Col md={12}>
