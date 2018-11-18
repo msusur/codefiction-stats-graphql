@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Panel, Col } from 'react-bootstrap';
+import { Grid, Row, Panel, Col, Tab, Tabs } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import EpisodesChart from './EpisodesChart';
 import Header from './Header';
@@ -10,7 +10,11 @@ import OverallValue from './OverallValue';
 import OverallStatsTimeSeries from './OverallStatsTimeSeries';
 
 export class DashboardView extends Component {
-  state = { selectedItem: {} };
+  state = {
+    selectedItem: {},
+    activeTab: 1
+  };
+  handleSelect = this.handleSelect.bind(this);
 
   render() {
     const {
@@ -68,61 +72,76 @@ export class DashboardView extends Component {
               </Panel>
             </Col>
           </Row>
-          <Row>
-            <Col md={4}>
-              <OverallStatsTimeSeries
-                data={overallTimeSeries}
-                dataKey={'twitter'}
-                title={'Twitter Trend'}
-              />
-            </Col>
-            <Col md={4}>
-              <OverallStatsTimeSeries
-                data={overallTimeSeries}
-                dataKey={'youtube'}
-                title={'Youtube Followers Trend'}
-              />
-            </Col>
-            <Col md={4}>
-              <OverallStatsTimeSeries
-                data={overallTimeSeries}
-                dataKey={'podcast'}
-                title={'Podcast Listeners Trend'}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col md={8}>
-              <label>Bolum adi girin</label>
-              <Typeahead
-                labelKey="title"
-                options={podcasts[0].episodes}
-                onChange={selectedItem => this.setState({ selectedItem })}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col md={8}>
-              <TopEpisodesChart
-                episode={this.state.selectedItem}
-                videos={youtube.videos}
-              />
-            </Col>
-            <Col md={4}>
-              <EpisodesChart podcast={podcasts[0]} />
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12}>
-              <TopBottomNEpisodes
-                maxItems={20}
-                episodes={podcasts[0].episodes}
-              />
-            </Col>
-          </Row>
         </Grid>
+        <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect}>
+          <Tab eventKey={1} title="Dinlenme Detayları">
+            <Grid>
+              <Row md={12}>
+                <Col md={8}>
+                  <label>Bolum adi girin</label>
+                  <Typeahead
+                    labelKey="title"
+                    options={podcasts[0].episodes}
+                    onChange={selectedItem => this.setState({ selectedItem })}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={8}>
+                  <TopEpisodesChart
+                    episode={this.state.selectedItem}
+                    videos={youtube.videos}
+                  />
+                </Col>
+              </Row>
+            </Grid>
+          </Tab>
+          <Tab eventKey={2} title="Toplam Dinlenme">
+            <TopBottomNEpisodes
+              maxItems={20}
+              episodes={podcasts[0].episodes}
+            />
+          </Tab>
+
+          <Tab eventKey={3} title="Sosyal Medya">
+            <Grid>
+              <Row>
+                <Col md={4}>
+                  <OverallStatsTimeSeries
+                    data={overallTimeSeries}
+                    dataKey={'twitter'}
+                    title={'Twitter Trend'}
+                  />
+                </Col>
+                <Col md={4}>
+                  <OverallStatsTimeSeries
+                    data={overallTimeSeries}
+                    dataKey={'youtube'}
+                    title={'Youtube Followers Trend'}
+                  />
+                </Col>
+                <Col md={4}>
+                  <OverallStatsTimeSeries
+                    data={overallTimeSeries}
+                    dataKey={'podcast'}
+                    title={'Podcast Listeners Trend'}
+                  />
+                </Col>
+              </Row>
+            </Grid>
+          </Tab>
+          <Tab eventKey={4} title="Aylık Dinlenme">
+            <EpisodesChart podcast={podcasts[0]} />
+          </Tab>
+        </Tabs>
       </div>
     );
+  }
+
+  handleSelect(selectedTab) {
+    this.setState({
+      activeTab: selectedTab
+    });
   }
 }
 
