@@ -36,7 +36,13 @@ const produceChartdataset = title => {
 
 export class OverallStatsTimeSeries extends Component {
   render() {
-    if (!this.props.data || this.props.data.length === 0) {
+    const chartProps = {
+      title: this.props.title,
+      items: this.props.data,
+      key: this.props.dataKey
+    };
+
+    if (!chartProps.items || chartProps.items.length === 0) {
       return <div>Henuz yeterli veri yok.</div>;
     }
 
@@ -45,19 +51,13 @@ export class OverallStatsTimeSeries extends Component {
       datasets: []
     };
 
-    const twitterdataset = produceChartdataset('Twitter Overall');
-    const podcastdataset = produceChartdataset('Podcast Overall');
-    const youtubedataset = produceChartdataset('Youtube Overall');
-    this.props.data.forEach(item => {
+    const itemDataSet = produceChartdataset(chartProps.title);
+    chartProps.items.forEach(item => {
       chartData.labels.push(item.createdOn);
-      twitterdataset.data.push(item.twitter);
-      youtubedataset.data.push(item.youtube);
-      podcastdataset.data.push(item.podcast);
+      itemDataSet.data.push(item[chartProps.key]);
     });
     chartData.labels = chartData.labels.sort();
-    chartData.datasets.push(twitterdataset);
-    chartData.datasets.push(podcastdataset);
-    chartData.datasets.push(youtubedataset);
+    chartData.datasets.push(itemDataSet);
 
     return <Line data={chartData} />;
   }

@@ -69,12 +69,27 @@ export class DashboardView extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md={3} />
-            <Col md={6}>
-              <label>Gunlere gore genel veriler</label>
-              <OverallStatsTimeSeries data={overallTimeSeries} />
+            <Col md={4}>
+              <OverallStatsTimeSeries
+                data={overallTimeSeries}
+                dataKey={'twitter'}
+                title={'Twitter Trend'}
+              />
             </Col>
-            <Col md={3} />
+            <Col md={4}>
+              <OverallStatsTimeSeries
+                data={overallTimeSeries}
+                dataKey={'youtube'}
+                title={'Youtube Followers Trend'}
+              />
+            </Col>
+            <Col md={4}>
+              <OverallStatsTimeSeries
+                data={overallTimeSeries}
+                dataKey={'podcast'}
+                title={'Podcast Listeners Trend'}
+              />
+            </Col>
           </Row>
           <Row>
             <Col md={8}>
