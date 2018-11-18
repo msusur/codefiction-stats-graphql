@@ -31,6 +31,9 @@ export class DashboardView extends Component {
           twitter={twitter}
           podcasts={podcasts}
         />
+        <SocialMediaTabView
+          overallTimeSeries={overallTimeSeries}
+        />
         <Grid>
           <Row>
             <Col md={12}>
@@ -48,12 +51,7 @@ export class DashboardView extends Component {
                 <Tab eventKey={2} title="Toplam Dinlenme">
                   <EpisodesTabView episodes={podcasts[0].episodes} />
                 </Tab>
-                <Tab eventKey={3} title="Sosyal Medya">
-                  <SocialMediaTabView
-                    overallTimeSeries={overallTimeSeries}
-                  />
-                </Tab>
-                <Tab eventKey={4} title="Aylık Dinlenme">
+                <Tab eventKey={3} title="Aylık Dinlenme">
                   <EpisodesChart podcast={podcasts[0]} />
                 </Tab>
               </Tabs>
