@@ -8,6 +8,7 @@ import TopEpisodesChart from './TopEpisodesChart';
 import TopBottomNEpisodes from './TopBottomNEpisodes';
 import OverallValue from './OverallValue';
 import OverallStatsTimeSeries from './OverallStatsTimeSeries';
+import EpisodesTabView from './tabs/EpisodesTabView';
 
 export class DashboardView extends Component {
   state = {
@@ -103,12 +104,8 @@ export class DashboardView extends Component {
                   </Grid>
                 </Tab>
                 <Tab eventKey={2} title="Toplam Dinlenme">
-                  <TopBottomNEpisodes
-                    maxItems={20}
-                    episodes={podcasts[0].episodes}
-                  />
+                  <EpisodesTabView episodes={podcasts[0].episodes} />
                 </Tab>
-
                 <Tab eventKey={3} title="Sosyal Medya">
                   <Grid>
                     <Row>
