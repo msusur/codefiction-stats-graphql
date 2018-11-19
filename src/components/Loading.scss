@@ -2,6 +2,9 @@
   display: inline-block;
   width: 64px;
   height: 64px;
+  margin:0 auto;
+  display: flex;
+  padding: 10px;
 }
 
 .loading:after {

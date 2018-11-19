@@ -11,6 +11,7 @@ export class OverallCompareService {
       if (item.createdOn === createdOn) {
         return item;
       }
+      return null;
     });
     
     if (lastDayStat.length <= 0) {

@@ -8,6 +8,8 @@ import TotalListensTabView from './tabs/TotalListensTabView';
 import SocialMediaTabView from './tabs/SocialMediaTabView';
 import OverallValuesTabView from './tabs/OverallValuesTabView';
 
+import './DashboardView.scss';
+
 export class DashboardView extends Component {
   state = {
     activeTab: 1
@@ -38,7 +40,8 @@ export class DashboardView extends Component {
               <Tabs
                 activeKey={this.state.activeTab}
                 onSelect={this.handleSelect}
-                id="dashboard-tab"
+                id="dashboard-tabs"
+                className="dashboard-tabs"
               >
                 <Tab eventKey={1} title="Dinlenme Detayları">
                   <TotalListensTabView

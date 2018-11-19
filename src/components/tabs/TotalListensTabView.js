@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TopEpisodesChart from '../TopEpisodesChart';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 export class TotalListensTabView extends Component {
   state = { selectedItem: {} };
@@ -11,10 +12,12 @@ export class TotalListensTabView extends Component {
     return (
       <Grid>
         <Row md={12}>
-          <Col md={8}>
-            <label>Bolum adi girin</label>
+          <Col md={10}>
             <Typeahead
+              clearButton
+              selectHintOnEnter
               labelKey="title"
+              placeholder="Bölüm adı girin"
               options={episodes}
               onChange={selectedItem => this.setState({ selectedItem })}
             />

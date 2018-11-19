@@ -53,7 +53,13 @@ const data = {
 export class TopEpisodesChart extends Component {
 	render() {
 		if (!this.props.episode.length) {
-			return <Line data={data} />;
+			return (<Grid className="dashboard--items-container">
+				<Row>
+					<Col md={8}>
+							<b>Hiçbişey seçmeden olmaz ki ama :( </b>
+					</Col>
+				</Row>
+			</Grid>);
 		}
 		const episodeStats = new EpisodeStatsService();
 		const youtubeVideos = this.props.videos.filter((video) => {
@@ -75,14 +81,14 @@ export class TopEpisodesChart extends Component {
 							<Row>
 								<Col md={4}>
 									<div className="dashboard--items">
-										Youtube Izlenme Sayisi:{' '}
+										Youtube İzlenme Sayisi:{' '}
 										<span className="dashboard--value">
 											{youtubeVideos.length ? youtubeVideos[0].statistics.viewCount : 'BULAMADI :('}
 										</span>
 									</div>
 								</Col>
 								<Col md={4}>
-									Podcast Izlenme Sayisi:<span className="dashboard--value">
+									Podcast İzlenme Sayisi:<span className="dashboard--value">
 										{this.props.episode[0].stats.total_listens}
 									</span>
 								</Col>
