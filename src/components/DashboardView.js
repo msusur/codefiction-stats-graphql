@@ -12,13 +12,13 @@ import './DashboardView.scss';
 
 export class DashboardView extends Component {
   state = {
-    activeTab: 1
+    activeTab: 1,
   };
   handleSelect = this.handleSelect.bind(this);
 
   render() {
     const {
-      results: { twitter, overallTimeSeries, podcasts, youtube }
+      results: { twitter, overallTimeSeries, podcasts, youtube },
     } = this.props;
 
     if (!podcasts) {
@@ -68,7 +68,7 @@ export class DashboardView extends Component {
 
   handleSelect(selectedTab) {
     this.setState({
-      activeTab: selectedTab
+      activeTab: selectedTab,
     });
   }
 }

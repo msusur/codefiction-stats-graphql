@@ -12,7 +12,7 @@ class YoutubeClient {
       .channels.list({
         part: 'statistics',
         key: youtube_config.key,
-        id: youtube_config.channel_id
+        id: youtube_config.channel_id,
       })
       .then(channels => {
         return channels.data.items[0];
@@ -25,7 +25,7 @@ class YoutubeClient {
       .channels.list({
         part: 'contentDetails',
         key: youtube_config.key,
-        id: channelId
+        id: channelId,
       })
       .then(channels => {
         const playlistId =
@@ -42,7 +42,7 @@ class YoutubeClient {
         playlistId: playlistId.uploads,
         key: youtube_config.key,
         maxResults: maxCount,
-        pageToken: nextPageToken
+        pageToken: nextPageToken,
       })
       .then(playlist => {
         if (playlist.data.nextPageToken) {
@@ -73,6 +73,3 @@ class YoutubeClient {
 }
 
 module.exports = YoutubeClient;
-// const youtube = google.youtube('v3');
-// youtube.auth()
-// youtube.subscriptions.list({ auth: youtube_config.web.client_secret })

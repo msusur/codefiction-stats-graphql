@@ -30,7 +30,7 @@ const produceChartdataset = title => {
     pointHoverBorderWidth: 2,
     pointRadius: 1,
     pointHitRadius: 10,
-    data: []
+    data: [],
   };
 };
 
@@ -39,7 +39,7 @@ export class OverallStatsTimeSeries extends Component {
     const chartProps = {
       title: this.props.title,
       items: this.props.data,
-      key: this.props.dataKey
+      key: this.props.dataKey,
     };
 
     if (!chartProps.items || chartProps.items.length === 0) {
@@ -48,7 +48,7 @@ export class OverallStatsTimeSeries extends Component {
 
     const chartData = {
       labels: [],
-      datasets: []
+      datasets: [],
     };
 
     const itemDataSet = produceChartdataset(chartProps.title);

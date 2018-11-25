@@ -7,18 +7,18 @@ class TwitterClient {
       consumer_key: twitter_config.CONSUMER_API_KEYS.API_KEY,
       consumer_secret: twitter_config.CONSUMER_API_KEYS.API_SECRET_KEY,
       access_token: twitter_config.ACCESS_KEYS.ACCESS_TOKEN,
-      access_token_secret: twitter_config.ACCESS_KEYS.ACCESS_SECRET
+      access_token_secret: twitter_config.ACCESS_KEYS.ACCESS_SECRET,
     });
   }
 
   getFollowers() {
     const tweets = this.twit
       .get('followers/ids', {
-        screen_name: 'codefictiontech'
+        screen_name: 'codefictiontech',
       })
       .then(response => {
         return {
-          followersCount: response.data.ids.length
+          followersCount: response.data.ids.length,
         };
       })
       .catch(err => {
