@@ -10,7 +10,7 @@ const dataset = () => {
     borderWidth: 1,
     hoverBackgroundColor: 'rgba(255,99,132,0.4)',
     hoverBorderColor: 'rgba(255,99,132,1)',
-    data: []
+    data: [],
   };
 };
 
@@ -18,7 +18,7 @@ export class EpisodesChart extends Component {
   render() {
     const dataValues = {
       labels: [],
-      datasets: []
+      datasets: [],
     };
     const set = dataset();
 

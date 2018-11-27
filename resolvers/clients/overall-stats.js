@@ -23,8 +23,8 @@ class OverallStatsClient {
             twitter,
             youtube,
             podcast,
-            createdOn
-          }
+            createdOn,
+          },
         };
         return dynamoClient.put(params, (error, result) => {
           if (error) {
@@ -34,7 +34,7 @@ class OverallStatsClient {
             twitter,
             youtube,
             podcast,
-            createdOn
+            createdOn,
           });
         });
       });
@@ -47,11 +47,11 @@ class OverallStatsClient {
         TableName: OVERALL_STATS_TABLE_NAME,
         FilterExpression: '#createdOn = :createdOn',
         ExpressionAttributeNames: {
-          '#createdOn': 'createdOn'
+          '#createdOn': 'createdOn',
         },
         ExpressionAttributeValues: {
-          ':createdOn': today
-        }
+          ':createdOn': today,
+        },
       };
       return dynamoClient.scan(params, (err, data) => {
         if (err) {
@@ -65,7 +65,7 @@ class OverallStatsClient {
   getOverallRecords() {
     return new Promise((resolve, reject) => {
       const params = {
-        TableName: OVERALL_STATS_TABLE_NAME
+        TableName: OVERALL_STATS_TABLE_NAME,
       };
       return dynamoClient.scan(params, (error, result) => {
         if (error) {

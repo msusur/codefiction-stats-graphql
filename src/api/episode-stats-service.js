@@ -17,7 +17,7 @@ export class EpisodeStatsService {
 
     return {
       values,
-      labels
+      labels,
     };
   }
 }
