@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Table,
   Glyphicon,
@@ -6,11 +6,11 @@ import {
   Col,
   Row,
   InputGroup,
-  FormGroup
-} from "react-bootstrap";
-import { Typeahead } from "react-bootstrap-typeahead";
-import "react-bootstrap-typeahead/css/Typeahead.css";
-import "./TopBottomNEpisodes.scss";
+  FormGroup,
+} from 'react-bootstrap';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+import './TopBottomNEpisodes.scss';
 
 export class TopBottomNEpisodes extends Component {
   constructor(props) {
@@ -20,15 +20,15 @@ export class TopBottomNEpisodes extends Component {
   render() {
     const episodes = this.props.episodes;
     const episodeCountOptions = [
-      "5",
-      "10",
-      "20",
-      "30",
-      "40",
-      "50",
-      "75",
-      "85",
-      "100"
+      '5',
+      '10',
+      '20',
+      '30',
+      '40',
+      '50',
+      '75',
+      '85',
+      '100',
     ];
     return (
       <Grid>
@@ -71,11 +71,11 @@ export class TopBottomNEpisodes extends Component {
                   <th>Dinlenme</th>
                   <th>Youtube Izlenme</th>
                   <th>
-                    Toplam{" "}
+                    Toplam
                     <Glyphicon
                       className="dashboard--up-down-button"
                       onClick={event => this.setState({ up: !this.state.up })}
-                      glyph={this.state.up ? "chevron-up" : "chevron-down"}
+                      glyph={this.state.up ? 'chevron-up' : 'chevron-down'}
                     />
                   </th>
                 </tr>
@@ -101,7 +101,7 @@ export class TopBottomNEpisodes extends Component {
                         <td>
                           {episode.videoRef
                             ? episode.videoRef.statistics.viewCount
-                            : "N/A"}
+                            : 'N/A'}
                         </td>
                         <td>{episode.grandTotal}</td>
                       </tr>
