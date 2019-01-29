@@ -56,7 +56,6 @@ export class OverallStatsTimeSeries extends Component {
       chartData.labels.push(item.createdOn);
       itemDataSet.data.push(item[chartProps.key]);
     });
-    chartData.labels = chartData.labels.sort();
     chartData.datasets.push(itemDataSet);
 
     return <Line data={chartData} />;

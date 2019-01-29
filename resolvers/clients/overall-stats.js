@@ -81,7 +81,7 @@ class OverallStatsClient {
         response.sort((a, b) => {
           return b.createdOnMoment.format('X') - a.createdOnMoment.format('X');
         });
-        return resolve(response);
+        return resolve(response.reverse());
       });
     });
   }
