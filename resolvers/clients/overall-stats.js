@@ -11,7 +11,7 @@ class OverallStatsClient {
       // The whole idea is to allow creating the data only once for each day.
       const now = new Date();
       const day = fixCharLengthToTwo(now.getDate());
-      const month = fixCharLengthToTwo(now.getMonth());
+      const month = fixCharLengthToTwo(now.getMonth() + 1);
       let createdOn = `${day}.${month}.${now.getFullYear()}`;
       this.getTodaysOverall(createdOn).then(result => {
         if (result.length > 0) {
