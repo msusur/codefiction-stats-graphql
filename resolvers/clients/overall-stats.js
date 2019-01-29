@@ -1,5 +1,6 @@
 const { dynamoClient } = require('../../config/aws');
 const OVERALL_STATS_TABLE_NAME = 'codefiction-stats-overall';
+const moment = require('moment');
 
 const fixCharLengthToTwo = number => {
   return number < 10 ? '0' + number : number;
@@ -71,7 +72,16 @@ class OverallStatsClient {
         if (error) {
           return reject(error);
         }
-        return resolve(result.Items);
+        const response = [];
+        result.Items.forEach(item => {
+          // debugger;
+          item.createdOnMoment = moment(item.createdOn, 'DD.MM.YYYY');
+          response.push(item);
+        });
+        response.sort((a, b) => {
+          return b.createdOnMoment.format('X') - a.createdOnMoment.format('X');
+        });
+        return resolve(response);
       });
     });
   }
