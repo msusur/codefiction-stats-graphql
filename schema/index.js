@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-const schema = gql `
+const schema = gql`
   type RootQuery {
     podcasts: [Podcast]
     youtube: YoutubeChannel
@@ -171,7 +171,11 @@ const schema = gql `
   }
 
   type Mutation {
-    createDailyOverallRecord(podcastOverall: Int!, twitterOverall: Int!, youtubeOverall: Int!): OverallStats!
+    createDailyOverallRecord(
+      podcastOverall: Int!
+      twitterOverall: Int!
+      youtubeOverall: Int!
+    ): OverallStats!
   }
 
   type OverallStats {
@@ -182,7 +186,7 @@ const schema = gql `
   }
 
   schema {
-    query: RootQuery,
+    query: RootQuery
     mutation: Mutation
   }
 `;
