@@ -78,6 +78,7 @@ export class TopBottomNEpisodes extends Component {
                       glyph={this.state.up ? 'chevron-up' : 'chevron-down'}
                     />
                   </th>
+                  <th colSpan="2">Dinle</th>
                 </tr>
               </thead>
               <tbody>
@@ -95,15 +96,23 @@ export class TopBottomNEpisodes extends Component {
                     return (
                       <tr key={episode.id}>
                         <td>
-                          <a href={episode.audio_url}>{episode.title}</a>
+                          {episode.title}
                         </td>
                         <td>{episode.stats.total_listens}</td>
                         <td>
                           {episode.videoRef
                             ? episode.videoRef.statistics.viewCount
-                            : 'N/A'}
+                            : 'N/A'} 
                         </td>
                         <td>{episode.grandTotal}</td>
+                        <td>        <a href={episode.sharing_url} target="_blank" rel="noopener noreferrer" title="Simplecast'de dinle">
+                          <Glyphicon glyph="play-circle"/>
+                          </a>
+                        </td>
+                        <td>
+                          <a href={"https://www.youtube.com/watch?v="+ episode.videoRef.snippet.resourceId.videoId} 
+                             title="Youtube'da izle" target="_blank" rel="noopener noreferrer">
+                          <Glyphicon glyph="play-circle"/></a></td>
                       </tr>
                     );
                   })}
