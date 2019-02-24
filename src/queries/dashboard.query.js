@@ -11,6 +11,8 @@ export const DashboardQuery = gql`
         title
         id
         audio_url
+        sharing_url
+        guid
         stats(timeframe: all) {
           data {
             date
@@ -27,6 +29,9 @@ export const DashboardQuery = gql`
       videos {
         snippet {
           title
+          resourceId {
+            videoId
+          }
         }
         statistics {
           viewCount
