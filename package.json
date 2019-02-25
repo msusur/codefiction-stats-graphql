@@ -16,6 +16,7 @@
     "apollo-boost": "^0.1.20",
     "apollo-server-express": "^2.1.0",
     "aws-sdk": "^2.350.0",
+    "aws-serverless-express": "^3.3.5",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.3",
     "express": "^4.16.4",
