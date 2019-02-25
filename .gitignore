@@ -22,3 +22,5 @@ yarn-error.log*
 
 /.vscode
 /.vscode/launch.json
+
+/graphQL-Lambda/node_modules

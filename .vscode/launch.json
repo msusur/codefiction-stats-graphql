@@ -8,7 +8,16 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/server.js"
+      "program": "${workspaceFolder}/graphQL-Lambda/server.js",
+      "env": {"SECRET": "",
+        "YOUTUBE": "",
+        "YOUTUBE_KEY": "",
+        "TWITTER_CONSUMER_API_KEY": "",
+        "TWITTER_CONSUMER_API_SECRET_KEY": "",
+        "TWITTER_ACCESS_TOKEN": "",
+        "TWITTER_ACCESS_SECRET": "",
+        "AMAZON-AWS_ACCESS_KEY": "",
+        "AMAZON-AWS_ACCESS_SECRET_KEY": ""}
     }
   ]
 }

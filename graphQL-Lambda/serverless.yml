@@ -1,0 +1,14 @@
+service: apollo-lambda
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-1
+functions:
+  graphql:
+    # this is formatted as <FILENAME>.<HANDLER>
+    handler: graphql.graphqlHandler
+    events:
+    - http:
+        path: graphql
+        method: post
+        cors: true
