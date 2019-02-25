@@ -1,0 +1,42 @@
+{
+  "name": "stats-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:server": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-boost": "^0.1.20",
+    "apollo-server-express": "^2.1.0",
+    "apollo-server-lambda": "^2.4.6",
+    "aws-sdk": "^2.350.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "google-auth-library": "^3.0.1",
+    "googleapis": "^37.0.0",
+    "graphql": "^14.1.1",
+    "graphql-tools": "^4.0.3",
+    "moment": "^2.24.0",
+    "numeral": "^2.0.6",
+    "simplecast-api-client": "^1.0.2",
+    "string-similarity": "^3.0.0",
+    "twit": "^2.2.11",
+    "unstated": "^2.1.1",
+    "youtube-api": "^2.0.9"
+  },
+  "eslintConfig": {},
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "prettier": "1.15.2"
+  }
+}
