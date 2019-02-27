@@ -24,7 +24,7 @@ Globals:
       Role: !Ref CodeDeployRole
 
 Resources:
-  HelloWorld:
+  CodefictionStats:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler

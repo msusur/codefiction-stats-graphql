@@ -8,10 +8,12 @@ phases:
   build:
     commands:
       - aws cloudformation package --template ./.serverless/template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
-
       - sed -i.bak 's/\$PARTITION\$/'${PARTITION}'/g;s/\$AWS_REGION\$/'${AWS_REGION}'/g;s/\$ACCOUNT_ID\$/'${ACCOUNT_ID}'/g;s/\$PROJECT_ID\$/'${PROJECT_ID}'/g' ./.serverless/template-configuration.json
+  post_build:
+    commands:
+      - cp ./.serverless/template-configuration.json ./template-configuration.json
 artifacts:
   type: zip
   files:
-    - ./.serverless/template-export.yml
-    - ./.serverless/template-configuration.json
+    - template-export.yml
+    - template-configuration.json
