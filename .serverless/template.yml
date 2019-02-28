@@ -14,6 +14,42 @@ Parameters:
     Type: String
     Description: The name for a project pipeline stage, such as Staging or Prod, for which resources are provisioned and deployed.
     Default: ''
+  SimpleCastSecret:
+    Type: String
+    Description: The simplecast API key.
+    Default: ''
+  YoutubeId:
+    Type: String
+    Description: The youtube application id.
+    Default: ''
+  YoutubeKey:
+    Type: String
+    Description: The youtube secret key.
+    Default: ''
+  TwitterConsumerApiKey:
+    Type: String
+    Description: The twitter consumer api key.
+    Default: ''
+  TwitterConsumerApiSecret:
+    Type: String
+    Description: The twitter consumer api secret key.
+    Default: ''
+  TwitterAccessToken:
+    Type: String
+    Description: The twitter access token.
+    Default: ''
+  TwitterAccessSecret:
+    Type: String
+    Description: The twitter application secret.
+    Default: ''
+  AWSAccessKey:
+    Type: String
+    Description: The access key to AWS.
+    Default: ''
+  AWSAccessSecretKey:
+    Type: String
+    Description: The access key secret to AWS.
+    Default: ''
 
 Globals:
   Function:
@@ -32,6 +68,15 @@ Resources:
       Environment:
         Variables:
           NODE_ENV: production
+          SECRET: !Ref SimpleCastSecret
+          YOUTUBE: !Ref YoutubeId
+          YOUTUBE_KEY: !Ref YoutubeKey
+          TWITTER_CONSUMER_API_KEY: !Ref TwitterConsumerApiKey
+          TWITTER_CONSUMER_API_SECRET_KEY: !Ref TwitterConsumerApiSecret
+          TWITTER_ACCESS_TOKEN: !Ref TwitterAccessToken
+          TWITTER_ACCESS_SECRET: !Ref TwitterAccessSecret
+          AWS_ACCESS_KEY: !Ref AWSAccessKey
+          AWS_ACCESS_SECRET_KEY: !Ref AWSAccessSecretKey
       Role:
         Fn::GetAtt:
           - LambdaExecutionRole
