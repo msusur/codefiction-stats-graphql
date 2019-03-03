@@ -1,5 +1,5 @@
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
 
@@ -7,10 +7,11 @@
 /coverage
 
 # production
-/build
+build
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -22,5 +23,3 @@ yarn-error.log*
 
 /.vscode
 /.vscode/launch.json
-
-/graphQL-Lambda/node_modules

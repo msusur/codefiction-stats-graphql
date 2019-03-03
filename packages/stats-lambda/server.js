@@ -1,17 +1,20 @@
 /**
- * 
+ *
  * This server is only for local development
- * Actual server implementation is in grapql.js
- * 
+ * Actual server implementation is in graphql.js
+ *
  */
 
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const resolvers = require('./resolvers/index');
 
+const resolvers = require('./resolvers/index');
 const typeDefs = require('./schema/index');
 
 const server = new ApolloServer({ typeDefs, resolvers, introspection: true });
+
+// Read the local environment variables from .env file.
+require('dotenv').config();
 
 const app = express();
 app.set('port', process.env.PORT || 4000);
