@@ -17,6 +17,7 @@ const server = new ApolloServer({
   engine: {
     apiKey: process.env.ENGINE_API_KEY,
   },
+  cacheControl: true
 });
 
 // Read the local environment variables from .env file.

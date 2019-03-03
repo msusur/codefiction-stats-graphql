@@ -83,7 +83,7 @@ const schema = gql`
   #######################
   ## Podcast Schema
   #######################
-  type Podcast {
+  type Podcast @cacheControl(maxAge: 600){
     id: Int!
     title: String
     rss_url: String
@@ -114,7 +114,7 @@ const schema = gql`
     ): [Episode]
   }
 
-  type Episode {
+  type Episode @cacheControl(maxAge: 600) {
     id: Int!
     number: Int
     podcast: Podcast
