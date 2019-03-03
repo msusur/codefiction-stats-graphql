@@ -1,0 +1,53 @@
+{
+  "name": "stats-pages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-boost": "^0.1.20",
+    "apollo-server-express": "^2.1.0",
+    "aws-sdk": "^2.350.0",
+    "body-parser": "^1.18.3",
+    "chart.js": "^2.7.3",
+    "express": "^4.16.4",
+    "google-auth-library": "^3.0.1",
+    "googleapis": "^37.0.0",
+    "graphql": "^14.0.2",
+    "graphql-tools": "^4.0.3",
+    "material-dashboard-react": "^1.5.0",
+    "moment": "^2.24.0",
+    "node-sass": "^4.10.0",
+    "numeral": "^2.0.6",
+    "react": "^16.6.0",
+    "react-apollo": "^2.2.4",
+    "react-bootstrap": "^0.32.4",
+    "react-bootstrap-typeahead": "^3.2.4",
+    "react-chartjs-2": "^2.7.4",
+    "react-dom": "^16.6.0",
+    "react-scripts": "^2.1.1",
+    "simplecast-api-client": "^1.0.2",
+    "string-similarity": "^3.0.0",
+    "twit": "^2.2.11",
+    "unstated": "^2.1.1",
+    "youtube-api": "^2.0.9"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "prettier": "1.15.2"
+  }
+}

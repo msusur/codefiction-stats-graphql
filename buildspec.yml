@@ -4,11 +4,15 @@ phases:
   install:
     commands:
       - npm install
+      - npm run bootstrap
   build:
     commands:
       - npm run build
-      - aws s3 cp ./build s3://stats.codefiction.tech --recursive
+      # Deploy SPA to S3
+      - aws s3 cp ./packages/stats-pages/build s3://stats.codefiction.tech --recursive
+      # Deploy Serverless
+      - npm run deploy
 artifacts:
   files:
     - '**/*'
-  base-directory: 'build'
+  base-directory: 'packages/stats-pages/build'

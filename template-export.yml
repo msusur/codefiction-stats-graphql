@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: 2010-09-09
+Globals:
+  Function:
+    AutoPublishAlias: live
+    DeploymentPreference:
+      Enabled: true
+      Role:
+        Ref: CodeDeployRole
+      Type: Canary10Percent5Minutes
+Parameters:
+  AWSAccessKey:
+    Default: ''
+    Description: The access key to AWS.
+    Type: String
+  AWSAccessSecretKey:
+    Default: ''
+    Description: The access key secret to AWS.
+    Type: String
+  CodeDeployRole:
+    Description: IAM role to allow AWS CodeDeploy to manage deployment of AWS Lambda
+      functions
+    Type: String
+  ProjectId:
+    Description: AWS CodeStar projectID used to associate new resources to team members
+    Type: String
+  SimpleCastSecret:
+    Default: ''
+    Description: The simplecast API key.
+    Type: String
+  Stage:
+    Default: ''
+    Description: The name for a project pipeline stage, such as Staging or Prod, for
+      which resources are provisioned and deployed.
+    Type: String
+  TwitterAccessSecret:
+    Default: ''
+    Description: The twitter application secret.
+    Type: String
+  TwitterAccessToken:
+    Default: ''
+    Description: The twitter access token.
+    Type: String
+  TwitterConsumerApiKey:
+    Default: ''
+    Description: The twitter consumer api key.
+    Type: String
+  TwitterConsumerApiSecret:
+    Default: ''
+    Description: The twitter consumer api secret key.
+    Type: String
+  YoutubeId:
+    Default: ''
+    Description: The youtube application id.
+    Type: String
+  YoutubeKey:
+    Default: ''
+    Description: The youtube secret key.
+    Type: String
+Resources:
+  CodefictionStats:
+    Properties:
+      CodeUri: s3://aws-codestar-eu-west-1-415477511358-codefiction-gql-pipe/546547cf31ee9a4017ee597dbe2478e8
+      Environment:
+        Variables:
+          AWS_ACCESS_KEY:
+            Ref: AWSAccessKey
+          AWS_ACCESS_SECRET_KEY:
+            Ref: AWSAccessSecretKey
+          NODE_ENV: production
+          SECRET:
+            Ref: SimpleCastSecret
+          TWITTER_ACCESS_SECRET:
+            Ref: TwitterAccessSecret
+          TWITTER_ACCESS_TOKEN:
+            Ref: TwitterAccessToken
+          TWITTER_CONSUMER_API_KEY:
+            Ref: TwitterConsumerApiKey
+          TWITTER_CONSUMER_API_SECRET_KEY:
+            Ref: TwitterConsumerApiSecret
+          YOUTUBE:
+            Ref: YoutubeId
+          YOUTUBE_KEY:
+            Ref: YoutubeKey
+      Events:
+        GetEvent:
+          Properties:
+            Method: get
+            Path: /
+          Type: Api
+        PostEvent:
+          Properties:
+            Method: post
+            Path: /
+          Type: Api
+      Handler: index.handler
+      Role:
+        Fn::GetAtt:
+        - LambdaExecutionRole
+        - Arn
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+  LambdaExecutionRole:
+    Description: Creating service role in IAM for AWS Lambda
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: sts:AssumeRole
+          Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+      ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Path: /
+      PermissionsBoundary:
+        Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary
+      RoleName:
+        Fn::Sub: CodeStar-${ProjectId}-Execution${Stage}
+    Type: AWS::IAM::Role
+Transform:
+- AWS::Serverless-2016-10-31
+- AWS::CodeStar
