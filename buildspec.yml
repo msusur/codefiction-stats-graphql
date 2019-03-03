@@ -8,9 +8,7 @@ phases:
   build:
     commands:
       - npm run build
-      # Deploy SPA to S3
-      - aws s3 cp ./packages/stats-pages/build s3://stats.codefiction.tech --recursive
-      # Deploy Serverless
+      # Deploy SPA to S3 and deploy Serverless
       - npm run deploy
 artifacts:
   files:

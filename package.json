@@ -6,6 +6,7 @@
   "scripts": {
     "build": "lerna run build --parallel",
     "dev": "lerna run dev --parallel",
+    "deploy": "lerna run deploy",
     "start": "lerna run start",
     "test": "lerna run --stream --concurrency 1 test",
     "bootstrap": "lerna bootstrap"

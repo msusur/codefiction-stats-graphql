@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "deploy": "aws s3 cp ./build s3://stats.codefiction.tech --recursive"
   },
   "keywords": [],
   "author": "",
