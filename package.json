@@ -7,7 +7,8 @@
     "build": "lerna run build --parallel",
     "dev": "lerna run dev --parallel",
     "deploy": "lerna run deploy",
-    "start": "lerna run start",
+    "start": "lerna run --scope stats-lambda start",
+    "start:all": "lerna run start",
     "test": "lerna run --stream --concurrency 1 test",
     "bootstrap": "lerna bootstrap"
   },
