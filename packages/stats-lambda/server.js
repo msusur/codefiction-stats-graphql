@@ -4,14 +4,20 @@
  * Actual server implementation is in graphql.js
  *
  */
-
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 
 const resolvers = require('./resolvers/index');
 const typeDefs = require('./schema/index');
 
-const server = new ApolloServer({ typeDefs, resolvers, introspection: true });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true,
+  engine: {
+    apiKey: process.env.ENGINE_API_KEY,
+  },
+});
 
 // Read the local environment variables from .env file.
 require('dotenv').config();

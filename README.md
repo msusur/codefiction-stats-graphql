@@ -28,7 +28,8 @@ First you need to findout the following environment variables. It is not stored 
   "TWITTER_ACCESS_TOKEN": "TWITTER APP ACCESS TOKEN",
   "TWITTER_ACCESS_SECRET": "TWITTER APP ACCESS SECRET",
   "AWS_ACCESS_KEY": "AWS ACCESS KEY WITH DYNAMODB ACCESS",
-  "AWS_ACCESS_SECRET_KEY": "AWS ACCESS KEY WITH DYNAMODB ACCESS"
+  "AWS_ACCESS_SECRET_KEY": "AWS ACCESS KEY WITH DYNAMODB ACCESS",
+  "ENGINE_API_KEY": "APOLLO API KEY"
 ```
 
 After the `npm install` you need to run the `npm start` to run the server on `http://localhost:4000/graphql`.
