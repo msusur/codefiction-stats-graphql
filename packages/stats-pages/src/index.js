@@ -9,7 +9,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://wsj9iwfy0m.execute-api.eu-west-1.amazonaws.com/dev/graphql',
+    uri: 'https://codefiction-stats.herokuapp.com/graphql',
   }),
   cache: new InMemoryCache(),
 });
