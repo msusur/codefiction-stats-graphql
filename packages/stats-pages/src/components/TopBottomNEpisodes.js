@@ -67,7 +67,7 @@ export class TopBottomNEpisodes extends Component {
             >
               <thead>
                 <tr>
-                  <th>Bolum Adi (Top {this.state.count})</th>
+                  <th className="w-65">Bolum Adi (Top {this.state.count})</th>
                   <th>Dinlenme</th>
                   <th>Youtube Izlenme</th>
                   <th>
@@ -105,14 +105,16 @@ export class TopBottomNEpisodes extends Component {
                             : 'N/A'} 
                         </td>
                         <td>{episode.grandTotal}</td>
-                        <td>        <a href={episode.sharing_url} target="_blank" rel="noopener noreferrer" title="Simplecast'de dinle">
+                        <td className="align-center">        <a href={episode.sharing_url} target="_blank" rel="noopener noreferrer" title="Simplecast'de dinle">
                           <Glyphicon glyph="play-circle"/>
                           </a>
                         </td>
-                        <td>
+                        <td className="align-center">
+                          {episode.videoRef  ? (
                           <a href={"https://www.youtube.com/watch?v="+ episode.videoRef.snippet.resourceId.videoId} 
                              title="Youtube'da izle" target="_blank" rel="noopener noreferrer">
-                          <Glyphicon glyph="play-circle"/></a></td>
+                          <Glyphicon glyph="play-circle"/></a>): '-'}
+                          </td>
                       </tr>
                     );
                   })}

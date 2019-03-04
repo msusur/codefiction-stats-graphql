@@ -4,6 +4,9 @@
  * Actual server implementation is in graphql.js
  *
  */
+
+// Read the local environment variables from .env file.
+require('dotenv').config();
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 
@@ -19,9 +22,6 @@ const server = new ApolloServer({
   },
   cacheControl: true
 });
-
-// Read the local environment variables from .env file.
-require('dotenv').config();
 
 const app = express();
 app.set('port', process.env.PORT || 4000);
