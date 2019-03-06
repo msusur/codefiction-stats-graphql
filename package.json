@@ -1,13 +1,14 @@
 {
   "name": "codefiction-stats-graphql",
   "version": "1.0.0",
-  "description": "## Running the application",
+  "description": "Codefiction Podcast Statistics Application",
   "main": "index.js",
   "scripts": {
     "build": "lerna run build --parallel",
     "dev": "lerna run dev --parallel",
     "deploy": "lerna run deploy",
     "start": "lerna run --scope stats-lambda start",
+    "start:react": "lerna run --scope stats-pages start",
     "start:all": "lerna run start",
     "test": "lerna run --stream --concurrency 1 test",
     "bootstrap": "lerna bootstrap"
