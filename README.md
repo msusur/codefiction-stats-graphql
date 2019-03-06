@@ -1,73 +1,78 @@
 # Codefiction Stats Project
 
-## Running the application
+The project has two different application in this mono-repo project, and using `lerna` to maintain the dependencies and flow.
 
-Two applications are merged together in this mono repository;
+## Bootstrapping the dependencies using Lerna
 
-1. React application under [src](./src) folder.
-2. Graphql Server under [resolvers](./resolvers) and [schema](./schema) folders.
+Lerna helps you run `npm` scripts for both projects. Bootstrapping is the first step to install the project dependencies. It will basically run the `npm install` for both projects.
 
-### Running and compiling the react app
+```sh
+npm install
+npm run bootstrap
+```
 
-After the `npm install` you can run `npm run build` to build the react application to the `build` folder.
+## Running both projects
 
-If you want to run the application you can simply run `npm run start:react`.
+If you want to run the both projects together using lerna,
+
+```sh
+npm run start:all
+```
+
+This will kick `npm start` on both projects. But you need to satisfy the environment variable for the lambda project before running the application. See the next sub-section for further details.
+
+### Running the graphql application
+
+Graphql lambda function is designed to make several requests to different services and aggregate the responses into one single HTTP response. The project is using Apollo Server to serve the graphql POST requests.
+
+In order to succesfully run the full fledged graphql aggregator you need to create a file named `.env` under the `./packages/stats-lambda/` folder. Then put the required environment variables into it. You can checkout the [.env.sample](./packages/stats-lambda/.env.sample) as an example.
+
+```env
+SECRET=SECRET
+YOUTUBE=SECRET
+YOUTUBE_KEY=SECRET
+TWITTER_CONSUMER_API_KEY=SECRET
+TWITTER_CONSUMER_API_SECRET_KEY=SECRET
+TWITTER_ACCESS_TOKEN=SECRET
+TWITTER_ACCESS_SECRET=SECRET
+AMAZON_AWS_ACCESS_KEY=SECRET
+AMAZON_AWS_ACCESS_SECRET_KEY=SECRET
+ENGINE_API_KEY=SECRET
+```
+
+After satifying the environment variables you can simply run the following command in the root folder to start the application.
+
+```sh
+npm run start
+```
+
+### Running the React pages
+
+React application is the single page application that displays the results aggregated by the `Graphql Server`.
+
+In order to run the application using lerna run the following command.
+
+```sh
+npm run start:react
+```
 
 React application is using the [react-scripts](https://www.npmjs.com/package/react-scripts). You can do whatever react-scripts allows you to do.
 
-### Running the Graphql Server
+## The deployment of components
 
-First you need to findout the following environment variables. It is not stored in the repository but injected to the application on the deployment time on heroku for security reasons.
-
-```sh
-  "SECRET": "API KEY FOR SIMPLECAST API",
-  "YOUTUBE": "YOUTUBE KEY",
-  "YOUTUBE_KEY": "YOUTUBE SECRET KEY",
-  "TWITTER_CONSUMER_API_KEY": "TWITTER APP API KEY",
-  "TWITTER_CONSUMER_API_SECRET_KEY": "TWITTER APP SECRET KEY",
-  "TWITTER_ACCESS_TOKEN": "TWITTER APP ACCESS TOKEN",
-  "TWITTER_ACCESS_SECRET": "TWITTER APP ACCESS SECRET",
-  "AWS_ACCESS_KEY": "AWS ACCESS KEY WITH DYNAMODB ACCESS",
-  "AWS_ACCESS_SECRET_KEY": "AWS ACCESS KEY WITH DYNAMODB ACCESS",
-  "ENGINE_API_KEY": "APOLLO API KEY"
-```
-
-After the `npm install` you need to run the `npm start` to run the server on `http://localhost:4000/graphql`.
-
-#### Debugging the application
-
-If you want to debug the application using vscode you can modify the [launch.json](./.vscode/launch.json) file as the following. Then you can use the debugging features of vscodes as usual.
-
-```json
- "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/server.js",
-      "env": {
-        "SECRET": "API KEY FOR SIMPLECAST API",
-        "YOUTUBE": "YOUTUBE KEY",
-        "YOUTUBE_KEY": "YOUTUBE SECRET KEY",
-        "TWITTER_CONSUMER_API_KEY": "TWITTER APP API KEY",
-        "TWITTER_CONSUMER_API_SECRET_KEY": "TWITTER APP SECRET KEY",
-        "TWITTER_ACCESS_TOKEN": "TWITTER APP ACCESS TOKEN",
-        "TWITTER_ACCESS_SECRET": "TWITTER APP ACCESS SECRET",
-        "AWS_ACCESS_KEY": "AWS ACCESS KEY WITH DYNAMODB ACCESS",
-        "AWS_ACCESS_SECRET_KEY": "AWS ACCESS KEY WITH DYNAMODB ACCESS"
-      }
-    }
-  ]
-```
-
-### Deployment pipeline
-
-#### React application
-
-- [Build job](https://eu-west-1.console.aws.amazon.com/codesuite/codebuild/projects/codefictionStats/history?region=eu-west-1)
+- [Build & Deployment Job for AWS](https://eu-west-1.console.aws.amazon.com/codesuite/codebuild/projects/codefictionStats/history?region=eu-west-1)
 - [S3 Bucket](http://stats.codefiction.tech.s3-website-eu-west-1.amazonaws.com)
 
-#### Graphql Server
-
-- [Build & deployment job](https://dashboard.heroku.com/apps/codefiction-stats/)
+- [Build & deployment job for Heroku](https://dashboard.heroku.com/apps/codefiction-stats/)
 - [Deployment Url](https://codefiction-stats.herokuapp.com/graphql)
+
+## Docker Container
+
+### Why docker?
+Why not?
+
+### Run the application
+
+Read the `Running the graphql application` section before continue and make sure you have created the `.env` file.
+
+To run the both containers run the `docker-compose up` command. This will brought up two docker containers for each application.
