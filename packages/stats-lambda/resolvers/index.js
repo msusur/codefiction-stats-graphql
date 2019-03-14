@@ -1,5 +1,5 @@
 const stringSimilarity = require('string-similarity');
-const SimpleCastClient = require('simplecast-api-client');
+const { SimpleCastClient } = require('./clients/simplecast-client');
 const YoutubeClient = require('./clients/youtube');
 const TwitterClient = require('./clients/twitter');
 const {
@@ -8,7 +8,7 @@ const {
 } = require('./clients/soundcloud');
 const OverallStatsClient = require('./clients/overall-stats');
 
-const client = new SimpleCastClient({ apikey: process.env.SECRET });
+const simpleCastClient = new SimpleCastClient();
 const youtube = new YoutubeClient();
 const twitter = new TwitterClient();
 const overallClient = new OverallStatsClient();
@@ -16,7 +16,7 @@ const overallClient = new OverallStatsClient();
 module.exports = {
   RootQuery: {
     podcasts() {
-      return client.podcasts.getPodcasts();
+      return simpleCastClient.getPodcasts();
     },
     youtube() {
       return youtube.getChannel();
@@ -30,7 +30,7 @@ module.exports = {
   },
   Podcast: {
     episodes(podcast, { title }) {
-      return client.episodes
+      return simpleCastClient
         .getEpisodes(podcast.id)
         .then(episodes =>
           !title
@@ -42,12 +42,12 @@ module.exports = {
         );
     },
     numberOfEpisodes(podcast) {
-      return client.episodes
+      return simpleCastClient
         .getEpisodes(podcast.id)
         .then(episodes => episodes.length);
     },
     overallStats(podcast, { timeframe, startDate, endDate }) {
-      return client.statistics
+      return simpleCastClient
         .getOverallStats(podcast.id, {
           timeframe,
           startDate,
@@ -61,7 +61,7 @@ module.exports = {
   },
   Episode: {
     stats(episode, { timeframe, startDate, endDate }) {
-      return client.statistics
+      return simpleCastClient
         .getEpisodeStats(episode.podcast_id, episode.id, {
           timeframe,
           startDate,
