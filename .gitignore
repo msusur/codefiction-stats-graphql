@@ -21,8 +21,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/.vscode
-/.vscode/launch.json
+.vscode/
 
 # serverless stuff
 .serverless
