@@ -9,6 +9,7 @@ import SocialMediaTabView from './tabs/SocialMediaTabView';
 import OverallValuesTabView from './tabs/OverallValuesTabView';
 
 import './DashboardView.scss';
+import WhatsUpToday from './WhatsUpToday';
 
 export class DashboardView extends Component {
   state = {
@@ -20,6 +21,12 @@ export class DashboardView extends Component {
     const {
       results: { twitter, overallTimeSeries, podcasts, youtube },
     } = this.props;
+    const whatsUpTodayContext = {
+      twitter,
+      overallTimeSeries,
+      podcasts,
+      youtube,
+    };
 
     if (!podcasts) {
       return <Loading />;
@@ -27,6 +34,7 @@ export class DashboardView extends Component {
     return (
       <div>
         <Header />
+        <WhatsUpToday results={whatsUpTodayContext} />
         <OverallValuesTabView
           overallTimeSeries={overallTimeSeries}
           youtube={youtube}
