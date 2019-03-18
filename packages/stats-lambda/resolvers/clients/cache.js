@@ -24,8 +24,8 @@ class InMemoryCache {
 
 class RedisCache {
   constructor() {
-    this.client = redis.createClient(process.env.REDIS_ENDPOINT);
-    console.log(`Connecting to redis cluster: ${process.env.REDIS_ENDPOINT}`);
+    this.client = redis.createClient(process.env.REDIS_URL);
+    console.log(`Connecting to redis cluster: ${process.env.REDIS_URL}`);
     this.client.on('connect', () => console.log('Connected to redis cluster.'));
     this.client.on('error', error => console.log(error));
   }
