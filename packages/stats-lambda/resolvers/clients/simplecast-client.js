@@ -1,5 +1,5 @@
 const SimpleCastAPIClient = require('simplecast-api-client');
-const { RedisCache } = require('./cache');
+const { getCacheInstance } = require('./cache');
 
 const CACHE_KEYS = {
   PODCASTS: 'CACHE:PODCASTS',
@@ -11,7 +11,7 @@ const CACHE_KEYS = {
 class SimpleCastClient {
   constructor() {
     this.client = new SimpleCastAPIClient({ apikey: process.env.SECRET });
-    this.cache = new RedisCache();
+    this.cache = getCacheInstance();
   }
 
   getPodcasts() {

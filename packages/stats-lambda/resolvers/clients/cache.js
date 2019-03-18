@@ -6,6 +6,7 @@ const redis = require('redis');
 class InMemoryCache {
   constructor() {
     this.cache = new NodeCache({ stdTTL: 43200 });
+    console.log('InMemory cache selected.');
   }
 
   getOrUpdate(key, updateFn) {
@@ -44,4 +45,13 @@ class RedisCache {
   }
 }
 
-module.exports = { InMemoryCache, RedisCache };
+const getCacheInstance = () => {
+  const cacheTypes = {
+    inMemory: InMemoryCache,
+    redis: RedisCache,
+  };
+  const type = process.env.CACHE_TYPE || 'inMemory';
+  return new cacheTypes[type]();
+};
+
+module.exports = { getCacheInstance };
