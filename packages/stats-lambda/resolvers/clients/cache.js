@@ -1,4 +1,7 @@
 const NodeCache = require('node-cache-promise');
+const { promisify } = require('util');
+
+const redis = require('redis');
 
 class InMemoryCache {
   constructor() {
@@ -18,4 +21,27 @@ class InMemoryCache {
   }
 }
 
-module.exports = { InMemoryCache };
+class RedisCache {
+  constructor() {
+    this.client = redis.createClient(process.env.REDIS_ENDPOINT);
+    console.log(`Connecting to redis cluster: ${process.env.REDIS_ENDPOINT}`);
+    this.client.on('connect', () => console.log('Connected to redis cluster.'));
+    this.client.on('error', error => console.log(error));
+  }
+
+  getOrUpdate(key, updateFn) {
+    const getAsync = promisify(this.client.get).bind(this.client);
+
+    return getAsync(key).then(value => {
+      if (value) {
+        return JSON.parse(value);
+      }
+      return updateFn().then(response => {
+        this.client.set(key, JSON.stringify(response));
+        return response;
+      });
+    });
+  }
+}
+
+module.exports = { InMemoryCache, RedisCache };
