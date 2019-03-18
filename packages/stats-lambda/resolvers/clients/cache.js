@@ -2,6 +2,8 @@ const NodeCache = require('node-cache-promise');
 const { promisify } = require('util');
 
 const redis = require('redis');
+// Time to leave in seconds.
+const TTL = 43200;
 
 class InMemoryCache {
   constructor() {
@@ -38,7 +40,7 @@ class RedisCache {
         return JSON.parse(value);
       }
       return updateFn().then(response => {
-        this.client.set(key, JSON.stringify(response));
+        this.client.set(key, JSON.stringify(response), 'EX', TTL);
         return response;
       });
     });
