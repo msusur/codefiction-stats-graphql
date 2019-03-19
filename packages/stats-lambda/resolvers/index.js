@@ -103,5 +103,8 @@ module.exports = {
         podcast: podcastOverall,
       });
     },
+    invalidateCache() {
+      simpleCastClient.clearCache();
+    },
   },
 };

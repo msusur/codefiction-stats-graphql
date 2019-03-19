@@ -22,6 +22,13 @@ class InMemoryCache {
       });
     });
   }
+
+  clearCache() {
+    return new Promise(resolve => {
+      this.cache.flushAll();
+      resolve({ flushed: true });
+    });
+  }
 }
 
 class RedisCache {
@@ -43,6 +50,12 @@ class RedisCache {
         this.client.set(key, JSON.stringify(response), 'EX', TTL);
         return response;
       });
+    });
+  }
+
+  clearCache() {
+    return new Promise(resolve => {
+      resolve({ flushed: this.client.flushall() });
     });
   }
 }
