@@ -13,7 +13,7 @@ const youtube = new YoutubeClient();
 const twitter = new TwitterClient();
 const overallClient = new OverallStatsClient();
 
-module.exports = {
+const query = {
   RootQuery: {
     podcasts() {
       return simpleCastClient.getPodcasts();
@@ -105,6 +105,9 @@ module.exports = {
     },
     invalidateCache() {
       simpleCastClient.clearCache();
+      return query.RootQuery;
     },
   },
 };
+
+module.exports = query;
