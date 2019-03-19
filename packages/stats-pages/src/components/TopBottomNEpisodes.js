@@ -17,8 +17,9 @@ export class TopBottomNEpisodes extends Component {
     super(props);
     this.state = { up: false, count: this.props.maxItems };
   }
+
   render() {
-    const episodes = this.props.episodes;
+    const { episodes } = this.props;
     const episodeCountOptions = [
       '5',
       '10',
@@ -67,7 +68,10 @@ export class TopBottomNEpisodes extends Component {
             >
               <thead>
                 <tr>
-                  <th className="w-65">Bolum Adi (Top {this.state.count})</th>
+                  <th className="w-65">
+                    Bolum Adi (Top
+                    {this.state.count})
+                  </th>
                   <th>Dinlenme</th>
                   <th>Youtube Izlenme</th>
                   <th>
@@ -92,32 +96,45 @@ export class TopBottomNEpisodes extends Component {
                     0,
                     this.state.count === 0 ? episodes.length : this.state.count
                   )
-                  .map(episode => {
-                    return (
-                      <tr key={episode.id}>
-                        <td>
-                          {episode.title}
-                        </td>
-                        <td>{episode.stats.total_listens}</td>
-                        <td>
-                          {episode.videoRef
-                            ? episode.videoRef.statistics.viewCount
-                            : 'N/A'} 
-                        </td>
-                        <td>{episode.grandTotal}</td>
-                        <td className="align-center">        <a href={episode.sharing_url} target="_blank" rel="noopener noreferrer" title="Simplecast'de dinle">
-                          <Glyphicon glyph="play-circle"/>
+                  .map(episode => (
+                    <tr key={episode.id}>
+                      <td>{episode.title}</td>
+                      <td>{episode.stats.total_listens}</td>
+                      <td>
+                        {episode.videoRef
+                          ? episode.videoRef.statistics.viewCount
+                          : 'N/A'}
+                      </td>
+                      <td>{episode.grandTotal}</td>
+                      <td className="align-center">
+                        {' '}
+                        <a
+                          href={episode.sharing_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Simplecast'de dinle"
+                        >
+                          <Glyphicon glyph="play-circle" />
+                        </a>
+                      </td>
+                      <td className="align-center">
+                        {episode.videoRef ? (
+                          <a
+                            href={`https://www.youtube.com/watch?v=${
+                              episode.videoRef.snippet.resourceId.videoId
+                            }`}
+                            title="Youtube'da izle"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Glyphicon glyph="play-circle" />
                           </a>
-                        </td>
-                        <td className="align-center">
-                          {episode.videoRef  ? (
-                          <a href={"https://www.youtube.com/watch?v="+ episode.videoRef.snippet.resourceId.videoId} 
-                             title="Youtube'da izle" target="_blank" rel="noopener noreferrer">
-                          <Glyphicon glyph="play-circle"/></a>): '-'}
-                          </td>
-                      </tr>
-                    );
-                  })}
+                        ) : (
+                          '-'
+                        )}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </Col>

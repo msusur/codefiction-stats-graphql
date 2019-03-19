@@ -1,6 +1,4 @@
-const fixCharLengthToTwo = number => {
-  return number < 10 ? '0' + number : number;
-};
+const fixCharLengthToTwo = number => (number < 10 ? `0${number}` : number);
 
 export class OverallCompareService {
   constructor(series) {
@@ -10,7 +8,7 @@ export class OverallCompareService {
   setAndCompareValue(key, currentValue) {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    let createdOn = `${yesterday.getDate()}.${fixCharLengthToTwo(
+    const createdOn = `${yesterday.getDate()}.${fixCharLengthToTwo(
       yesterday.getMonth() + 1
     )}.${yesterday.getFullYear()}`;
     const lastDayStat = this.series.filter(item => {

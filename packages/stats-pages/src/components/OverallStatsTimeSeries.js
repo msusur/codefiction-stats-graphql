@@ -1,16 +1,17 @@
+/* eslint-disable no-bitwise */
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
-const random_rgba = () => {
+const randomRgba = () => {
   const num = Math.round(0xffffff * Math.random());
   const r = num >> 16;
   const g = (num >> 8) & 255;
   const b = num & 255;
-  return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+  return `rgb(${r}, ${g}, ${b})`;
 };
 
 const produceChartdataset = title => {
-  const randomColor = random_rgba();
+  const randomColor = randomRgba();
   return {
     label: title,
     fill: false,

@@ -30,7 +30,8 @@ export class WhatsUpToday extends Component {
                 </li>
                 <li>
                   {`Youtube'daki takipci sayisi da ${parseInt(
-                    youtube.statistics.subscriberCount
+                    youtube.statistics.subscriberCount,
+                    10
                   ) - lastResult.youtube} artti`}
                 </li>
               </ul>

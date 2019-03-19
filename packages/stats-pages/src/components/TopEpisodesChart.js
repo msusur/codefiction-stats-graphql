@@ -3,9 +3,9 @@ import { Line } from 'react-chartjs-2';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { compareTwoStrings } from 'string-similarity';
+import { Grid, Row, Col } from 'react-bootstrap';
 import EpisodeStatsService from '../api/episode-stats-service';
 import Loading from './Loading';
-import { Grid, Row, Col } from 'react-bootstrap';
 
 import './TopEpisodesChart.scss';
 

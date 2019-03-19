@@ -1,0 +1,16 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["import", "prettier", "standard"],
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-unused-vars": "warn",
+    "class-methods-use-this": "off"
+  }
+}

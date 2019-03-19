@@ -12,10 +12,11 @@ import './DashboardView.scss';
 import WhatsUpToday from './WhatsUpToday';
 
 export class DashboardView extends Component {
-  state = {
-    activeTab: 1,
-  };
-  handleSelect = this.handleSelect.bind(this);
+  constructor() {
+    super();
+    this.state = { activeTab: 1 };
+    this.handleSelect = this.handleSelect.bind(this);
+  }
 
   render() {
     const {

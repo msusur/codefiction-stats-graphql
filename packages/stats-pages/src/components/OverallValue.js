@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './OverallValue.scss';
-import OverallCompareService from '../api/overall-compare-service';
 import * as numeral from 'numeral';
+import OverallCompareService from '../api/overall-compare-service';
+
 export class OverallValue extends Component {
   render() {
     const compare = new OverallCompareService(this.props.series);
@@ -20,7 +21,7 @@ export class OverallValue extends Component {
             value.ratio < 0 ? 'dashboard--ratio--red' : 'dashboard--ratio--blue'
           }
         >
-          {value.ratio > 0 ? '+' + value.ratio : value.ratio}%
+          {value.ratio > 0 ? `+${value.ratio}` : value.ratio}%
         </div>
       </div>
     );
