@@ -1,9 +1,9 @@
-const { youtube_config } = require('../../config/youtube');
 const { google } = require('googleapis');
+const { youtubeConfig } = require('../../config/youtube');
 
 class YoutubeClient {
   constructor() {
-    this.auth = google.auth.fromAPIKey(youtube_config.key);
+    this.auth = google.auth.fromAPIKey(youtubeConfig.key);
   }
 
   getChannel() {
@@ -11,8 +11,8 @@ class YoutubeClient {
       .youtube('v3')
       .channels.list({
         part: 'statistics',
-        key: youtube_config.key,
-        id: youtube_config.channel_id,
+        key: youtubeConfig.key,
+        id: youtubeConfig.channel_id,
       })
       .then(channels => {
         return channels.data.items[0];
@@ -24,7 +24,7 @@ class YoutubeClient {
       .youtube('v3')
       .channels.list({
         part: 'contentDetails',
-        key: youtube_config.key,
+        key: youtubeConfig.key,
         id: channelId,
       })
       .then(channels => {
@@ -40,7 +40,7 @@ class YoutubeClient {
       .playlistItems.list({
         part: 'snippet',
         playlistId: playlistId.uploads,
-        key: youtube_config.key,
+        key: youtubeConfig.key,
         maxResults: maxCount,
         pageToken: nextPageToken,
       })
@@ -55,19 +55,19 @@ class YoutubeClient {
         return playlist.data.items;
       })
       .catch(err => {
-        debugger;
+        throw err;
       });
   }
 
   getVideoStats(videoId) {
     return google
       .youtube('v3')
-      .videos.list({ part: 'statistics', key: youtube_config.key, id: videoId })
+      .videos.list({ part: 'statistics', key: youtubeConfig.key, id: videoId })
       .then(video => {
         return video.data.items[0].statistics;
       })
       .catch(ex => {
-        debugger;
+        throw ex;
       });
   }
 }

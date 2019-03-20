@@ -1,9 +1,10 @@
-const { dynamoClient } = require('../../config/aws');
-const OVERALL_STATS_TABLE_NAME = 'codefiction-stats-overall';
 const moment = require('moment');
+const { dynamoClient } = require('../../config/aws');
+
+const OVERALL_STATS_TABLE_NAME = 'codefiction-stats-overall';
 
 const fixCharLengthToTwo = number => {
-  return number < 10 ? '0' + number : number;
+  return number < 10 ? `0${number}` : number;
 };
 
 class OverallStatsClient {
@@ -13,7 +14,7 @@ class OverallStatsClient {
       const now = new Date();
       const day = fixCharLengthToTwo(now.getDate());
       const month = fixCharLengthToTwo(now.getMonth() + 1);
-      let createdOn = `${day}.${month}.${now.getFullYear()}`;
+      const createdOn = `${day}.${month}.${now.getFullYear()}`;
       this.getTodaysOverall(createdOn).then(result => {
         if (result.length > 0) {
           return resolve(result[0]);
@@ -27,7 +28,7 @@ class OverallStatsClient {
             createdOn,
           },
         };
-        return dynamoClient.put(params, (error, result) => {
+        return dynamoClient.put(params, (error, _result) => {
           if (error) {
             return reject(error);
           }
@@ -74,8 +75,9 @@ class OverallStatsClient {
         }
         const response = [];
         result.Items.forEach(item => {
-          // debugger;
-          item.createdOnMoment = moment(item.createdOn, 'DD.MM.YYYY');
+          const calcItem = item;
+
+          calcItem.createdOnMoment = moment(item.createdOn, 'DD.MM.YYYY');
           response.push(item);
         });
         response.sort((a, b) => {

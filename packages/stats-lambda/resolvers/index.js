@@ -54,8 +54,10 @@ const query = {
           endDate,
         })
         .then(result => {
-          result.total_listens += allTimeListeningCount();
-          return result;
+          const calcResult = result;
+
+          calcResult.total_listens += allTimeListeningCount();
+          return calcResult;
         });
     },
   },
@@ -68,23 +70,24 @@ const query = {
           endDate,
         })
         .then(stats => {
+          const calcStats = stats;
           soundCloudScrapedData.map(item => {
             const similarity =
               stringSimilarity.compareTwoStrings(item.title, episode.title) *
               100;
             if (similarity > 80) {
-              stats.total_listens += item.listenCount;
+              calcStats.total_listens += item.listenCount;
               return false;
             }
             return true;
           });
-          return stats;
+          return calcStats;
         });
     },
   },
   YoutubeChannel: {
     videos(channel, { maxCount }) {
-      return youtube.getVideos(channel.id, maxCount ? maxCount : 50);
+      return youtube.getVideos(channel.id, maxCount || 50);
     },
   },
   Video: {

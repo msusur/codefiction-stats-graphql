@@ -16,7 +16,7 @@ const schema = gql`
   }
 
   #######################
-  ## Video Schema
+  ## Video Schema
   #######################
   type YoutubeChannel {
     etag: String
@@ -83,7 +83,7 @@ const schema = gql`
   #######################
   ## Podcast Schema
   #######################
-  type Podcast @cacheControl(maxAge: 600){
+  type Podcast @cacheControl(maxAge: 600) {
     id: Int!
     title: String
     rss_url: String
@@ -164,7 +164,7 @@ const schema = gql`
   }
 
   #######################
-  ## Twitter Schema
+  ## Twitter Schema
   #######################
   type TwitterProfile {
     followersCount: Int

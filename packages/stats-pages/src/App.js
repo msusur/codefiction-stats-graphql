@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DashboardView from './components/DashboardView';
 import { graphql } from 'react-apollo';
+import DashboardView from './components/DashboardView';
 import DashboardQuery from './queries/dashboard.query';
 
 export class App extends Component {

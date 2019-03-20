@@ -1,13 +1,13 @@
 const Twit = require('twit');
-const { twitter_config } = require('../../config/twitter');
+const { twitterConfig } = require('../../config/twitter');
 
 class TwitterClient {
   constructor() {
     this.twit = new Twit({
-      consumer_key: twitter_config.CONSUMER_API_KEYS.API_KEY,
-      consumer_secret: twitter_config.CONSUMER_API_KEYS.API_SECRET_KEY,
-      access_token: twitter_config.ACCESS_KEYS.ACCESS_TOKEN,
-      access_token_secret: twitter_config.ACCESS_KEYS.ACCESS_SECRET,
+      consumer_key: twitterConfig.CONSUMER_API_KEYS.API_KEY,
+      consumer_secret: twitterConfig.CONSUMER_API_KEYS.API_SECRET_KEY,
+      access_token: twitterConfig.ACCESS_KEYS.ACCESS_TOKEN,
+      access_token_secret: twitterConfig.ACCESS_KEYS.ACCESS_SECRET,
     });
   }
 
@@ -22,7 +22,7 @@ class TwitterClient {
         };
       })
       .catch(err => {
-        debugger;
+        throw err;
       });
 
     return tweets;

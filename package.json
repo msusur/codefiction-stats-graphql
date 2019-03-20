@@ -4,14 +4,21 @@
   "description": "Codefiction Podcast Statistics Application",
   "main": "index.js",
   "scripts": {
-    "build": "lerna run build --parallel",
+    "build": "lerna run lint && lerna run build --parallel",
     "dev": "lerna run dev --parallel",
     "deploy": "lerna run deploy",
     "start": "lerna run --scope stats-lambda start",
     "start:react": "lerna run --scope stats-pages start",
     "start:all": "lerna run start",
     "test": "lerna run --stream --concurrency 1 test",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "lint": "lerna run lint --parallel",
+    "lint-autofix": "lerna run lint-autofix --parallel"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "repository": {
     "type": "git",
@@ -25,6 +32,7 @@
   },
   "homepage": "https://github.com/msusur/codefiction-stats-graphql#readme",
   "devDependencies": {
-    "lerna": "^3.13.1"
+    "lerna": "^3.13.1",
+    "husky": "^1.3.1"
   }
 }

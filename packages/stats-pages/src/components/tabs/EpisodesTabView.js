@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import TopBottomNEpisodes from '../TopBottomNEpisodes';
 import { compareTwoStrings } from 'string-similarity';
+import TopBottomNEpisodes from '../TopBottomNEpisodes';
 
 export class EpisodesTabView extends Component {
   render() {
-    const videos = this.props.videos;
+    const { videos } = this.props;
     const episodes = this.props.episodes.map(episode => {
       const episodeRefined = episode;
       episodeRefined.grandTotal = episode.stats.total_listens;
@@ -14,9 +14,11 @@ export class EpisodesTabView extends Component {
         return result;
       });
       if (filteredVideos.length > 0) {
-        episodeRefined.videoRef = filteredVideos[0];
+        const videoRef = filteredVideos[0];
+        episodeRefined.videoRef = videoRef;
         episodeRefined.grandTotal += parseInt(
-          episodeRefined.videoRef.statistics.viewCount
+          episodeRefined.videoRef.statistics.viewCount,
+          10
         );
       }
 

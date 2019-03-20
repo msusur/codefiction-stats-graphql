@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import TopEpisodesChart from '../TopEpisodesChart';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
+import TopEpisodesChart from '../TopEpisodesChart';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 export class TotalListensTabView extends Component {
-  state = { selectedItem: {} };
+  constructor() {
+    super();
+    this.state = { selectedItem: {} };
+  }
+
   render() {
-    const episodes = this.props.episodes;
-    const youtubeVideos = this.props.youtubeVideos;
+    const { episodes, youtubeVideos } = this.props;
     return (
       <Grid>
         <Row md={12}>
