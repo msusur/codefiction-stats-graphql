@@ -5,6 +5,9 @@ phases:
     commands:
       - npm install
       - npm run bootstrap
+  pre_build:
+    commands:
+      - npm run lint
   build:
     commands:
       - npm run build

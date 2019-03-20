@@ -4,7 +4,7 @@
   "description": "Codefiction Podcast Statistics Application",
   "main": "index.js",
   "scripts": {
-    "build": "lerna run lint && lerna run build --parallel",
+    "build": "lerna run build --parallel",
     "dev": "lerna run dev --parallel",
     "deploy": "lerna run deploy",
     "start": "lerna run --scope stats-lambda start",
