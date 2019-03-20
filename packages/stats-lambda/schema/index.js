@@ -176,6 +176,7 @@ const schema = gql`
       twitterOverall: Int!
       youtubeOverall: Int!
     ): OverallStats!
+    invalidateCache: RootQuery
   }
 
   type OverallStats {

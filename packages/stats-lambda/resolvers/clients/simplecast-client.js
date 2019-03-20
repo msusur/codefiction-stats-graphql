@@ -49,6 +49,10 @@ class SimpleCastClient {
         })
     );
   }
+
+  clearCache() {
+    return this.cache.clearCache();
+  }
 }
 
 module.exports = { SimpleCastClient };
