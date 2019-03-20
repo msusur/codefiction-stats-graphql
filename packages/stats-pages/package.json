@@ -7,8 +7,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "aws s3 cp ./build s3://stats.codefiction.tech --recursive",
-    "lint": "eslint --ext .js ./",
-    "lint-autofix": "eslint --ext .js ./ --fix"
+    "lint": "eslint --ext .js ./src",
+    "lint-autofix": "eslint --ext .js ./src --fix"
   },
   "keywords": [],
   "author": "",
