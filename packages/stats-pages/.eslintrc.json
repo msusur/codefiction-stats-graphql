@@ -22,5 +22,10 @@
     "no-unused-vars": "warn",
     "class-methods-use-this": "off",
     "import/no-named-as-default": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
