@@ -11,6 +11,7 @@ export class App extends Component {
 
 export default graphql(DashboardQuery, {
   options: {
+    notifyOnNetworkStatusChange: true,
     onError: ({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
         graphQLErrors.forEach(async err => {

@@ -15,19 +15,11 @@ import { DashboardQuery } from '../queries/dashboard.query';
 import './WhatsUpToday.scss';
 
 export class WhatsUpToday extends Component {
-  constructor(props) {
-    super(props);
-    this.loading = false;
-  }
-
   invalidateCache() {
-    this.loading = true;
     this.props.client.mutate({
       mutation: invalidateCacheMutation,
       refetchQueries: [{ query: DashboardQuery }],
-      onCompleted: () => {
-        this.loading = false;
-      },
+      notifyOnNetworkStatusChange: true,
     });
   }
 
@@ -58,10 +50,11 @@ export class WhatsUpToday extends Component {
                 >
                   <Glyphicon
                     glyph="refresh"
-                    className={`whatsup-today--refresh ${
-                      this.loading ? 'whatsup-today--animate' : ''
-                    }`}
-                    onClick={() => this.invalidateCache()}
+                    className={`whatsup-today--refresh ${!this.loading ||
+                      'whatsup-today--animate'}`}
+                    onClick={() => {
+                      this.invalidateCache();
+                    }}
                   />
                 </OverlayTrigger>
               </div>
