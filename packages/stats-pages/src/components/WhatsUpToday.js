@@ -15,12 +15,23 @@ import { DashboardQuery } from '../queries/dashboard.query';
 import './WhatsUpToday.scss';
 
 export class WhatsUpToday extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { loading: false };
+  }
+
   invalidateCache() {
-    this.props.client.mutate({
-      mutation: invalidateCacheMutation,
-      refetchQueries: [{ query: DashboardQuery }],
-      notifyOnNetworkStatusChange: true,
-    });
+    this.setState({ loading: true });
+    this.props.client
+      .mutate({
+        mutation: invalidateCacheMutation,
+        refetchQueries: [{ query: DashboardQuery }],
+        notifyOnNetworkStatusChange: true,
+        awaitRefetchQueries: true,
+      })
+      .then(() => {
+        this.setState({ loading: false });
+      });
   }
 
   render() {
@@ -31,7 +42,6 @@ export class WhatsUpToday extends Component {
       podcasts,
     } = this.props.results;
     const lastResult = overallTimeSeries[overallTimeSeries.length - 1];
-
     return (
       <Grid>
         <Row>
@@ -50,7 +60,7 @@ export class WhatsUpToday extends Component {
                 >
                   <Glyphicon
                     glyph="refresh"
-                    className={`whatsup-today--refresh ${!this.loading ||
+                    className={`whatsup-today--refresh ${!this.state.loading ||
                       'whatsup-today--animate'}`}
                     onClick={() => {
                       this.invalidateCache();
