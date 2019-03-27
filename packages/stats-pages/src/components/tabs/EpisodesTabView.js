@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { compareTwoStrings } from 'string-similarity';
-import TopBottomNEpisodes from '../TopBottomNEpisodes';
+import { TopBottomNEpisodes } from '../TopBottomNEpisodes';
 
 export class EpisodesTabView extends Component {
   render() {
@@ -28,4 +29,8 @@ export class EpisodesTabView extends Component {
   }
 }
 
+EpisodesTabView.propTypes = {
+  videos: PropTypes.array,
+  episodes: PropTypes.array,
+};
 export default EpisodesTabView;

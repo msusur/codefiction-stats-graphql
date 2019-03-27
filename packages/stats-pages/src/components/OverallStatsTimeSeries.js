@@ -1,5 +1,6 @@
 /* eslint-disable no-bitwise */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 
 const randomRgba = () => {
@@ -62,5 +63,10 @@ export class OverallStatsTimeSeries extends Component {
     return <Line data={chartData} />;
   }
 }
+OverallStatsTimeSeries.propTypes = {
+  title: PropTypes.string,
+  data: PropTypes.any,
+  dataKey: PropTypes.string,
+};
 
 export default OverallStatsTimeSeries;

@@ -8,6 +8,7 @@ import {
   InputGroup,
   FormGroup,
 } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import './TopBottomNEpisodes.scss';
@@ -78,7 +79,7 @@ export class TopBottomNEpisodes extends Component {
                     Toplam
                     <Glyphicon
                       className="dashboard--up-down-button"
-                      onClick={event => this.setState({ up: !this.state.up })}
+                      onClick={() => this.setState({ up: !this.state.up })}
                       glyph={this.state.up ? 'chevron-up' : 'chevron-down'}
                     />
                   </th>
@@ -143,5 +144,10 @@ export class TopBottomNEpisodes extends Component {
     );
   }
 }
+
+TopBottomNEpisodes.propTypes = {
+  maxItems: PropTypes.number,
+  episodes: PropTypes.array,
+};
 
 export default TopBottomNEpisodes;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import TopEpisodesChart from '../TopEpisodesChart';
+import { TopEpisodesChart } from '../TopEpisodesChart';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 export class TotalListensTabView extends Component {
@@ -38,5 +39,9 @@ export class TotalListensTabView extends Component {
     );
   }
 }
+TotalListensTabView.propTypes = {
+  episodes: PropTypes.array,
+  youtubeVideos: PropTypes.array,
+};
 
 export default TotalListensTabView;

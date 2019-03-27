@@ -1,13 +1,19 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
-import DashboardView from './components/DashboardView';
-import DashboardQuery from './queries/dashboard.query';
+import { DashboardView } from './components/DashboardView';
+import { DashboardQuery } from './queries/dashboard.query';
 
 export class App extends Component {
   render() {
     return <DashboardView results={this.props.data} />;
   }
 }
+
+App.propTypes = {
+  data: PropTypes.any,
+};
 
 export default graphql(DashboardQuery, {
   options: {

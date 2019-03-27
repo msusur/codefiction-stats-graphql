@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Row, Col } from 'react-bootstrap';
-import OverallStatsTimeSeries from '../OverallStatsTimeSeries';
+import { OverallStatsTimeSeries } from '../OverallStatsTimeSeries';
 
 export class SocialMediaTabView extends Component {
   render() {
@@ -34,5 +35,9 @@ export class SocialMediaTabView extends Component {
     );
   }
 }
+
+SocialMediaTabView.propTypes = {
+  overallTimeSeries: PropTypes.any,
+};
 
 export default SocialMediaTabView;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
-import OverallValue from '../OverallValue';
+import { OverallValue } from '../OverallValue';
 
 export class OverallValuesTabView extends Component {
   render() {
@@ -58,5 +59,12 @@ export class OverallValuesTabView extends Component {
     );
   }
 }
+
+OverallValuesTabView.propTypes = {
+  twitter: PropTypes.array,
+  youtube: PropTypes.array,
+  podcasts: PropTypes.array,
+  overallTimeSeries: PropTypes.array,
+};
 
 export default OverallValuesTabView;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { HorizontalBar } from 'react-chartjs-2';
 import { EpisodeStatsService } from '../api/episode-stats-service';
 
@@ -29,5 +30,9 @@ export class EpisodesChart extends Component {
     return <HorizontalBar data={dataValues} />;
   }
 }
-
+EpisodesChart.propTypes = {
+  podcast: {
+    episodes: PropTypes.array,
+  },
+};
 export default EpisodesChart;

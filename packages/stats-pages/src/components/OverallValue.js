@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './OverallValue.scss';
 import * as numeral from 'numeral';
-import OverallCompareService from '../api/overall-compare-service';
+import { OverallCompareService } from '../api/overall-compare-service';
 
 export class OverallValue extends Component {
   render() {
@@ -27,4 +28,11 @@ export class OverallValue extends Component {
     );
   }
 }
+
+OverallValue.propTypes = {
+  series: PropTypes.array,
+  valueKey: PropTypes.string,
+  value: PropTypes.string,
+  text: PropTypes.string,
+};
 export default OverallValue;

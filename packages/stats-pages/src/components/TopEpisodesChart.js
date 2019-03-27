@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { compareTwoStrings } from 'string-similarity';
 import { Grid, Row, Col } from 'react-bootstrap';
-import EpisodeStatsService from '../api/episode-stats-service';
-import Loading from './Loading';
+import { EpisodeStatsService } from '../api/episode-stats-service';
+import { Loading } from './Loading';
 
 import './TopEpisodesChart.scss';
 
@@ -112,5 +113,9 @@ export class TopEpisodesChart extends Component {
     );
   }
 }
+TopEpisodesChart.propTypes = {
+  episode: PropTypes.any,
+  videos: PropTypes.any,
+};
 
 export default TopEpisodesChart;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Alert,
   Col,
@@ -92,5 +93,17 @@ export class WhatsUpToday extends Component {
     );
   }
 }
+
+WhatsUpToday.propTypes = {
+  client: {
+    mutate: PropTypes.func,
+  },
+  results: {
+    overallTimeSeries: PropTypes.array,
+    twitter: PropTypes.any,
+    youtube: PropTypes.any,
+    podcasts: PropTypes.any,
+  },
+};
 
 export default withApollo(WhatsUpToday);

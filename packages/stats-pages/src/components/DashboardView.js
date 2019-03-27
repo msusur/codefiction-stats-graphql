@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Row, Col, Tab, Tabs } from 'react-bootstrap';
-import EpisodesChart from './EpisodesChart';
-import Header from './Header';
-import Loading from './Loading';
-import EpisodesTabView from './tabs/EpisodesTabView';
-import TotalListensTabView from './tabs/TotalListensTabView';
-import SocialMediaTabView from './tabs/SocialMediaTabView';
-import OverallValuesTabView from './tabs/OverallValuesTabView';
+import { EpisodesChart } from './EpisodesChart';
+import { Header } from './Header';
+import { Loading } from './Loading';
+import { EpisodesTabView } from './tabs/EpisodesTabView';
+import { TotalListensTabView } from './tabs/TotalListensTabView';
+import { SocialMediaTabView } from './tabs/SocialMediaTabView';
+import { OverallValuesTabView } from './tabs/OverallValuesTabView';
 
 import './DashboardView.scss';
-import WhatsUpToday from './WhatsUpToday';
+import { WhatsUpToday } from './WhatsUpToday';
 
 export class DashboardView extends Component {
   constructor() {
@@ -81,5 +82,9 @@ export class DashboardView extends Component {
     });
   }
 }
+
+DashboardView.propTypes = {
+  results: PropTypes.array,
+};
 
 export default DashboardView;
