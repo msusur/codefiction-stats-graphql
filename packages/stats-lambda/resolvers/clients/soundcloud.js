@@ -342,7 +342,7 @@ const soundCloudScrapedData = [
 
 const allTimeListeningCount = () => {
   let total = 0;
-  soundCloudScrapedData.forEach((item, index) => {
+  soundCloudScrapedData.forEach(item => {
     total += item.listenCount;
   });
   return total;

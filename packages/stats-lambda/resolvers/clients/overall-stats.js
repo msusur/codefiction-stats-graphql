@@ -28,7 +28,7 @@ class OverallStatsClient {
             createdOn,
           },
         };
-        return dynamoClient.put(params, (error, _result) => {
+        return dynamoClient.put(params, error => {
           if (error) {
             return reject(error);
           }

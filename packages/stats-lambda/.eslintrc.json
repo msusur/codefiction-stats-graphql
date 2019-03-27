@@ -11,6 +11,7 @@
   "rules": {
     "prettier/prettier": ["error"],
     "no-unused-vars": "warn",
+    "no-console": "off",
     "class-methods-use-this": "off"
   }
 }
