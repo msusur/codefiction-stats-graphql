@@ -1,8 +1,36 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Alert } from 'react-bootstrap';
+import {
+  Alert,
+  Col,
+  Grid,
+  Glyphicon,
+  Row,
+  OverlayTrigger,
+  Tooltip,
+} from 'react-bootstrap';
+import { withApollo } from 'react-apollo';
+import { invalidateCacheMutation } from '../queries/invalidate-cache.mutation';
+import { DashboardQuery } from '../queries/dashboard.query';
+
 import './WhatsUpToday.scss';
 
 export class WhatsUpToday extends Component {
+  constructor(props) {
+    super(props);
+    this.loading = false;
+  }
+
+  invalidateCache() {
+    this.loading = true;
+    this.props.client.mutate({
+      mutation: invalidateCacheMutation,
+      refetchQueries: [{ query: DashboardQuery }],
+      onCompleted: () => {
+        this.loading = false;
+      },
+    });
+  }
+
   render() {
     const {
       overallTimeSeries,
@@ -17,7 +45,26 @@ export class WhatsUpToday extends Component {
         <Row>
           <Col className="whatsup-today--main">
             <Alert variant="dark">
-              <div className="whatsup-today--alert-header">Bugunun Ozeti</div>
+              <div className="whatsup-today--alert-header">
+                Bugunun Ozeti
+                <OverlayTrigger
+                  placement="top"
+                  overlay={
+                    <Tooltip id="cache-clean">
+                      Sunucu tarafli tüm önbelleklemeyi silip yeniden betim
+                      kostur.
+                    </Tooltip>
+                  }
+                >
+                  <Glyphicon
+                    glyph="refresh"
+                    className={`whatsup-today--refresh ${
+                      this.loading ? 'whatsup-today--animate' : ''
+                    }`}
+                    onClick={() => this.invalidateCache()}
+                  />
+                </OverlayTrigger>
+              </div>
 
               <ul>
                 <li>
@@ -43,4 +90,4 @@ export class WhatsUpToday extends Component {
   }
 }
 
-export default WhatsUpToday;
+export default withApollo(WhatsUpToday);

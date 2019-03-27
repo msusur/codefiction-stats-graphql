@@ -11,12 +11,10 @@ export class App extends Component {
 
 export default graphql(DashboardQuery, {
   options: {
-    onError: ({ graphQLErrors, networkError, operation, forward }) => {
+    onError: ({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
         graphQLErrors.forEach(async err => {
           console.log(`[GraphQL error]: ${err.extensions.code}`);
-          console.log('CONTEXT', operation, forward);
-          return forward(operation);
         });
       }
       if (networkError) {
