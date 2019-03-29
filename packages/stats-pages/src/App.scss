@@ -1,4 +1,6 @@
 .content {
   margin-left: calc(var(--navigation-width) + 20px);
-  padding: 2em 0;
+  width: 100%;
+  padding: 2em;
+  padding-left: 0;
 }

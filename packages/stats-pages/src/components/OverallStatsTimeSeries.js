@@ -1,6 +1,7 @@
 /* eslint-disable no-bitwise */
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import Card from './ui/Card';
 
 const randomRgba = () => {
   const num = Math.round(0xffffff * Math.random());
@@ -61,7 +62,11 @@ export class OverallStatsTimeSeries extends Component {
     });
     chartData.datasets.push(itemDataSet);
 
-    return <Line data={chartData} />;
+    return (
+      <Card style={{ marginTop: '1.6rem' }}>
+        <Line data={chartData} />
+      </Card>
+    );
   }
 }
 

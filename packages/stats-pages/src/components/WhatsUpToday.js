@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import cls from 'classnames';
-import { Col, Grid, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { withApollo } from 'react-apollo';
 import { invalidateCacheMutation } from '../queries/invalidate-cache.mutation';
 import { DashboardQuery } from '../queries/dashboard.query';
@@ -37,33 +37,31 @@ export class WhatsUpToday extends Component {
     const { loading } = this.state;
     const lastResult = overallTimeSeries[overallTimeSeries.length - 1];
     return (
-      <Grid>
-        <Row>
-          <Col md={6} className="whatsup-today--main">
-            <div className="whatsup-today--header">
-              <Title value="Bugünün Özeti" />
-              <Refresh
-                className={cls('whatsup-today--refresh', {
-                  'whatsup-today--animate': loading,
-                })}
-                onClick={() => {
-                  this.invalidateCache();
-                }}
-              />
-            </div>
-            <List unstyled>
-              <ListItem>{`Twitter'a ${twitter.followersCount -
-                lastResult.twitter} takipci geldi.`}</ListItem>
-              <ListItem>{`Toplamda ${podcasts[0].overallStats.total_listens -
-                lastResult.podcast} dinleme oldu.`}</ListItem>
-              <ListItem>{`Youtube'daki takipci sayisi da ${parseInt(
-                youtube.statistics.subscriberCount,
-                10
-              ) - lastResult.youtube} artti`}</ListItem>
-            </List>
-          </Col>
-        </Row>
-      </Grid>
+      <Row>
+        <Col md={6} className="whatsup-today--main">
+          <div className="whatsup-today--header">
+            <Title value="Bugünün Özeti" />
+            <Refresh
+              className={cls('whatsup-today--refresh', {
+                'whatsup-today--animate': loading,
+              })}
+              onClick={() => {
+                this.invalidateCache();
+              }}
+            />
+          </div>
+          <List unstyled>
+            <ListItem>{`Twitter'a ${twitter.followersCount -
+              lastResult.twitter} takipci geldi.`}</ListItem>
+            <ListItem>{`Toplamda ${podcasts[0].overallStats.total_listens -
+              lastResult.podcast} dinleme oldu.`}</ListItem>
+            <ListItem>{`Youtube'daki takipci sayisi da ${parseInt(
+              youtube.statistics.subscriberCount,
+              10
+            ) - lastResult.youtube} artti`}</ListItem>
+          </List>
+        </Col>
+      </Row>
     );
   }
 }

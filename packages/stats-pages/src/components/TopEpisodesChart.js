@@ -53,15 +53,7 @@ const data = {
 export class TopEpisodesChart extends Component {
   render() {
     if (!this.props.episode.length) {
-      return (
-        <Grid className="dashboard--items-container">
-          <Row>
-            <Col md={8}>
-              <b>Hiçbişey seçmeden olmaz ki ama :( </b>
-            </Col>
-          </Row>
-        </Grid>
-      );
+      return <strong>Hiçbi şey seçmeden olmaz ki ama :( </strong>;
     }
     const episodeStats = new EpisodeStatsService();
     const youtubeVideos = this.props.videos.filter(video => {

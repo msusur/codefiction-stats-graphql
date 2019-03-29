@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Table,
   Glyphicon,
-  Grid,
   Col,
   Row,
   InputGroup,
@@ -32,7 +31,7 @@ export class TopBottomNEpisodes extends Component {
       '100',
     ];
     return (
-      <Grid>
+      <div>
         <Row className="dashboard--head-row">
           <Col md={4}>
             <FormGroup>
@@ -141,7 +140,7 @@ export class TopBottomNEpisodes extends Component {
             </Table>
           </Col>
         </Row>
-      </Grid>
+      </div>
     );
   }
 }
