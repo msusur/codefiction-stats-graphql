@@ -1,6 +1,7 @@
 /* eslint-disable no-bitwise */
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import Card from './ui/Card';
 
 const randomRgba = () => {
   const num = Math.round(0xffffff * Math.random());
@@ -37,10 +38,12 @@ const produceChartdataset = title => {
 
 export class OverallStatsTimeSeries extends Component {
   render() {
+    const { title, data, dataKey } = this.props;
+
     const chartProps = {
-      title: this.props.title,
-      items: this.props.data,
-      key: this.props.dataKey,
+      title,
+      items: data,
+      key: dataKey,
     };
 
     if (!chartProps.items || chartProps.items.length === 0) {
@@ -59,7 +62,11 @@ export class OverallStatsTimeSeries extends Component {
     });
     chartData.datasets.push(itemDataSet);
 
-    return <Line data={chartData} />;
+    return (
+      <Card style={{ marginTop: '1.6rem' }}>
+        <Line data={chartData} />
+      </Card>
+    );
   }
 }
 

@@ -1,9 +1,6 @@
-.dashboard {
-  &--value {
-    padding-left: 10px;
-  }
-}
-
 .content {
   margin-left: calc(var(--navigation-width) + 20px);
+  width: 100%;
+  padding: 2em;
+  padding-left: 0;
 }

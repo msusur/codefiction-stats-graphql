@@ -9,6 +9,7 @@ import OverallValuesTabView from './tabs/OverallValuesTabView';
 
 import './DashboardView.scss';
 import WhatsUpToday from './WhatsUpToday';
+import Divider from './ui/Divider';
 
 export class DashboardView extends Component {
   constructor() {
@@ -38,44 +39,47 @@ export class DashboardView extends Component {
       return <Loading />;
     }
     return (
-      <div>
-        <WhatsUpToday results={whatsUpTodayContext} />
-        <OverallValuesTabView
-          overallTimeSeries={overallTimeSeries}
-          youtube={youtube}
-          twitter={twitter}
-          podcasts={podcasts}
-        />
-        <SocialMediaTabView overallTimeSeries={overallTimeSeries} />
-        <Grid>
+      <React.Fragment>
+        <Grid fluid>
           <Row>
-            <Col md={12}>
-              <Tabs
-                activeKey={this.state.activeTab}
-                onSelect={this.handleSelect}
-                id="dashboard-tabs"
-                className="dashboard-tabs"
-              >
-                <Tab eventKey={1} title="Dinlenme Detayları">
-                  <TotalListensTabView
-                    episodes={podcasts[0].episodes}
-                    youtubeVideos={youtube.videos}
-                  />
-                </Tab>
-                <Tab eventKey={2} title="Toplam Dinlenme">
-                  <EpisodesTabView
-                    episodes={podcasts[0].episodes}
-                    videos={youtube.videos}
-                  />
-                </Tab>
-                <Tab eventKey={3} title="Aylık Dinlenme">
-                  <EpisodesChart podcast={podcasts[0]} />
-                </Tab>
-              </Tabs>
+            <Col md={12} className="first--column">
+              <WhatsUpToday results={whatsUpTodayContext} />
+              <Divider />
+              <OverallValuesTabView
+                overallTimeSeries={overallTimeSeries}
+                youtube={youtube}
+                twitter={twitter}
+                podcasts={podcasts}
+              />
+              <SocialMediaTabView overallTimeSeries={overallTimeSeries} />
             </Col>
           </Row>
         </Grid>
-      </div>
+        <Grid>
+          <Tabs
+            activeKey={this.state.activeTab}
+            onSelect={this.handleSelect}
+            id="dashboard-tabs"
+            className="dashboard-tabs"
+          >
+            <Tab eventKey={1} title="Dinlenme Detayları">
+              <TotalListensTabView
+                episodes={podcasts[0].episodes}
+                youtubeVideos={youtube.videos}
+              />
+            </Tab>
+            <Tab eventKey={2} title="Toplam Dinlenme">
+              <EpisodesTabView
+                episodes={podcasts[0].episodes}
+                videos={youtube.videos}
+              />
+            </Tab>
+            <Tab eventKey={3} title="Aylık Dinlenme">
+              <EpisodesChart podcast={podcasts[0]} />
+            </Tab>
+          </Tabs>
+        </Grid>
+      </React.Fragment>
     );
   }
 }

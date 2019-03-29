@@ -11,7 +11,7 @@ export class App extends Component {
       <React.Fragment>
         <Navigation />
         <main className="content">
-          <DashboardView results={this.props.data} />;
+          <DashboardView results={this.props.data} />
         </main>
       </React.Fragment>
     );

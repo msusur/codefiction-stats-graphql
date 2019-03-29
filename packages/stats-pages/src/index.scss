@@ -2,6 +2,12 @@
 :root {
   --body-background: #f4f8f9;
   --navigation-width: 105px;
+  --shadow: 0px 4px 9px rgba(0, 0, 0, 0.02);
+  --card: #fff;
+  --badge: rgba(50, 60, 71, 0.4);
+  --danger: #FF6D4A;
+  --hover-color: #4DA1FF;
+  --divider: #d6d6d6;
 }
 
 .dark-theme {
@@ -10,6 +16,7 @@
 
 body {
   background-color: var(--body-background);
+  font-family: 'Lato', sans-serif;
 }
 
 #root {
