@@ -22,7 +22,8 @@ export class WhatsUpToday extends Component {
 
   invalidateCache() {
     this.setState({ loading: true });
-    this.props.client
+    const { client } = this.props;
+    client
       .mutate({
         mutation: invalidateCacheMutation,
         refetchQueries: [{ query: DashboardQuery }],

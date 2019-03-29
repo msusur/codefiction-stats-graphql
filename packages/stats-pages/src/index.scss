@@ -1,3 +1,21 @@
-.main{
+// i want to use css variables in case of if need dark mode.
+:root {
+  --body-background: #f4f8f9;
+  --navigation-width: 105px;
+}
+
+.dark-theme {
+  --body-background: #222729;
+}
+
+body {
+  background-color: var(--body-background);
+}
+
+#root {
+  display: flex;
+}
+
+.main {
   align-content: center;
 }

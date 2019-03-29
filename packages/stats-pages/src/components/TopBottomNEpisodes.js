@@ -78,7 +78,9 @@ export class TopBottomNEpisodes extends Component {
                     Toplam
                     <Glyphicon
                       className="dashboard--up-down-button"
-                      onClick={event => this.setState({ up: !this.state.up })}
+                      onClick={() =>
+                        this.setState(oldState => ({ up: !oldState.up }))
+                      }
                       glyph={this.state.up ? 'chevron-up' : 'chevron-down'}
                     />
                   </th>
