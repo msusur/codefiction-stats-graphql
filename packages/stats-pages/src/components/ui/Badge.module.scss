@@ -1,0 +1,11 @@
+.badge {
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  &.danger {
+    background: var(--danger);
+    color: #fff;
+  }
+}

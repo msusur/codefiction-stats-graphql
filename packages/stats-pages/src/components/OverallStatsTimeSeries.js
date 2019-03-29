@@ -37,10 +37,12 @@ const produceChartdataset = title => {
 
 export class OverallStatsTimeSeries extends Component {
   render() {
+    const { title, data, dataKey } = this.props;
+
     const chartProps = {
-      title: this.props.title,
-      items: this.props.data,
-      key: this.props.dataKey,
+      title,
+      items: data,
+      key: dataKey,
     };
 
     if (!chartProps.items || chartProps.items.length === 0) {
