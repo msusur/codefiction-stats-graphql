@@ -2,10 +2,19 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import DashboardView from './components/DashboardView';
 import DashboardQuery from './queries/dashboard.query';
+import Navigation from './components/Navigation';
+import './App.scss';
 
 export class App extends Component {
   render() {
-    return <DashboardView results={this.props.data} />;
+    return (
+      <React.Fragment>
+        <Navigation />
+        <main className="content">
+          <DashboardView results={this.props.data} />;
+        </main>
+      </React.Fragment>
+    );
   }
 }
 

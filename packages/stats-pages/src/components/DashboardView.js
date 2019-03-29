@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Tab, Tabs } from 'react-bootstrap';
 import EpisodesChart from './EpisodesChart';
-import Header from './Header';
 import Loading from './Loading';
 import EpisodesTabView from './tabs/EpisodesTabView';
 import TotalListensTabView from './tabs/TotalListensTabView';
@@ -16,6 +15,12 @@ export class DashboardView extends Component {
     super();
     this.state = { activeTab: 1 };
     this.handleSelect = this.handleSelect.bind(this);
+  }
+
+  handleSelect(selectedTab) {
+    this.setState({
+      activeTab: selectedTab,
+    });
   }
 
   render() {
@@ -34,7 +39,6 @@ export class DashboardView extends Component {
     }
     return (
       <div>
-        <Header />
         <WhatsUpToday results={whatsUpTodayContext} />
         <OverallValuesTabView
           overallTimeSeries={overallTimeSeries}
@@ -73,12 +77,6 @@ export class DashboardView extends Component {
         </Grid>
       </div>
     );
-  }
-
-  handleSelect(selectedTab) {
-    this.setState({
-      activeTab: selectedTab,
-    });
   }
 }
 

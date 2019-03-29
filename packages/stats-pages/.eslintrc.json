@@ -3,11 +3,12 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["airbnb-base", "prettier"],
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2017,
     "sourceType": "module",
@@ -21,6 +22,11 @@
     "prettier/prettier": ["error"],
     "no-unused-vars": "warn",
     "class-methods-use-this": "off",
-    "import/no-named-as-default": "warn"
+    "import/no-named-as-default": 0,
+    "react/prop-types": 0,
+    "react/jsx-filename-extension": 0,
+    "react/destructuring-assignment": 0,
+    "react/prefer-stateless-function": 0,
+    "no-console": 0
   }
 }

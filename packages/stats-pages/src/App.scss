@@ -3,3 +3,7 @@
     padding-left: 10px;
   }
 }
+
+.content {
+  margin-left: calc(var(--navigation-width) + 20px);
+}
