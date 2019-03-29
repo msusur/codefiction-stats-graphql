@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Col, Grid, Row, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import cls from 'classnames';
+import { Col, Grid, Row } from 'react-bootstrap';
 import { withApollo } from 'react-apollo';
 import { invalidateCacheMutation } from '../queries/invalidate-cache.mutation';
 import { DashboardQuery } from '../queries/dashboard.query';
@@ -7,6 +8,7 @@ import { DashboardQuery } from '../queries/dashboard.query';
 import './WhatsUpToday.scss';
 import Title from './ui/Title';
 import { Refresh } from './Icons';
+import { List, ListItem } from './ui/List';
 
 export class WhatsUpToday extends Component {
   constructor(props) {
@@ -37,44 +39,28 @@ export class WhatsUpToday extends Component {
     return (
       <Grid>
         <Row>
-          <Col className="whatsup-today--main">
-            <Title value="Bugünün Özeti" />
-            <div className="whatsup-today--alert-header">
-              <OverlayTrigger
-                placement="top"
-                overlay={
-                  <Tooltip id="cache-clean">
-                    Sunucu tarafli tüm önbelleklemeyi silip yeniden betim
-                    kostur.
-                  </Tooltip>
-                }
-              >
-                <Refresh
-                  className={`whatsup-today--refresh ${!loading ||
-                    'whatsup-today--animate'}`}
-                  onClick={() => {
-                    this.invalidateCache();
-                  }}
-                />
-              </OverlayTrigger>
+          <Col md={6} className="whatsup-today--main">
+            <div className="whatsup-today--header">
+              <Title value="Bugünün Özeti" />
+              <Refresh
+                className={cls('whatsup-today--refresh', {
+                  'whatsup-today--animate': loading,
+                })}
+                onClick={() => {
+                  this.invalidateCache();
+                }}
+              />
             </div>
-
-            <ul>
-              <li>
-                {`Twitter'a ${twitter.followersCount -
-                  lastResult.twitter} takipci geldi.`}
-              </li>
-              <li>
-                {`Toplamda ${podcasts[0].overallStats.total_listens -
-                  lastResult.podcast} dinleme oldu.`}
-              </li>
-              <li>
-                {`Youtube'daki takipci sayisi da ${parseInt(
-                  youtube.statistics.subscriberCount,
-                  10
-                ) - lastResult.youtube} artti`}
-              </li>
-            </ul>
+            <List unstyled>
+              <ListItem>{`Twitter'a ${twitter.followersCount -
+                lastResult.twitter} takipci geldi.`}</ListItem>
+              <ListItem>{`Toplamda ${podcasts[0].overallStats.total_listens -
+                lastResult.podcast} dinleme oldu.`}</ListItem>
+              <ListItem>{`Youtube'daki takipci sayisi da ${parseInt(
+                youtube.statistics.subscriberCount,
+                10
+              ) - lastResult.youtube} artti`}</ListItem>
+            </List>
           </Col>
         </Row>
       </Grid>

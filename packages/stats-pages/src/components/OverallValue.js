@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import cls from 'classnames';
 import './OverallValue.scss';
 import * as numeral from 'numeral';
 import OverallCompareService from '../api/overall-compare-service';

@@ -3,13 +3,14 @@ import cls from 'classnames';
 import styles from './Icons.module.scss';
 
 const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
-  const { children, className, viewBox } = props;
+  const { children, className, viewBox, ...otherProps } = props;
 
   return (
     <svg
       className={cls(styles.root, className)}
       viewBox={viewBox || '0 0 24 24'}
       ref={ref}
+      {...otherProps}
     >
       {children}
     </svg>

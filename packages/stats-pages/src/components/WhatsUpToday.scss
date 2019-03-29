@@ -1,17 +1,15 @@
 .whatsup-today {
-  &--main {
-    padding: 10px;
-  }
-  &--alert-header {
-    font-size: 1.2em;
-    padding-bottom: 5px;
+  &--header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
   }
   &--refresh {
-    padding: 10px;
+    margin-left: 1em;
     cursor: pointer;
   }
   &--animate {
-    animation: spin 0.7s infinite linear;
+    animation: spin 1.5s infinite linear;
   }
 }
 
