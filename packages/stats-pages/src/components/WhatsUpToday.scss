@@ -3,6 +3,9 @@
     display: flex;
     align-items: center;
     margin-bottom: 1em;
+    @media (max-width: 991.98px) {
+      justify-content: space-between;
+    }
   }
   &--refresh {
     margin-left: 1em;

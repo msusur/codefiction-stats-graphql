@@ -11,10 +11,17 @@
   max-width: var(--navigation-width);
   width: 100%;
 
+  @media (max-width: 991.98px) {
+    position: unset;
+    max-width: unset;
+    border-right: 0;
+    border-bottom: 1px solid rgba(197, 197, 197, 0.4);
+  }
+
   .logo {
     fill: #e76953;
     width: 100%;
     height: 45px;
-    margin-top: 1.75em;
+    margin: 0.75em 0;
   }
 }

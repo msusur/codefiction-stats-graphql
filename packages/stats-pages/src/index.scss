@@ -21,6 +21,10 @@ body {
 
 #root {
   display: flex;
+
+  @media (max-width: 991.98px) {
+    flex-direction: column;
+  }
 }
 
 .main {
