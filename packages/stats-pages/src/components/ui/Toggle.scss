@@ -1,0 +1,27 @@
+.toggle {
+  margin-bottom: 1rem;
+  @media (max-width: 991.98px) {
+    margin-bottom: 0;
+    margin-right: 1em;
+  }
+  svg {
+    font-size: 18px;
+    color: #fff;
+  }
+  &.react-toggle--checked {
+    .react-toggle-track {
+      background-color: #e76953;
+    }
+    &:hover:not(.react-toggle--disabled) {
+      .react-toggle-track {
+        background: #be5846;
+      }
+    }
+  }
+  .react-toggle-track-x,
+  .react-toggle-track-check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

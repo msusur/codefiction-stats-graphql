@@ -57,7 +57,7 @@ export class TopBottomNEpisodes extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md={10}>
+          <Col md={12}>
             <Table
               striped
               bordered

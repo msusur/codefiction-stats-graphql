@@ -64,7 +64,7 @@ export class OverallStatsTimeSeries extends Component {
 
     return (
       <Card style={{ marginTop: '1.6rem' }}>
-        <Line data={chartData} />
+        <Line data={chartData} options={{ label: { display: false } }} />
       </Card>
     );
   }

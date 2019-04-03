@@ -5,17 +5,21 @@
   height: 100%;
   z-index: 100;
   display: flex;
-  justify-content: center;
-  background: #fafbfc;
-  border-right: 1px solid rgba(197, 197, 197, 0.4);
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--navigation-color);
+  border-right: var(--card-border);
   max-width: var(--navigation-width);
   width: 100%;
+  transition: var(--animation);
 
   @media (max-width: 991.98px) {
     position: unset;
     max-width: unset;
     border-right: 0;
-    border-bottom: 1px solid rgba(197, 197, 197, 0.4);
+    border-bottom: var(--card-border);
+    flex-direction: row;
   }
 
   .logo {
@@ -23,5 +27,11 @@
     width: 100%;
     height: 45px;
     margin: 0.75em 0;
+
+    @media (max-width: 991.98px) {
+      width: 45px;
+      height: 100%;
+      margin: 0.75em;
+    }
   }
 }

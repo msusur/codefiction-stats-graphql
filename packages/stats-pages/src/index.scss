@@ -1,17 +1,36 @@
-// i want to use css variables in case of if need dark mode.
-:root {
+.light-theme {
   --body-background: #f4f8f9;
+  --navigation-color: #fafbfc;
   --navigation-width: 105px;
   --shadow: 0px 4px 9px rgba(0, 0, 0, 0.02);
   --card: #fff;
+  --card-border: 1px solid rgba(197, 197, 197, 0.4);
   --badge: rgba(50, 60, 71, 0.4);
-  --danger: #FF6D4A;
-  --hover-color: #4DA1FF;
+  --danger: #ff6d4a;
+  --hover-color: #4da1ff;
   --divider: #d6d6d6;
+  --animation: 0.5s ease all;
+  --table-header: #eee;
+  --table-stripped: #f9f9f9;
+  transition: var(--animation);
 }
 
 .dark-theme {
-  --body-background: #222729;
+  --body-background: #36393f;
+  --navigation-color: #2a2d31;
+  --navigation-width: 105px;
+  --shadow: 0px 4px 9px rgba(0, 0, 0, 0.02);
+  --card: #494c55;
+  --card-border: 1px solid rgba(197, 197, 197, 0);
+  --badge: rgba(178, 184, 190, 0.4);
+  --danger: #ff6d4a;
+  --hover-color: #4f535c;
+  --divider: #4d4d4d;
+  --animation: 0.5s ease all;
+  --table-header: #555;
+  --table-stripped: #757575;
+  transition: var(--animation);
+  color: #fff;
 }
 
 body {
