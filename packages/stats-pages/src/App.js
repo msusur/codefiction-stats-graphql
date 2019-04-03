@@ -7,9 +7,13 @@ import Navigation from './components/Navigation';
 import './App.scss';
 
 export class App extends Component {
-  state = {
-    isDarkThemeEnabled: false,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isDarkThemeEnabled: false,
+    };
+  }
 
   componentDidMount() {
     const theme = localStorage.getItem('theme');
