@@ -30,7 +30,7 @@ td {
 }
 
 th {
-  background: #eee;
+  background: var(--table-header);
 }
 
 td.align-center {
@@ -39,4 +39,8 @@ td.align-center {
 
 th.w-65 {
   width: 65%;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: var(--table-stripped);
 }

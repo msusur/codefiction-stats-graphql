@@ -28,6 +28,7 @@ export class DashboardView extends Component {
     const {
       results: { twitter, overallTimeSeries, podcasts, youtube },
     } = this.props;
+
     const whatsUpTodayContext = {
       twitter,
       overallTimeSeries,
