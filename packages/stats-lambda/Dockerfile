@@ -5,4 +5,4 @@ WORKDIR /stats
 
 COPY . .
 EXPOSE 4000
-RUN npm install
+RUN yarn

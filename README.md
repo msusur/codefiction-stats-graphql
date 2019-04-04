@@ -4,11 +4,11 @@ The project has two different application in this mono-repo project, and using `
 
 ## Bootstrapping the dependencies using Lerna
 
-Lerna helps you run `npm` scripts for both projects. Bootstrapping is the first step to install the project dependencies. It will basically run the `npm install` for both projects.
+Lerna helps you run `yarn` scripts for both projects. Bootstrapping is the first step to install the project dependencies. It will basically run the `yarn install` for both projects.
 
 ```sh
-npm install
-npm run bootstrap
+yarn
+yarn bootstrap
 ```
 
 ## Running both projects
@@ -16,10 +16,10 @@ npm run bootstrap
 If you want to run the both projects together using lerna,
 
 ```sh
-npm run start:all
+yarn start:all
 ```
 
-This will kick `npm start` on both projects. But you need to satisfy the environment variable for the lambda project before running the application. See the next sub-section for further details.
+This will kick `yarn start` on both projects. But you need to satisfy the environment variable for the lambda project before running the application. See the next sub-section for further details.
 
 ### Running the graphql application
 
@@ -43,7 +43,7 @@ ENGINE_API_KEY=SECRET
 After satifying the environment variables you can simply run the following command in the root folder to start the application.
 
 ```sh
-npm run start
+yarn start
 ```
 
 ### Running the React pages
@@ -53,7 +53,7 @@ React application is the single page application that displays the results aggre
 In order to run the application using lerna run the following command.
 
 ```sh
-npm run start:react
+yarn start:react
 ```
 
 React application is using the [react-scripts](https://www.npmjs.com/package/react-scripts). You can do whatever react-scripts allows you to do.
