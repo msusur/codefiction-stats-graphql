@@ -1,20 +1,23 @@
 version: 0.2
 
 phases:
+  pre_install:
+    commands:
+      - npm install yarn -g
   install:
     commands:
-      - npm install
-      - npm run bootstrap
+      - yarn
+      - yarn bootstrap
   pre_build:
     commands:
-      - npm run lint
+      - yarn lint
   build:
     commands:
-      - npm run build
+      - yarn build
   post_build:
     commands:
       # Deploy SPA to S3 and deploy Serverless
-      - npm run deploy
+      - yarn deploy
 artifacts:
   files:
     - "**/*"

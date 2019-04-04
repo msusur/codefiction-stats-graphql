@@ -1,5 +1,6 @@
 {
   "name": "codefiction-stats-graphql",
+  "private": true,
   "version": "1.0.0",
   "description": "Codefiction Podcast Statistics Application",
   "main": "index.js",
@@ -20,6 +21,9 @@
       "pre-commit": "npm run lint"
     }
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/msusur/codefiction-stats-graphql.git"
