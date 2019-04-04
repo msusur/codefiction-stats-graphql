@@ -1,11 +1,9 @@
 version: 0.2
 
 phases:
-  pre_install:
-    commands:
-      - npm install yarn -g
   install:
     commands:
+      - npm install yarn -g
       - yarn
       - yarn bootstrap
   pre_build:
@@ -20,5 +18,5 @@ phases:
       - yarn deploy
 artifacts:
   files:
-    - "**/*"
-  base-directory: "packages/stats-pages/build"
+    - '**/*'
+  base-directory: 'packages/stats-pages/build'
