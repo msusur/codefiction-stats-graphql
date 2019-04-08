@@ -16,6 +16,7 @@
   "dependencies": {
     "apollo-boost": "^0.1.20",
     "apollo-server-express": "^2.1.0",
+    "auth0-js": "^9.10.1",
     "aws-sdk": "^2.350.0",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.3",
@@ -26,6 +27,7 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.3",
+    "history": "^4.9.0",
     "material-dashboard-react": "^1.6.0",
     "moment": "^2.24.0",
     "node-sass": "^4.10.0",
@@ -37,6 +39,7 @@
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.6.0",
     "react-helmet": "^5.2.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.5",
     "react-toggle": "^4.0.2",
     "simplecast-api-client": "^1.0.2",
