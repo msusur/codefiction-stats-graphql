@@ -12,8 +12,8 @@ import WhatsUpToday from './WhatsUpToday';
 import Divider from './ui/Divider';
 
 export class DashboardView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { activeTab: 1 };
     this.handleSelect = this.handleSelect.bind(this);
   }
