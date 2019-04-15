@@ -2,7 +2,7 @@
   "name": "codefiction-stats-graphql",
   "private": true,
   "version": "1.0.0",
-  "description": "Codefiction Podcast Statistics Application",
+  "description": "Codefiction Podcast Statistics Application - this PR shouldn't trigger a build.",
   "main": "index.js",
   "scripts": {
     "build": "lerna run build --parallel",
