@@ -2,7 +2,7 @@
   "name": "codefiction-stats-graphql",
   "private": true,
   "version": "1.0.0",
-  "description": "Codefiction Podcast Statistics Application",
+  "description": "Codefiction Podcast statistics application using Graphql and React components.",
   "main": "index.js",
   "scripts": {
     "build": "lerna run build --parallel",
