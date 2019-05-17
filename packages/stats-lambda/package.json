@@ -32,7 +32,7 @@
     "numeral": "^2.0.6",
     "redis": "^2.8.0",
     "redis-commands": "^1.4.0",
-    "simplecast-api-client": "^1.0.2",
+    "simplecast-api-client": "^2.0.0",
     "string-similarity": "^3.0.0",
     "then-redis": "^2.0.1",
     "twit": "^2.2.11",
@@ -50,6 +50,6 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "prettier": "1.15.2",
-    "serverless": "^1.38.0"
+    "serverless": "^1.42.3"
   }
 }
