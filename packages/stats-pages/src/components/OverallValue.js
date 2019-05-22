@@ -11,14 +11,11 @@ export class OverallValue extends Component {
     const comparedValue = compare.setAndCompareValue(valueKey, value);
     return (
       <div className="dashboard--container">
-        <div className="dashboard--label">{text}</div>
+        {text && <div className="dashboard--label">{text}</div>}
         <div className="dashboard--value">
           {numeral(comparedValue.currentValue).format(0, 0)}
-          <Badge className="dashboard--badge" danger={comparedValue.ratio < 0}>
-            {comparedValue.ratio > 0
-              ? `+${comparedValue.ratio}`
-              : comparedValue.ratio}
-            %
+          <Badge className="dashboard--badge" value={comparedValue.ratio}>
+            {comparedValue.ratio}%
           </Badge>
         </div>
       </div>

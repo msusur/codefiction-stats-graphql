@@ -4,7 +4,6 @@ import Helmet from 'react-helmet';
 import DashboardView from './components/DashboardView';
 import DashboardQuery from './queries/dashboard.query';
 import Navigation from './components/Navigation';
-import './App.scss';
 
 export class App extends Component {
   constructor(props) {
@@ -52,9 +51,7 @@ export class App extends Component {
           <body className={isDarkThemeEnabled ? 'dark-theme' : 'light-theme'} />
         </Helmet>
         <Navigation changeTheme={this.changeTheme} theme={isDarkThemeEnabled} />
-        <main className="content">
-          <DashboardView results={this.props.data} />
-        </main>
+        <DashboardView results={this.props.data} />
       </React.Fragment>
     );
   }

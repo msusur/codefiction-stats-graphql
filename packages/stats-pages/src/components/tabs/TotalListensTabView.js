@@ -3,7 +3,6 @@ import { Col } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import TopEpisodesChart from '../TopEpisodesChart';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-import './TotalListensTabView.scss';
 
 export class TotalListensTabView extends Component {
   constructor() {

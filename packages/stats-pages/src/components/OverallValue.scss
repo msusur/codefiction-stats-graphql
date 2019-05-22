@@ -1,14 +1,13 @@
 .dashboard {
   text-align: left;
   &--label {
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 500;
   }
   &--value {
-    color: #4da1ff;
+    color: #303030;
     font-weight: 700;
-    margin-top: 0.4em;
-    font-size: 2em;
+    font-size: 2.3em;
     display: flex;
     align-items: center;
   }

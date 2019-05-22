@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Tab, Tabs } from 'react-bootstrap';
+import { Grid, Tab, Tabs } from 'react-bootstrap';
 import EpisodesChart from './EpisodesChart';
 import Loading from './Loading';
 import EpisodesTabView from './tabs/EpisodesTabView';
 import TotalListensTabView from './tabs/TotalListensTabView';
-import SocialMediaTabView from './tabs/SocialMediaTabView';
 import OverallValuesTabView from './tabs/OverallValuesTabView';
 
-import './DashboardView.scss';
+import styles from './DashboardView.module.scss';
 import WhatsUpToday from './WhatsUpToday';
-import Divider from './ui/Divider';
 
 export class DashboardView extends Component {
   constructor() {
@@ -40,22 +38,16 @@ export class DashboardView extends Component {
       return <Loading />;
     }
     return (
-      <React.Fragment>
-        <Grid fluid>
-          <Row>
-            <Col md={12} className="first--column">
-              <WhatsUpToday results={whatsUpTodayContext} />
-              <Divider />
-              <OverallValuesTabView
-                overallTimeSeries={overallTimeSeries}
-                youtube={youtube}
-                twitter={twitter}
-                podcasts={podcasts}
-              />
-              <SocialMediaTabView overallTimeSeries={overallTimeSeries} />
-            </Col>
-          </Row>
-        </Grid>
+      <main className="container">
+        <div className={styles.summary}>
+          <WhatsUpToday results={whatsUpTodayContext} />
+          <OverallValuesTabView
+            overallTimeSeries={overallTimeSeries}
+            youtube={youtube}
+            twitter={twitter}
+            podcasts={podcasts}
+          />
+        </div>
         <Grid>
           <Tabs
             activeKey={this.state.activeTab}
@@ -80,7 +72,7 @@ export class DashboardView extends Component {
             </Tab>
           </Tabs>
         </Grid>
-      </React.Fragment>
+      </main>
     );
   }
 }

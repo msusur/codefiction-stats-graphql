@@ -38,6 +38,7 @@
     "react-helmet": "^5.2.0",
     "react-scripts": "^2.1.5",
     "react-toggle": "^4.0.2",
+    "recharts": "^1.6.2",
     "simplecast-api-client": "^1.0.2",
     "string-similarity": "^3.0.0",
     "twit": "^2.2.11",
