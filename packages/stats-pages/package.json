@@ -26,7 +26,6 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.3",
-    "material-dashboard-react": "^1.6.0",
     "moment": "^2.24.0",
     "node-sass": "^4.10.0",
     "numeral": "^2.0.6",
