@@ -17,10 +17,14 @@
     margin-right: 0;
   }
 
+  &:only-child {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .cardHeader {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 1.5rem 0 1.5rem;
 
     .cardTitle {
       color: var(--card-title);

@@ -13,7 +13,7 @@ const OverallValuesTabView = ({
 }) => {
   return (
     <div className={styles.cards}>
-      <Card title="Twitter" className={styles.noPadding}>
+      <Card title="Twitter">
         <OverallValue
           valueKey="twitter"
           series={overallTimeSeries}
@@ -25,7 +25,7 @@ const OverallValuesTabView = ({
           title="Twitter Trend"
         />
       </Card>
-      <Card title="Youtube" className={styles.noPadding} icon={Sun}>
+      <Card title="Youtube" icon={Sun}>
         <OverallValue
           valueKey="youtube"
           series={overallTimeSeries}
@@ -37,7 +37,7 @@ const OverallValuesTabView = ({
           title="Youtube Followers Trend"
         />
       </Card>
-      <Card title="Podcast" className={styles.noPadding}>
+      <Card title="Podcast">
         <OverallValue
           valueKey="podcast"
           series={overallTimeSeries}

@@ -1,11 +1,11 @@
 .dashboard {
-	&--items {
-		margin-right: 40px;
-		float: left;
-	}
+  &--items {
+    margin-right: 40px;
+    float: left;
+  }
 
-	&--items-container {
-		padding-top: 20px;
-		align-content: center;
-	}
+  &--items-container {
+		display: flex;
+		margin-top: 1.5rem;
+  }
 }
