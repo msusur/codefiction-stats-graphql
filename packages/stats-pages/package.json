@@ -37,6 +37,7 @@
     "react-helmet": "^5.2.0",
     "react-scripts": "^2.1.5",
     "react-select": "^2.4.3",
+    "react-table": "^6.10.0",
     "react-toggle": "^4.0.2",
     "recharts": "^1.6.2",
     "simplecast-api-client": "^1.0.2",

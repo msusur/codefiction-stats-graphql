@@ -40,10 +40,12 @@ export class DashboardView extends Component {
             youtubeVideos={youtube.videos}
           />
         </div>
-        <EpisodesTabView
-          episodes={podcasts[0].episodes}
-          videos={youtube.videos}
-        />
+        <div className={styles.summary}>
+          <EpisodesTabView
+            episodes={podcasts[0].episodes}
+            videos={youtube.videos}
+          />
+        </div>
         {/* <EpisodesChart podcast={podcasts[0]} /> */}
       </main>
     );
