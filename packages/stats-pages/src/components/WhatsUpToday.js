@@ -37,7 +37,7 @@ export class WhatsUpToday extends Component {
     const lastResult = overallTimeSeries[overallTimeSeries.length - 1];
     return (
       <React.Fragment>
-        <div className="col-6 whatsup-today--main">
+        <div className="whatsup-today--main">
           <div className="whatsup-today--header">
             <Title value="Bugünün Özeti" />
             <Refresh
