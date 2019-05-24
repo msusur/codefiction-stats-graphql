@@ -67,17 +67,7 @@ const TopEpisodesChart = ({ videos, episode }) => {
               />
             </div>
             <ResponsiveContainer height={170}>
-              <LineChart
-                width={500}
-                height={300}
-                data={data}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
+              <LineChart data={data}>
                 <CartesianGrid strokeDasharray="1 1" />
                 <XAxis dataKey="date" hide />
                 <Tooltip />

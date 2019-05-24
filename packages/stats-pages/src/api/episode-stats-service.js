@@ -9,18 +9,19 @@ export class EpisodeStatsService {
       })
     );
 
-    const values = [];
-    const labels = [];
+    let data = [];
 
     Object.keys(months).forEach(key => {
-      labels.push(key);
-      values.push(months[key]);
+      data = [
+        ...data,
+        {
+          month: key,
+          listens: months[key],
+        },
+      ];
     });
 
-    return {
-      values,
-      labels,
-    };
+    return data;
   }
 }
 

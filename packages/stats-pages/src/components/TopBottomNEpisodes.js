@@ -61,7 +61,6 @@ export class TopBottomNEpisodes extends Component {
 
   render() {
     const { episodes } = this.props;
-    console.log(episodes);
     return (
       <Card>
         <ReactTable

@@ -3,6 +3,7 @@ import Loading from './Loading';
 import TotalListensTabView from './tabs/TotalListensTabView';
 import OverallValuesTabView from './tabs/OverallValuesTabView';
 import EpisodesTabView from './tabs/EpisodesTabView';
+import EpisodesChart from './EpisodesChart';
 
 import styles from './DashboardView.module.scss';
 import WhatsUpToday from './WhatsUpToday';
@@ -23,6 +24,7 @@ export class DashboardView extends Component {
     if (!podcasts) {
       return <Loading />;
     }
+
     return (
       <main className="container">
         <div className={styles.summary}>
@@ -46,7 +48,9 @@ export class DashboardView extends Component {
             videos={youtube.videos}
           />
         </div>
-        {/* <EpisodesChart podcast={podcasts[0]} /> */}
+        <div className={styles.summary}>
+          <EpisodesChart podcast={podcasts[0]} />
+        </div>
       </main>
     );
   }
