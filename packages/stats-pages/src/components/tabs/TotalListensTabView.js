@@ -27,7 +27,7 @@ export class TotalListensTabView extends Component {
 
   render() {
     const { youtubeVideos } = this.props;
-    const { options, selectedValue } = this.state;
+    const { options, selectedValue, selectedItem } = this.state;
     return (
       <Card
         title="Bölüm başına dinlenme istatistikleri"
@@ -37,20 +37,17 @@ export class TotalListensTabView extends Component {
           options={options}
           value={selectedValue}
           menuPlacement="auto"
-          onChange={selectedItem =>
+          onChange={value =>
             this.setState({
-              selectedItem: selectedItem.original,
+              selectedItem: value.original,
               selectedValue: {
-                label: selectedItem.label,
-                value: selectedItem.value,
+                label: value.label,
+                value: value.value,
               },
             })
           }
         />
-        <TopEpisodesChart
-          episode={this.state.selectedItem}
-          videos={youtubeVideos}
-        />
+        <TopEpisodesChart episode={selectedItem} videos={youtubeVideos} />
       </Card>
     );
   }

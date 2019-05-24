@@ -45,13 +45,14 @@ export class App extends Component {
 
   render() {
     const { isDarkThemeEnabled } = this.state;
+    const { data } = this.props;
     return (
       <React.Fragment>
         <Helmet>
           <body className={isDarkThemeEnabled ? 'dark-theme' : 'light-theme'} />
         </Helmet>
         <Navigation changeTheme={this.changeTheme} theme={isDarkThemeEnabled} />
-        <DashboardView results={this.props.data} />
+        <DashboardView results={data} />
       </React.Fragment>
     );
   }
