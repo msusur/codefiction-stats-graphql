@@ -1,6 +1,10 @@
 .whatsup-today {
   &--main {
-    width: 50%;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 50%;
+    }
   }
 
   &--header {

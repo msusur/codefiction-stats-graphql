@@ -6,6 +6,11 @@
 
   &--items-container {
 		display: flex;
-		margin-top: 1.5rem;
+    margin-top: 1.5rem;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
   }
 }
