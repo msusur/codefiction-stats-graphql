@@ -67,4 +67,54 @@ export const Moon = ({ ...otherProps }) => (
   </SvgIcon>
 );
 
+export const ChevronUp = ({ ...otherProps }) => (
+  <SvgIcon {...otherProps}>
+    <g data-name="Layer 2">
+      <g data-name="chevron-up">
+        <rect
+          width="24"
+          height="24"
+          transform="rotate(180 12 12)"
+          opacity="0"
+        />
+        <path d="M16 14.5a1 1 0 0 1-.71-.29L12 10.9l-3.3 3.18a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.42l4-3.86a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1 0 1.42 1 1 0 0 1-.69.28z" />
+      </g>
+    </g>
+  </SvgIcon>
+);
+
+export const ChevronDown = ({ ...otherProps }) => (
+  <SvgIcon {...otherProps}>
+    <g data-name="Layer 2">
+      <g data-name="chevron-down">
+        <rect width="24" height="24" opacity="0" />
+        <path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z" />
+      </g>
+    </g>
+  </SvgIcon>
+);
+
+export const PlayIcon = ({ ...otherProps }) => (
+  <SvgIcon {...otherProps}>
+    <g data-name="Layer 2">
+      <g data-name="play-circle">
+        <rect width="24" height="24" opacity="0" />
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" />
+        <path d="M12.34 7.45a1.7 1.7 0 0 0-1.85-.3 1.6 1.6 0 0 0-1 1.48v6.74a1.6 1.6 0 0 0 1 1.48 1.68 1.68 0 0 0 .69.15 1.74 1.74 0 0 0 1.16-.45L16 13.18a1.6 1.6 0 0 0 0-2.36zm-.84 7.15V9.4l2.81 2.6z" />
+      </g>
+    </g>
+  </SvgIcon>
+);
+
+export const MusicIcon = ({ ...otherProps }) => (
+  <SvgIcon {...otherProps}>
+    <g data-name="Layer 2">
+      <g data-name="music">
+        <rect width="24" height="24" opacity="0" />
+        <path d="M19 15V4a1 1 0 0 0-.38-.78 1 1 0 0 0-.84-.2l-9 2A1 1 0 0 0 8 6v8.34a3.49 3.49 0 1 0 2 3.18 4.36 4.36 0 0 0 0-.52V6.8l7-1.55v7.09a3.49 3.49 0 1 0 2 3.17 4.57 4.57 0 0 0 0-.51zM6.54 19A1.49 1.49 0 1 1 8 17.21a1.53 1.53 0 0 1 0 .3A1.49 1.49 0 0 1 6.54 19zm9-2A1.5 1.5 0 1 1 17 15.21a1.53 1.53 0 0 1 0 .3A1.5 1.5 0 0 1 15.51 17z" />
+      </g>
+    </g>
+  </SvgIcon>
+);
+
 export default SvgIcon;

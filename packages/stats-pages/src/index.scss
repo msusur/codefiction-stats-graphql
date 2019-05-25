@@ -1,10 +1,10 @@
 .light-theme {
   --body-background: #f4f8f9;
   --navigation-color: #fafbfc;
-  --navigation-width: 105px;
   --shadow: 0px 4px 9px rgba(0, 0, 0, 0.02);
   --card: #fff;
   --card-border: 1px solid rgba(197, 197, 197, 0.4);
+  --card-title: #BEBEBE;
   --badge: rgba(50, 60, 71, 0.4);
   --danger: #ff6d4a;
   --hover-color: #4da1ff;
@@ -18,10 +18,10 @@
 .dark-theme {
   --body-background: #36393f;
   --navigation-color: #2a2d31;
-  --navigation-width: 105px;
   --shadow: 0px 4px 9px rgba(0, 0, 0, 0.02);
   --card: #494c55;
   --card-border: 1px solid rgba(197, 197, 197, 0);
+  --card-title: #BEBEBE;
   --badge: rgba(178, 184, 190, 0.4);
   --danger: #ff6d4a;
   --hover-color: #4f535c;
@@ -35,17 +35,51 @@
 
 body {
   background-color: var(--body-background);
-  font-family: 'Lato', sans-serif;
-}
-
-#root {
-  display: flex;
-
-  @media (max-width: 991.98px) {
-    flex-direction: column;
-  }
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
 }
 
 .main {
   align-content: center;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 1em;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+.no-padding {
+  padding: 0;
+}
+
+#root {
+  padding-bottom: 1.5rem;
 }

@@ -1,51 +1,56 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import React from 'react';
 import OverallValue from '../OverallValue';
 import Card from '../ui/Card';
+import { Sun } from '../Icons';
+import styles from './OverallValuesTabView.module.scss';
+import OverallStatsTimeSeries from '../OverallStatsTimeSeries';
 
-export class OverallValuesTabView extends Component {
-  render() {
-    const { overallTimeSeries } = this.props;
-    const { twitter } = this.props;
-    const { youtube } = this.props;
-    const { podcasts } = this.props;
-    return (
-      <Row>
-        <Col md={4}>
-          <Card>
-            <OverallValue
-              valueKey="twitter"
-              text="Twitter Takipci Sayisi"
-              series={overallTimeSeries}
-              value={twitter ? twitter.followersCount : null}
-            />
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card>
-            <OverallValue
-              valueKey="youtube"
-              text="Toplam Youtube Takipcisi"
-              series={overallTimeSeries}
-              value={
-                youtube.statistics ? youtube.statistics.subscriberCount : null
-              }
-            />
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card>
-            <OverallValue
-              valueKey="podcast"
-              text="Toplam Podcast Dinleme"
-              series={overallTimeSeries}
-              value={podcasts ? podcasts[0].overallStats.total_listens : null}
-            />
-          </Card>
-        </Col>
-      </Row>
-    );
-  }
-}
+const OverallValuesTabView = ({
+  overallTimeSeries,
+  twitter,
+  youtube,
+  podcasts,
+}) => {
+  return (
+    <div className={styles.cards}>
+      <Card title="Twitter">
+        <OverallValue
+          valueKey="twitter"
+          series={overallTimeSeries}
+          value={twitter ? twitter.followersCount : null}
+        />
+        <OverallStatsTimeSeries
+          data={overallTimeSeries}
+          dataKey="twitter"
+          title="Twitter Trend"
+        />
+      </Card>
+      <Card title="Youtube" icon={Sun}>
+        <OverallValue
+          valueKey="youtube"
+          series={overallTimeSeries}
+          value={youtube.statistics ? youtube.statistics.subscriberCount : null}
+        />
+        <OverallStatsTimeSeries
+          data={overallTimeSeries}
+          dataKey="youtube"
+          title="Youtube Followers Trend"
+        />
+      </Card>
+      <Card title="Podcast">
+        <OverallValue
+          valueKey="podcast"
+          series={overallTimeSeries}
+          value={podcasts ? podcasts[0].overallStats.total_listens : null}
+        />
+        <OverallStatsTimeSeries
+          data={overallTimeSeries}
+          dataKey="podcast"
+          title="Podcast Listeners Trend"
+        />
+      </Card>
+    </div>
+  );
+};
 
 export default OverallValuesTabView;

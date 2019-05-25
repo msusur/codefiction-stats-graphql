@@ -4,8 +4,8 @@ import TopBottomNEpisodes from '../TopBottomNEpisodes';
 
 export class EpisodesTabView extends Component {
   render() {
-    const { videos } = this.props;
-    const episodes = this.props.episodes.map(episode => {
+    const { videos, episodes } = this.props;
+    const mappedEpisodes = episodes.map(episode => {
       const episodeRefined = episode;
       episodeRefined.grandTotal = episode.stats.total_listens;
       const filteredVideos = videos.filter(video => {
@@ -24,7 +24,7 @@ export class EpisodesTabView extends Component {
 
       return episodeRefined;
     });
-    return <TopBottomNEpisodes maxItems={20} episodes={episodes} />;
+    return <TopBottomNEpisodes maxItems={20} episodes={mappedEpisodes} />;
   }
 }
 

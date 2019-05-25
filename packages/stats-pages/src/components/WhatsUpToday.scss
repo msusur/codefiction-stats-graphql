@@ -1,4 +1,12 @@
 .whatsup-today {
+  &--main {
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+  }
+
   &--header {
     display: flex;
     align-items: center;
