@@ -20,7 +20,6 @@ const server = new ApolloServer({
   engine: {
     apiKey: process.env.ENGINE_API_KEY,
   },
-  cacheControl: true,
 });
 
 const app = express();

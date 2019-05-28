@@ -66,6 +66,10 @@ const query = {
   },
   Episode: {
     downloads(episode) {
+      // Temporary solution until the bug on simplecast resolved.
+      if (episode.id === '92227acd-be24-4560-98e5-6ad2b21710e5') {
+        return {};
+      }
       return simpleCastClient.getEpisodeStats(episode.id).then(stats => {
         const calcStats = stats;
         soundCloudScrapedData.map(item => {
