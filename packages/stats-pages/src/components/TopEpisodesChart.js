@@ -19,10 +19,11 @@ const QUERY_EPISODES_STATS = title => gql`
   {
     podcasts {
       episodes(title: "${title}") {
-        stats {
-          data {
-            date
-            listens
+        downloads(orderBy: desc) {
+          total
+          by_interval {
+            downloads_total
+            interval
           }
         }
       }
