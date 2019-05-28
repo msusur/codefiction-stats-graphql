@@ -1,14 +1,34 @@
+const MONTHS_NAMES_TR = [
+  'Ocak',
+  'Şubat',
+  'Mart',
+  'Nisan',
+  'Mayıs',
+  'Haziran',
+  'Temmuz',
+  'Ağustos',
+  'Eylül',
+  'Ekim',
+  'Kasım',
+  'Aralık',
+];
+
 export class EpisodeStatsService {
   getTimeSeries(episodes) {
     const months = {};
-
-    episodes.map(episode =>
-      episode.downloads.by_interval.forEach(item => {
-        months[item.interval] =
-          (months[item.interval] ? months[item.interval] : 0) +
-          item.downloads_total;
-      })
-    );
+    MONTHS_NAMES_TR.forEach(month => {
+      months[month] = 0;
+    });
+    episodes.map(episode => {
+      if (!episode.downloads || !episode.downloads.by_interval) {
+        return {};
+      }
+      return episode.downloads.by_interval.forEach(item => {
+        const month = MONTHS_NAMES_TR[new Date(item.interval).getMonth()];
+        months[month] =
+          (months[month] ? months[month] : 0) + item.downloads_total;
+      });
+    });
 
     let data = [];
 
