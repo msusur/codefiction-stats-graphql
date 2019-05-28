@@ -1,8 +1,14 @@
 .badge {
-  border-radius: 50%;
   display: inline-flex;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #5ccd97;
   justify-content: center;
   align-items: center;
+
+  &.equal {
+    color: #000;
+  }
 
   &.danger {
     background: var(--danger);

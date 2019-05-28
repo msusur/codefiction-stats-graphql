@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import cls from 'classnames';
-import { Col, Row } from 'react-bootstrap';
 import { withApollo } from 'react-apollo';
 import { invalidateCacheMutation } from '../queries/invalidate-cache.mutation';
 import { DashboardQuery } from '../queries/dashboard.query';
@@ -37,8 +36,8 @@ export class WhatsUpToday extends Component {
     const { loading } = this.state;
     const lastResult = overallTimeSeries[overallTimeSeries.length - 1];
     return (
-      <Row>
-        <Col md={6} className="whatsup-today--main">
+      <React.Fragment>
+        <div className="whatsup-today--main">
           <div className="whatsup-today--header">
             <Title value="Bugünün Özeti" />
             <Refresh
@@ -51,17 +50,17 @@ export class WhatsUpToday extends Component {
             />
           </div>
           <List unstyled>
-            <ListItem>{`Twitter'a ${twitter.followersCount -
-              lastResult.twitter} takipci geldi.`}</ListItem>
+            <ListItem>{`Twitter'da yeni ${twitter.followersCount -
+              lastResult.twitter} kişi takip etmeye başladı.`}</ListItem>
             <ListItem>{`Toplamda ${podcasts[0].overallStats.total_listens -
-              lastResult.podcast} dinleme oldu.`}</ListItem>
-            <ListItem>{`Youtube'daki takipci sayisi da ${parseInt(
+              lastResult.podcast} kişi Codefiction dinledi.`}</ListItem>
+            <ListItem>{`Youtube'da yeni ${parseInt(
               youtube.statistics.subscriberCount,
               10
-            ) - lastResult.youtube} artti`}</ListItem>
+            ) - lastResult.youtube} kişi takip etmeye başladı.`}</ListItem>
           </List>
-        </Col>
-      </Row>
+        </div>
+      </React.Fragment>
     );
   }
 }

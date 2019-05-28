@@ -2,7 +2,38 @@
   background: var(--card);
   box-shadow: var(--shadow);
   border-radius: 6px;
-  padding: 1.75em;
+  padding: 1.5rem;
   margin-top: 1em;
   border: var(--card-border);
+  flex: 1 0 auto;
+
+  @media (min-width: 768px) {
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:only-child {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+
+    .cardTitle {
+      color: var(--card-title);
+      font-weight: 600;
+      margin: 0;
+      font-size: 1.1rem;
+    }
+  }
 }

@@ -1,0 +1,14 @@
+.cards {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.noPadding {
+  padding: 0;
+}

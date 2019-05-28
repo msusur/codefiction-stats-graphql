@@ -7,7 +7,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import './index.scss';
-// import App from './App';
 
 const client = new ApolloClient({
   link: new HttpLink({

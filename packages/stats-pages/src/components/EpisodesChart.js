@@ -1,33 +1,31 @@
-import React, { Component } from 'react';
-import { HorizontalBar } from 'react-chartjs-2';
+import React from 'react';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 import { EpisodeStatsService } from '../api/episode-stats-service';
+import Card from './ui/Card';
 
-const dataset = () => ({
-  label: 'Total Listens per Month',
-  backgroundColor: 'rgba(255,99,132,0.2)',
-  borderColor: 'rgba(255,99,132,1)',
-  borderWidth: 1,
-  hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-  hoverBorderColor: 'rgba(255,99,132,1)',
-  data: [],
-});
+const EpisodesChart = ({ podcast }) => {
+  const stats = new EpisodeStatsService();
+  const statValues = stats.getTimeSeries(podcast.episodes);
 
-export class EpisodesChart extends Component {
-  render() {
-    const dataValues = {
-      labels: [],
-      datasets: [],
-    };
-    const set = dataset();
-
-    const stats = new EpisodeStatsService();
-    const statValues = stats.getTimeSeries(this.props.podcast.episodes);
-    dataValues.labels = statValues.labels;
-    set.data = statValues.values;
-    dataValues.datasets.push(set);
-
-    return <HorizontalBar data={dataValues} />;
-  }
-}
+  return (
+    <Card title="Aylık dinlenme istatistiği">
+      <ResponsiveContainer height={320}>
+        <BarChart data={statValues}>
+          <CartesianGrid strokeDasharray="1 1" />
+          <XAxis dataKey="month" />
+          <Tooltip />
+          <Bar barSize={20} dataKey="listens" fill="#8884d8" />
+        </BarChart>
+      </ResponsiveContainer>
+    </Card>
+  );
+};
 
 export default EpisodesChart;
