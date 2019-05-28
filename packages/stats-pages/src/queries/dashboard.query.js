@@ -10,15 +10,17 @@ export const DashboardQuery = gql`
       episodes {
         title
         id
-        audio_url
-        sharing_url
+        enclosure_url
+        details {
+          episode_url
+        }
         guid
-        stats(timeframe: all) {
-          data {
-            date
-            listens
+        downloads(orderBy: desc) {
+          total
+          by_interval {
+            downloads_total
+            interval
           }
-          total_listens
         }
       }
     }

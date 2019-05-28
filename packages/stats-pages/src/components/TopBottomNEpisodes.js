@@ -33,7 +33,7 @@ export class TopBottomNEpisodes extends Component {
           return (
             <React.Fragment>
               <a
-                href={row.original.sharing_url}
+                href={row.original.details.episode_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Simplecast'de dinle"

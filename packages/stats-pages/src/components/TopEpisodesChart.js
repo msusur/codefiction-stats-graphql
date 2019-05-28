@@ -47,7 +47,7 @@ const TopEpisodesChart = ({ videos, episode }) => {
           return <Loading />;
         }
 
-        const { data } = result.data.podcasts[0].episodes[0].stats;
+        const data = result.data.podcasts[0].episodes[0].downloads.by_interval;
         const youtubeVideoCount = youtubeVideos.length
           ? youtubeVideos[0].statistics.viewCount
           : '-';
@@ -62,18 +62,18 @@ const TopEpisodesChart = ({ videos, episode }) => {
             </div>
             <div className="value">
               <OverallValue
-                text="Podcast İzlenme Sayısı"
-                value={episode.stats.total_listens}
+                text="Podcast Dinlenme Sayısı"
+                value={episode.downloads.total}
               />
             </div>
             <ResponsiveContainer height={170}>
               <LineChart data={data}>
                 <CartesianGrid strokeDasharray="1 1" />
-                <XAxis dataKey="date" hide />
+                <XAxis dataKey="interval" hide />
                 <Tooltip />
                 <Line
                   type="basis"
-                  dataKey="listens"
+                  dataKey="downloads_total"
                   stroke="#8884d8"
                   dot={false}
                   activeDot={{ r: 5 }}

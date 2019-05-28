@@ -7,7 +7,7 @@ export class EpisodesTabView extends Component {
     const { videos, episodes } = this.props;
     const mappedEpisodes = episodes.map(episode => {
       const episodeRefined = episode;
-      episodeRefined.grandTotal = episode.stats.total_listens;
+      episodeRefined.grandTotal = episode.downloads.total;
       const filteredVideos = videos.filter(video => {
         const result =
           compareTwoStrings(video.snippet.title, episode.title) * 100 > 60;

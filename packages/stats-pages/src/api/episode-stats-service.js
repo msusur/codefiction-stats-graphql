@@ -3,9 +3,10 @@ export class EpisodeStatsService {
     const months = {};
 
     episodes.map(episode =>
-      episode.stats.data.forEach(item => {
-        months[item.date] =
-          (months[item.date] ? months[item.date] : 0) + item.listens;
+      episode.downloads.by_interval.forEach(item => {
+        months[item.interval] =
+          (months[item.interval] ? months[item.interval] : 0) +
+          item.downloads_total;
       })
     );
 
