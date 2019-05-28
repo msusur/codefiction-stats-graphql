@@ -8,11 +8,9 @@ const schema = gql`
     overallTimeSeries: [OverallStats]
   }
 
-  enum TimeFrame {
-    recent
-    year
-    all
-    custom
+  enum OrderBy {
+    desc
+    asc
   }
 
   #######################
@@ -83,84 +81,84 @@ const schema = gql`
   #######################
   ## Podcast Schema
   #######################
-  type Podcast @cacheControl(maxAge: 600) {
-    id: Int!
+  type Podcast {
+    id: String!
     title: String
-    rss_url: String
-    description: String
-    author: String
-    copyright: String
-    subdomain: String
-    categories: [String]
-    itunes_url: String
-    language: String
-    website: String
-    twitter: String
-    explicit: Boolean
-    images: Image
-    episodes(title: String): [Episode]
+    href: String
+    status: String
+    image_url: String
     numberOfEpisodes: Int
-    overallStats(
-      # options: recent (default), year, all, custom
-      timeframe: TimeFrame
-      # required for 'custom' timeframe
-      startDate: String
-      # defaults to today
-      endDate: String
-    ): PodcastStats
-    episodesTitleContains(
-      # Title query
-      query: String
-    ): [Episode]
-  }
-
-  type Episode @cacheControl(maxAge: 600) {
-    id: Int!
-    number: Int
-    podcast: Podcast
-    guid: String
-    title: String
-    author: String
-    duration: Int
-    explicit: Boolean
-    published: Boolean
-    description: String
-    long_description: String
-    published_at: String
-    audio_file_size: Int
-    audio_url: String
-    sharing_url: String
-    images: Image
-    is_hidden: Boolean
-    sponsors: [String]
-    stats(
-      # options: recent (default), year, all, custom
-      timeframe: TimeFrame
-      # required for 'custom' timeframe
-      startDate: String
-      # defaults to today
-      endDate: String
-    ): EpisodeStats
-  }
-
-  type Image {
-    large: String
-    small: String
-    thumb: String
+    episodes(title: String): [Episode]
+    downloads(orderBy: OrderBy): Downloads
+    overallStats: PodcastStats
   }
 
   type PodcastStats {
     total_listens: Int
   }
 
-  type EpisodeStats {
-    data: [EpisodeStatsItem]
-    total_listens: Int
+  type Episode {
+    id: String!
+    title: String
+    updated_at: String
+    token: String
+    status: String
+    season: Season
+    scheduled_for: String
+    published_at: String
+    number: Int
+    image_url: String
+    image_path: String
+    href: String
+    guid: String
+    enclosure_url: String
+    description: String
+    downloads(orderBy: OrderBy): Downloads
+    countries: [CountryStats]
+    details: PodcastDetail
+    ## This is missing in the client
+    ## operating systems, providers, network types, devices, device class, browsers, applications.
+    ## technologies: [TechnologyStats]
   }
 
-  type EpisodeStatsItem {
-    date: String
-    listens: Int
+  type Season {
+    href: String
+    number: Int
+  }
+
+  type PodcastDetail {
+    waveform_json: String
+    audio_file_url: String
+    authors: [Authors]
+    waveform_pack: String
+    audio_file_size: Int
+    duration: Int
+    episode_url: String
+  }
+
+  type Authors {
+    name: String
+  }
+
+  type Downloads {
+    id: String
+    total: Int
+    interval: String # TODO: Enum? (day, week, month, year)
+    by_interval: [Interval]
+  }
+
+  type Interval {
+    interval: String
+    downloads_total: Int
+    downloads_percent: Float
+  }
+
+  type CountryStats {
+    rank: Int
+    name: String
+    id: Int
+    downloads_total: Int
+    downloads_percent: Float
   }
 
   #######################

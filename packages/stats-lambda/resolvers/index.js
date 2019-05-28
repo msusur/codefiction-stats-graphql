@@ -41,17 +41,20 @@ const query = {
               )
         );
     },
-    numberOfEpisodes(podcast) {
-      return simpleCastClient
-        .getEpisodes(podcast.id)
-        .then(episodes => episodes.length);
+    downloads(podcast, { orderBy }) {
+      return simpleCastClient.getOverallDownloads(
+        podcast.id,
+        orderBy || 'desc'
+      );
     },
-    overallStats(podcast, { timeframe, startDate, endDate }) {
+    numberOfEpisodes(podcast) {
+      return podcast.episodes.count;
+    },
+    overallStats(podcast) {
       return simpleCastClient
-        .getOverallStats(podcast.id, {
-          timeframe,
-          startDate,
-          endDate,
+        .getOverallStats(podcast.id)
+        .then(podcastResult => {
+          return { total_listens: podcastResult.total };
         })
         .then(result => {
           const calcResult = result;
@@ -62,27 +65,23 @@ const query = {
     },
   },
   Episode: {
-    stats(episode, { timeframe, startDate, endDate }) {
-      return simpleCastClient
-        .getEpisodeStats(episode.podcast_id, episode.id, {
-          timeframe,
-          startDate,
-          endDate,
-        })
-        .then(stats => {
-          const calcStats = stats;
-          soundCloudScrapedData.map(item => {
-            const similarity =
-              stringSimilarity.compareTwoStrings(item.title, episode.title) *
-              100;
-            if (similarity > 80) {
-              calcStats.total_listens += item.listenCount;
-              return false;
-            }
-            return true;
-          });
-          return calcStats;
+    downloads(episode) {
+      return simpleCastClient.getEpisodeStats(episode.id).then(stats => {
+        const calcStats = stats;
+        soundCloudScrapedData.map(item => {
+          const similarity =
+            stringSimilarity.compareTwoStrings(item.title, episode.title) * 100;
+          if (similarity > 80) {
+            calcStats.total += item.listenCount;
+            return false;
+          }
+          return true;
         });
+        return calcStats;
+      });
+    },
+    details(episode) {
+      return simpleCastClient.getEpisode(episode.id);
     },
   },
   YoutubeChannel: {

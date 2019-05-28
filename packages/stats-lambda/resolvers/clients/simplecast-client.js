@@ -16,37 +16,61 @@ class SimpleCastClient {
 
   getPodcasts() {
     return this.cache.getOrUpdate(CACHE_KEYS.PODCASTS, () =>
-      this.client.podcasts.getPodcasts()
+      this.client.podcasts.getPodcasts().then(podcasts => podcasts.collection)
     );
+  }
+
+  getOverallDownloads(podcastId, orderBy) {
+    return this.client.podcasts
+      .getAllDownloadsAnalytics(podcastId)
+      .then(download => {
+        const downloadDetails = download;
+        downloadDetails.by_interval = download.by_interval.sort(
+          (date1, date2) => {
+            return orderBy === 'asc'
+              ? new Date(date1.interval) - new Date(date2.interval)
+              : new Date(date2.interval) - new Date(date1.interval);
+          }
+        );
+        return download;
+      });
   }
 
   getEpisodes(podcastId) {
     return this.cache.getOrUpdate(`${CACHE_KEYS.EPISODES}::${podcastId}`, () =>
-      this.client.episodes.getEpisodes(podcastId)
+      this.client.episodes
+        .getEpisodes(podcastId, { limit: 1000 })
+        .then(episodes => episodes.collection)
     );
   }
 
-  getOverallStats(podcastId, { timeframe, startDate, endDate }) {
+  getOverallStats(podcastId) {
     return this.cache.getOrUpdate(
       `${CACHE_KEYS.OVERALL_PODCAST_STATS}::${podcastId}`,
-      () =>
-        this.client.statistics.getOverallStats(podcastId, {
-          timeframe,
-          startDate,
-          endDate,
-        })
+      () => this.client.podcasts.getAllDownloadsAnalytics(podcastId)
     );
   }
 
-  getEpisodeStats(podcastId, episodeId, { timeframe, startDate, endDate }) {
+  getEpisodeStats(episodeId) {
     return this.cache.getOrUpdate(
       `${CACHE_KEYS.OVERALL_EPISODE_STATS}::${episodeId}`,
-      () =>
-        this.client.statistics.getEpisodeStats(podcastId, episodeId, {
-          timeframe,
-          startDate,
-          endDate,
-        })
+      () => this.client.episodes.getDownloads(episodeId)
+    );
+  }
+
+  getEpisode(episodeId) {
+    return this.cache.getOrUpdate(`${CACHE_KEYS.EPISODES}::${episodeId}`, () =>
+      this.client.episodes.getEpisode(episodeId).then(episode => {
+        return {
+          waveform_json: episode.waveform_json,
+          audio_file_url: episode.audio_file_url,
+          authors: episode.authors.collection,
+          waveform_pack: episode.waveform_pack,
+          audio_file_size: episode.audio_file_size,
+          duration: episode.duration,
+          episode_url: episode.episode_url,
+        };
+      })
     );
   }
 
