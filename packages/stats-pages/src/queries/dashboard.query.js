@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 export const DashboardQuery = gql`
   {
     podcasts {
-      overallStats(timeframe: year) {
+      overallStats {
         total_listens
       }
       title
