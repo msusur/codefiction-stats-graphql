@@ -8,6 +8,7 @@
 // Read the local environment variables from .env file.
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const { ApolloServer } = require('apollo-server-express');
 
 const resolvers = require('./resolvers/index');
@@ -24,6 +25,11 @@ const server = new ApolloServer({
 
 const app = express();
 app.set('port', process.env.PORT || 4000);
+app.use(
+  compression({
+    filter: req => !!req.headers['x-no-compression'],
+  })
+);
 server.applyMiddleware({ app });
 app.use('/', express.static('build'));
 app.listen(app.get('port'), () =>

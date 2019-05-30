@@ -19,6 +19,7 @@
     "apollo-server-lambda": "^2.4.6",
     "aws-sdk": "^2.350.0",
     "body-parser": "^1.18.3",
+    "compression": "^1.7.4",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "google-auth-library": "^3.1.1",
