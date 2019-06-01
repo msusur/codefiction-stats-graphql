@@ -4,9 +4,9 @@ import TopEpisodesChart from '../TopEpisodesChart';
 import Card from '../ui/Card';
 
 export class TotalListensTabView extends Component {
-  constructor() {
-    super();
-    this.state = { options: [], selectedItem: null };
+  constructor(props) {
+    super(props);
+    this.state = { options: [], selectedItem: '' };
   }
 
   componentDidMount = () => {
@@ -47,7 +47,11 @@ export class TotalListensTabView extends Component {
             })
           }
         />
-        <TopEpisodesChart episode={selectedItem} videos={youtubeVideos} />
+        {selectedItem ? (
+          <TopEpisodesChart episode={selectedItem} videos={youtubeVideos} />
+        ) : (
+          <p>Devam etmek için bir seçim yapmanız gerekiyor.</p>
+        )}
       </Card>
     );
   }
