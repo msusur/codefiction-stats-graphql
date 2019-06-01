@@ -76,3 +76,15 @@ Why not?
 Read the `Running the graphql application` section before continue and make sure you have created the `.env` file.
 
 To run the both containers run the `docker-compose up` command. This will brought up two docker containers for each application.
+
+#### Maintainers
+
+- [Mert Susur](https://github.com/msusur)
+- [Mustafa Turhan](https://github.com/mustaphaturhan)
+
+#### Contributers
+
+- [Deniz Irgin](https://github.com/Blind-Striker)
+- [Barış Özaydın](https://github.com/ozaydinb)
+- [Uğur Atar](https://github.com/uguratar)
+- [TheYkk](https://github.com/TheYkk)
