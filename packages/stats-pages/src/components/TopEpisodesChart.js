@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   LineChart,
   Line,
@@ -31,61 +31,61 @@ const QUERY_EPISODES_STATS = title => gql`
   }
 `;
 
-const TopEpisodesChart = ({ videos, episode }) => {
-  if (!episode) {
-    return <p>Devam etmek için bir seçim yapmanız gerekiyor.</p>;
-  }
+class TopEpisodesChart extends Component {
+  render() {
+    const { videos, episode } = this.props;
 
-  const youtubeVideos = videos.filter(video => {
-    const episodeTitle = episode.title;
-    return compareTwoStrings(video.snippet.title, episodeTitle) * 100 > 60;
-  });
+    const youtubeVideos = videos.filter(video => {
+      const episodeTitle = episode.title;
+      return compareTwoStrings(video.snippet.title, episodeTitle) * 100 > 60;
+    });
 
-  return (
-    <Query query={QUERY_EPISODES_STATS(episode.title)}>
-      {result => {
-        if (!result.data || !result.data.podcasts) {
-          return <Loading />;
-        }
+    return (
+      <Query query={QUERY_EPISODES_STATS(episode.title)} fetchPolicy="no-cache">
+        {({ data }) => {
+          if (!data || !data.podcasts) {
+            return <Loading />;
+          }
 
-        const data = result.data.podcasts[0].episodes[0].downloads.by_interval;
-        const youtubeVideoCount = youtubeVideos.length
-          ? youtubeVideos[0].statistics.viewCount
-          : '-';
+          const chartData = data.podcasts[0].episodes[0].downloads.by_interval;
+          const youtubeVideoCount = youtubeVideos.length
+            ? youtubeVideos[0].statistics.viewCount
+            : '-';
 
-        return (
-          <div className="dashboard--items-container">
-            <div className="value">
-              <OverallValue
-                text="Youtube İzlenme Sayısı"
-                value={youtubeVideoCount}
-              />
-            </div>
-            <div className="value">
-              <OverallValue
-                text="Podcast Dinlenme Sayısı"
-                value={episode.downloads.total}
-              />
-            </div>
-            <ResponsiveContainer height={170}>
-              <LineChart data={data}>
-                <CartesianGrid strokeDasharray="1 1" />
-                <XAxis dataKey="interval" hide />
-                <Tooltip />
-                <Line
-                  type="basis"
-                  dataKey="downloads_total"
-                  stroke="#8884d8"
-                  dot={false}
-                  activeDot={{ r: 5 }}
+          return (
+            <div className="dashboard--items-container">
+              <div className="value">
+                <OverallValue
+                  text="Youtube İzlenme Sayısı"
+                  value={youtubeVideoCount}
                 />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        );
-      }}
-    </Query>
-  );
-};
+              </div>
+              <div className="value">
+                <OverallValue
+                  text="Podcast Dinlenme Sayısı"
+                  value={episode.downloads.total}
+                />
+              </div>
+              <ResponsiveContainer height={170}>
+                <LineChart data={chartData}>
+                  <CartesianGrid strokeDasharray="1 1" />
+                  <XAxis dataKey="interval" hide />
+                  <Tooltip />
+                  <Line
+                    type="basis"
+                    dataKey="downloads_total"
+                    stroke="#8884d8"
+                    dot={false}
+                    activeDot={{ r: 5 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          );
+        }}
+      </Query>
+    );
+  }
+}
 
 export default TopEpisodesChart;
