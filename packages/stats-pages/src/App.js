@@ -1,65 +1,13 @@
-import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import React, { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import Helmet from 'react-helmet';
 import DashboardView from './components/DashboardView';
 import DashboardQuery from './queries/dashboard.query';
 import Navigation from './components/Navigation';
+import Loading from './components/Loading';
 
-export class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isDarkThemeEnabled: false,
-    };
-  }
-
-  componentDidMount() {
-    const theme = localStorage.getItem('theme');
-    if (theme && theme === 'dark') {
-      this.setState({
-        isDarkThemeEnabled: true,
-      });
-    } else {
-      this.setState({
-        isDarkThemeEnabled: false,
-      });
-    }
-  }
-
-  changeTheme = () => {
-    this.setState(oldState => {
-      const { isDarkThemeEnabled } = oldState;
-
-      if (!isDarkThemeEnabled) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-
-      return {
-        isDarkThemeEnabled: !isDarkThemeEnabled,
-      };
-    });
-  };
-
-  render() {
-    const { isDarkThemeEnabled } = this.state;
-    const { data } = this.props;
-    return (
-      <React.Fragment>
-        <Helmet>
-          <body className={isDarkThemeEnabled ? 'dark-theme' : 'light-theme'} />
-        </Helmet>
-        <Navigation changeTheme={this.changeTheme} theme={isDarkThemeEnabled} />
-        <DashboardView results={data} />
-      </React.Fragment>
-    );
-  }
-}
-
-export default graphql(DashboardQuery, {
-  options: {
+export const App = () => {
+  const { loading, data } = useQuery(DashboardQuery, {
     notifyOnNetworkStatusChange: true,
     onError: ({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
@@ -71,5 +19,30 @@ export default graphql(DashboardQuery, {
         console.log(`[Network error]: ${networkError}`);
       }
     },
-  },
-})(App);
+  });
+
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    setTheme(localStorage.getItem('theme') || 'light');
+  }, []);
+
+  const toggleTheme = () =>
+    setTheme(oldTheme => {
+      const newTheme = oldTheme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', newTheme);
+      return newTheme;
+    });
+
+  return (
+    <>
+      <Helmet>
+        <body className={`${theme}-theme`} />
+      </Helmet>
+      <Navigation toggleTheme={toggleTheme} isThemeDark={theme === 'dark'} />
+      {loading ? <Loading /> : <DashboardView results={data} />}
+    </>
+  );
+};
+
+export default App;
