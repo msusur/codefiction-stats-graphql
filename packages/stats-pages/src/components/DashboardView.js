@@ -1,5 +1,4 @@
 import React from 'react';
-import Loading from './Loading';
 import TotalListensTabView from './tabs/TotalListensTabView';
 import OverallValuesTabView from './tabs/OverallValuesTabView';
 import EpisodesTabView from './tabs/EpisodesTabView';
@@ -16,10 +15,6 @@ export const DashboardView = ({ results }) => {
     podcasts,
     youtube,
   };
-
-  if (!podcasts) {
-    return <Loading />;
-  }
 
   return (
     <main className="container">
