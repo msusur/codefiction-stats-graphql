@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-boost": "^0.1.20",
-    "apollo-server-express": "^2.1.0",
+    "apollo-server-express": "^2.14.2",
     "apollo-server-lambda": "^2.4.6",
     "aws-sdk": "^2.350.0",
     "body-parser": "^1.18.3",
