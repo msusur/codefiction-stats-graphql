@@ -30,7 +30,7 @@
     "node-cache": "^4.2.0",
     "node-cache-promise": "^1.0.0",
     "numeral": "^2.0.6",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "redis-commands": "^1.4.0",
     "simplecast-api-client": "^2.0.0",
     "string-similarity": "^3.0.0",
