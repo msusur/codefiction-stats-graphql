@@ -26,7 +26,7 @@
     "graphql": "^14.1.1",
     "graphql-tools": "^4.0.3",
     "http-debug": "^0.1.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-cache": "^4.2.0",
     "node-cache-promise": "^1.0.0",
     "numeral": "^2.0.6",
